@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
+
+    public function index(){
+        return view('login');
+    }
     public function autenticar(Request $request){
         $credentials = $request->validate([
             'username' => 'required',
@@ -19,13 +23,13 @@ class LoginController extends Controller
             $request->session()->regenerate();
             if(Auth::user()->tipo_log=='admin'){
                 session('tipo_log') === 'admin';
-                return redirect()->route('home');
+                return redirect()->route('programas');
             }
             return redirect()->route('login');
             
         }
         else{
-            return redirect()->route('login')->with('error','Usuário ou senha inválidos');
+            return redirect()->route('login')->with('erro','Usuário ou senha inválidos');
         }
     }
 

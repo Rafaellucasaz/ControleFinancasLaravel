@@ -8,9 +8,10 @@
 </head>
 <body>
     @include('components.navbar')
+   
 
-    @if (session('error'))
-        <p>{{session('error')}}</p>
+    @if (session('erro'))
+    <x-msg class="erro" :msg="session('erro')"/>
     @endif
 <main>
     

@@ -1,0 +1,134 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+
+
+.button
+{
+    text-align: center;
+
+}
+
+.popup {
+    border-radius: 9px;
+}
+
+.cadastro button {
+    text-align: center;
+    margin-left: 28%;
+    margin-top: 17px;
+}
+
+.submit{
+
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    border-radius: 5px;
+    background-color: #005792;
+}
+
+
+.submit:hover{background-color: #00204a;cursor: pointer;}
+
+.search
+{
+    border :solid 3px black;
+    border-radius: 10px;
+    background-color: #C5DFF8;
+    margin-bottom: 2%;
+    height: 30px;
+    color: black;
+}
+.search:hover{
+    background-color : #C5DFF890;
+}
+
+.popup
+{
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    background: white;
+    border: 1px solid black;
+    padding: 10px;
+    margin: auto;
+    top: 0;
+    left : 50%;
+    transform: translate(-50%,-50%) scale(0.1);
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+.popupExcluir{
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    border-radius: 50px;
+    background: white;
+    border: 5px solid #00204a;
+    padding: 10px;
+    margin: auto;
+    top: 0;
+    left : 50%;
+    transform: translate(-50%,-50%) scale(0.1);
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+.popup #fecharPopup{
+    border: none;
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+}
+.popup #fecharPopup:hover{
+    opacity: 0.6;
+    cursor: pointer;
+ }
+.open-popup
+{
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%,-50%) scale(1);
+
+}
+
+.msg{
+    border-radius: 50px;
+    background-color:  #C5DFF8;
+    width: 25%;
+    position: fixed;
+    left: 38%;
+    top :30px;
+    text-align: center;
+    color: black;
+    animation: fadeOut 1.5s 2s forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+table tr td button{
+    border: none;
+    color: blue;
+}
+table tr td button:hover{
+    cursor: pointer;
+    opacity: 0.2;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}

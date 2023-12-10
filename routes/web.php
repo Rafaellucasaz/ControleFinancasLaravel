@@ -3,6 +3,7 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProgramaController;
 use App\http\Controllers\CoordenadorController;
+use App\http\Controllers\PedidoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,3 +46,11 @@ Route::get('/coordenadores',[CoordenadorController::class,'index'])->name('coord
 Route::post('/coordenadores/cadastrarCoordenador',[CoordenadorController::class,'cadastrarCoordenador'])->name('cadastrarCoordenador');
 
 Route::get('/coordenadores/excluirCoordenador/{username}', [CoordenadorController::class,'excluirCoordenador'])->name('excluirCoordenador');
+
+Route::get('/controleProapinho',[PedidoController::class,'indexProapinho'])->name('controleProapinho');
+
+Route::post('/controleProapinho',[PedidoController::class,'postProapinho'])->name('postProapinho');
+
+Route::post('/controleProapinho/cadastrarPedido',[PedidoController::class,'cadastrarPedido'])->name('cadastrarPedido');
+
+

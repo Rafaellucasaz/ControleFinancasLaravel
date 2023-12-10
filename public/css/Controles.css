@@ -1,0 +1,159 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 50px;
+    text-align: center;
+}
+
+h2 {
+    margin-left: 275px;
+    text-align: left;
+    font-size: 17px;
+}
+
+.center-form{
+    justify-content: center;
+    text-align: right;
+    display: flex;
+    margin: 40px 50px;
+    font-size: 20px;
+}
+
+div {
+    text-align: center;
+}
+
+
+
+
+.tabela{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttons{
+    
+    padding: 5px;
+    display: flex;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: fit-content;
+    background-color: #00204a;
+}
+.submit{
+
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    background-color: #00204a;
+    margin-bottom: 4px;
+}
+.submit:hover{background-color: #005792;cursor: pointer;
+    transition: 0.3s;}
+
+
+.msg{
+    border-radius: 50px;
+    background-color:  #C5DFF8;
+    width: 25%;
+    position: fixed;
+    left: 38%;
+    top :30px;
+    text-align: center;
+    color: black;
+    animation: fadeOut 1.5s 2s forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+.date
+{
+    width: 160px;
+}
+
+.tipo
+{
+    width: 160px;
+}
+.n-ped
+{
+    
+    width: 30px;
+}
+
+.det 
+{
+    width: 300px;
+    height: 100px;
+}
+button {
+
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    border-radius: 5px;
+}
+
+
+.popup
+{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 300px;
+    height: 600px;
+    background: white;
+    border: 1px solid black;
+    padding: 10px;
+    margin: auto;
+    top: 0;
+    left : 50%;
+    transform: translate(-50%,-50%) scale(0.1);
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.popup #fecharPopup{
+    border: none;
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+    height: 4%;
+    width: 8%;
+    padding: 0%;
+}
+.popup #fecharPopup:hover{
+   opacity: 0.6;
+   cursor: pointer;
+}
+
+.closePopup div {
+    margin-right: 80%;
+}
+
+.open-popup
+{
+    visibility: visible;
+    top : 50%;
+    transform: translate(-50%,-50%) scale(1);
+    border-radius: 5px;
+
+}
+
+
+
+
+
+
+
+
+
+
+

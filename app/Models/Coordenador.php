@@ -13,6 +13,8 @@ class Coordenador extends Model
     
     protected $primaryKey = 'id_logfk';
 
+    public $incrementing = false;
+
     protected $fillable = [
         'id_logfk',
         'id_progfk',

@@ -20,7 +20,7 @@ class ProgramaController extends Controller
 
     public function cadastrarNovoPrograma(Request $request){
         $request->validate([
-            'programa' =>'required|String|max:10',
+            'programa' =>'required|String|max:20',
             'tipoPrograma' =>'required',
         ]);
         $ano = date('Y');

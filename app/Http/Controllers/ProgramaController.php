@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Coordenador;
+use App\Models\Pedido;
 use App\Models\Programa;
 use Illuminate\Http\Request;
+
+
 
 class ProgramaController extends Controller
 {
@@ -19,13 +23,46 @@ class ProgramaController extends Controller
             'programa' =>'required|String|max:10',
             'tipoPrograma' =>'required',
         ]);
+        $ano = date('Y');
+    $programa = Programa::where('nom_prog',$request->programa)->where('tipo_prog',$request->tipoPrograma)->whereYear('created_at',$ano)->first();
+        if($programa === null){
+            $data = [
+                'nom_prog' => $request->programa,
+                'tipo_prog' => $request->tipoPrograma,
+            ];
+            Programa::create($data);
+            return redirect()->route('programas')->with('sucesso', 'Programa cadastrado');
+        }
+        else{
+            return redirect()->route('programas')->with('erro', 'Programa já cadastrado');
+        }
+    
+    }
 
-        $data = [
-            'nom_prog' => $request->programa,
-            'tipo_prog' => $request->tipoPrograma,
-        ];
-        Programa::create($data);
-        return redirect()->route('programas')->with('sucesso', 'programa cadastrado');
+    public function excluirPrograma($id_prog)
+    {
+        Pedido::where('id_progfk',$id_prog)->delete();
+        Coordenador::where('id_progfk',$id_prog)->delete();
+        Programa::where('id_prog',$id_prog)->delete();
+        return redirect()->route('programas')->with('sucesso', 'Programa excluído');
 
+    }
+
+    public function edicao(Request $request){
+        if
+        ($request->edicao == "true"){
+            $ano = date('Y');
+            Programa::whereYear('created_at',$ano)->update(['edit'=> true]);
+            return redirect()->route('programas')->with('sucesso', 'Programas liberados para edição');
+        }
+        else{
+            $ano = date('Y');
+            Programa::whereYear('created_at',$ano)->update(['edit'=> false]);
+            return redirect()->route('programas')->with('sucesso', 'Programas trancados para edição');
+        }
+    }
+
+    public static function getIdProg($programa,$tipo,$ano){
+        return Programa::where('nom_prog',$programa)->where('tipo_prog',$tipo)->whereYear('created_at',$ano)->value('id_prog');
     }
 }

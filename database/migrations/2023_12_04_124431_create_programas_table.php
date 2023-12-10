@@ -28,6 +28,7 @@ return new class extends Migration
             $table->integer('tran');
             $table->integer('total');
             $table->boolean('edit');
+            
         });
     }
 

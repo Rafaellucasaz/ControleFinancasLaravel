@@ -24,7 +24,8 @@
 
 .topnav a:hover{ 
     background-color: #005792;
-    color:white
+    color:white;
+    transition: 0.3s;
 }
 
 .topnav a.active {

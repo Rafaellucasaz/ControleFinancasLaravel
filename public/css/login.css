@@ -1,5 +1,6 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+    background-color: #C5DFF8 ;
 }
 
 main {
@@ -9,25 +10,6 @@ main {
     background-color: #00204a;
     overflow: hidden;
     border-radius: 5px;
-}
-
-.topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
-
-.topnav a:hover{
-    background-color: #005792;
-    color:white
-}
-
-.topnav a.active {
-    background-color: #005792;
-    color: white
 }
 
 .button1 {
@@ -69,8 +51,25 @@ button:hover {background-color: #00204a;}
 
 fieldset
 {
+    background-color: white;
+    box-shadow: 4px 4px 8px 8px  #005792;
     width: 30%;
     margin-left: 35%;
     margin-top: 10%;
     border-radius: 5px;
+    border: 5px solid #00204a ;
+    display: flex;
+    flex-direction: column;
+}
+fieldset input{
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+fieldset img{
+    width: 100%;
 }

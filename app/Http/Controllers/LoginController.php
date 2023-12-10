@@ -33,19 +33,34 @@ class LoginController extends Controller
         }
     }
 
-    public function registrar(Request $request){
+    public static function registrar($username,$password,$tipoLog){
 
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ]);
+        
         $data = [
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-            'tipo_log' => $request->tipo,
+            'username' => $username,
+            'password' => Hash::make($password),
+            'tipo_log' => $tipoLog,
         ];
-        Login::create($data);
-        return redirect()->route('home');
+        $username = Login::where('username',$username)->value('username');
+        if($username === null){
+            $login = Login::create($data);
+            $id = $login->id_log;
+            return $id;
+        }
+        else{
+            return null;
+        }
+
+       
+    }
+
+    public static function excluirLogin($username){
+        Login::where('username',$username)->delete();
+        
+    }
+
+    public static function getIdLog($username){
+        return Login::where('username',$username)->value('id_log');
     }
 
 }

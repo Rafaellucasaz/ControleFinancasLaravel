@@ -15,9 +15,10 @@
     @endif
 <main>
     
+    
 <fieldset>
     <form action="{{route('autenticar')}}" method="post">
-       
+        
             <h2>
             Login
             </h2>

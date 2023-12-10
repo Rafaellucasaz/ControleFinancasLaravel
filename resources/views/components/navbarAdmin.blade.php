@@ -9,13 +9,9 @@
 
 <a href = "../ControleProapinho/controle_proapinho.php">Proapinho</a>
 <a href = "../ControleProap/controle_proap.php">Proap</a>
-<a href = "../Coordenadores/coordenadores.php">Coordenadores</a>
-<a href = "../ProgramasAdmin/programas.php">Programas</a>
+<a href = "{{route('coordenadores')}}">Coordenadores</a>
+<a href = "{{route('programas')}}">Programas</a>
 
-
-
-<a href="../Programas/Cadastro_programas.php">Programas</a>
-<a href="../Pedidos/pedidos.php">Pedidos</a>
 
 
 <a  href = "../Login/action_logout.php" style = "float:right">Logout</a> </div>

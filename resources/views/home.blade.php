@@ -12,11 +12,11 @@
 <body>
     @include('components.navbar')
   <div>
-  <h1>
+  <h1> SISTEMA DE GERENCIAMENTO FINANCEIRO
+  </h1>
   <image src = "/Images/logo.png" style="width: 559px; height: 336px"></image>
   <br>
-  SISTEMA DE GERENCIAMENTO FINANCEIRO
-  </h1>
+  
  
   </div>
 </body>

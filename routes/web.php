@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProgramaController;
+use App\http\Controllers\CoordenadorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,9 +32,16 @@ Route::get('/register', function () {
 
 Route::get('/programas', [ProgramaController::class,'index'])->name('programas');
 
-Route::post('/register/fodase', [LoginController::class,'registrar'])->name('a');
-
 Route::post('/login/autenticar',[LoginController::class,'autenticar'])->name('autenticar');
 
 Route::post('/programas/cadastrarNovoPrograma',[ProgramaController::class,'cadastrarNovoPrograma'])->name('cadastrarNovoPrograma');
 
+Route::get('/programas/excluirPrograma/{id_prog}', [ProgramaController::class,'excluirPrograma'])->name('excluirPrograma');
+
+Route::post('/programas/edicao',[ProgramaController::class,'edicao'])->name('edicao');
+
+Route::get('/coordenadores',[CoordenadorController::class,'index'])->name('coordenadores');
+
+Route::post('/coordenadores/cadastrarCoordenador',[CoordenadorController::class,'cadastrarCoordenador'])->name('cadastrarCoordenador');
+
+Route::get('/coordenadores/excluirCoordenador/{username}', [CoordenadorController::class,'excluirCoordenador'])->name('excluirCoordenador');

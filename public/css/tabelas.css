@@ -64,7 +64,7 @@ table tr:last-child td:last-child
 }
 
 table tr td a{
-    color: blue;
+    color: #005792;
 }
 
 table tr td a:hover{

@@ -32,7 +32,7 @@
         </div>
         @csrf
         <div>
-            <button class="button submit" type="submit">Login</button>
+            <button class="button submit" type="submit">Entrar</button>
         </div>
         
     </form>

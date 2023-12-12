@@ -1,20 +1,12 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-}
-
-
-main{
-  
+    background-color: lightcyan;
     text-align: center;
-    border-radius: 5px;
-}
-h1{
-    text-align: center;
-    
 }
 
 
 .tabela{
+  
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,8 +29,6 @@ h1{
     background-color: #00204a;
     margin-bottom: 4px;
 }
-
-
 
 .submit:hover{background-color: #005792;cursor: pointer;
     transition: 0.3s;}
@@ -96,19 +86,3 @@ a{
 
 }
 
-.msg{
-    border-radius: 50px;
-    background-color:  #C5DFF8;
-    width: 25%;
-    position: fixed;
-    left: 38%;
-    top :30px;
-    text-align: center;
-    color: black;
-    animation: fadeOut 1.5s 2s forwards;
-}
-
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to   { opacity: 0; }
-}

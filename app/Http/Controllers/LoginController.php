@@ -25,12 +25,19 @@ class LoginController extends Controller
                 session('tipo_log') === 'admin';
                 return redirect()->route('programas');
             }
-            return redirect()->route('login');
+            return redirect()->route('home');
             
         }
         else{
             return redirect()->route('login')->with('erro','Usuário ou senha inválidos');
         }
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
     }
 
     public static function registrar($username,$password,$tipoLog){

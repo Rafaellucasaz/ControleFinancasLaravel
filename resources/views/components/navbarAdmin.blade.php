@@ -14,7 +14,7 @@
 
 
 
-<a  href = "../Login/action_logout.php" style = "float:right">Logout</a> </div>
+<a  href = "{{route('logout')}}" style = "float:right">Logout</a> </div>
   
 </div>
   

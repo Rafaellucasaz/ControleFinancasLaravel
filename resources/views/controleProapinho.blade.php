@@ -11,6 +11,14 @@
 <body>
     @include('components.navbarAdmin')
 
+    @if (session('sucesso'))
+    <x-msg class="sucesso" :msg="session('sucesso')"/>
+    @endif
+
+    @if (session('erro'))
+    <x-msg class="erro" :msg="session('erro')"/>
+    @endif
+
     <div class="popup" id = "popup">
 
         <button id = "fecharPopup"><i class="fa-solid fa-xmark"></i></button>
@@ -145,7 +153,7 @@
 
 
 <script type="text/javascript" >
-    var popup = document.getElementById("popup");
+    const popup = document.getElementById("popup");
     document.getElementById("abrirPopup").addEventListener("click", function(event)
     {
         event.preventDefault();

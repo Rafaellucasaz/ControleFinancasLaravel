@@ -1,17 +1,13 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color:aliceblue;
-   
-}
-
-main {
+    background-color: lightcyan;
     text-align: center;
+  
 }
 
-h1 {
-    text-align: center;
 
-}
+
+
 
 .tabela{
     display: flex;
@@ -44,7 +40,6 @@ h1 {
     border: none;
     color: white;
     padding: 15px 32px;
-    
     background-color: #00204a;
     margin-bottom: 4px;
 }
@@ -53,18 +48,7 @@ h1 {
 .submit:hover{background-color: #005792;cursor: pointer;
 transition: 0.3s;}
 
-.search
-{
-    border :solid 3px black;
-    border-radius: 10px;
-    background-color: #C5DFF8;
-    margin-bottom: 2%;
-    height: 30px;
-    color: black;
-}
-.search:hover{
-    background-color : #C5DFF890;
-}
+
 
 .popup
 {
@@ -145,3 +129,4 @@ a{
     color: white;
     font-size: 14px;
 }
+

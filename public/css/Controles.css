@@ -1,33 +1,8 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+    background-color: lightcyan;
 }
-
-h1 {
-    margin-top: 50px;
-    text-align: center;
-}
-
-h2 {
-    margin-left: 275px;
-    text-align: left;
-    font-size: 17px;
-}
-
-.center-form{
-    justify-content: center;
-    text-align: right;
-    display: flex;
-    margin: 40px 50px;
-    font-size: 20px;
-}
-
-div {
-    text-align: center;
-}
-
-
-
 
 .tabela{
     display: flex;
@@ -55,23 +30,6 @@ div {
 .submit:hover{background-color: #005792;cursor: pointer;
     transition: 0.3s;}
 
-
-.msg{
-    border-radius: 50px;
-    background-color:  #C5DFF8;
-    width: 25%;
-    position: fixed;
-    left: 38%;
-    top :30px;
-    text-align: center;
-    color: black;
-    animation: fadeOut 1.5s 2s forwards;
-}
-
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to   { opacity: 0; }
-}
 
 .date
 {
@@ -146,6 +104,29 @@ button {
     border-radius: 5px;
 
 }
+
+select{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    border: solid 4px #005792;
+    border-radius: 10px;
+    background-color: #A0BFE0 ;
+    margin-bottom: 2%;
+    
+    color: #005792;
+    padding: 5px;
+}
+select:hover{
+    background-color: #C5DFF8;
+}
+
+select::-ms-expand{
+    display: none;
+}
+
+
 
 
 

@@ -12,6 +12,7 @@
     @include('components.navbarAdmin')
 <main>
 
+    
     @if (session('sucesso'))
     <x-msg class="sucesso" :msg="session('sucesso')"/>
     @endif
@@ -19,12 +20,12 @@
     @if (session('erro'))
     <x-msg class="erro" :msg="session('erro')"/>
     @endif
-  
-    <h1>Coordenadores</h1> <main>
-    <input type="search" id = "search" class = "search" placeholder="Procurar">
-    
+ 
+    <h1>Coordenadores</h1> 
+   
     
      <div class = "tabela">
+        <x-search-box/>
         <div class = "buttons" >  
             <button class = "submit" id = "abrirPopup" > Cadastrar Coordenador </button> 
         </div>
@@ -110,7 +111,7 @@
         });
         
     }); 
-    var popup = document.getElementById("popup");
+    const popup = document.getElementById("popup");
     document.getElementById("abrirPopup").addEventListener("click", function(event)
     {
         event.preventDefault();

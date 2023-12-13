@@ -5,25 +5,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="/css/programas.css" rel="stylesheet"/>
         <link  href="/css/tabelas.css" rel="stylesheet"/>
+        <link  href="/css/componentes.css" rel="stylesheet"/>
         <title>Document</title>
         <script src="https://kit.fontawesome.com/3c06a12d01.js" crossorigin="anonymous"></script>
         
     </head>
     <div class = "popup" id = "popup">
-
-        <div class="closebtn">
-        <button id = "fecharPopup" style="float: right;"><i class="fa-solid fa-xmark"></i></button>
-        <br><br>
-        </div>
         <form action="{{route('cadastrarNovoPrograma')}}" method="post">
-            <label for="Sigla"> Sigla</label>
-            <input type="text" name = programa >
+            <label for="proap">Proap</label>
+            <input type="radio" value = "proap" name = "tipoPrograma" id = "proap">
+            <label for="proapinho">proapinho</label>
+            <input type="radio" value = "proapinho" name = "tipoPrograma" id = "proapinho">
+            <br><br>
+            <label for="sigla">Sigla</label>
+            <input type="text" name = programa id = "sigla" >
+            <br><br><br>
             @csrf
-            <select name="tipoPrograma" id="">
-                <option value="proap"> Proap</option>
-                <option value="proapinho"> Proapinho</option>
-            </select>
-            <div class="cadastro"><button class="submit" type="submit">Cadastrar</button></div>
+            <button class="submit" type="submit">Cadastrar</button>
+            <button class = "submit" id = "fecharPopup" type = "reset">Cancelar</button>
         </form>
     </div>
     <body>
@@ -87,6 +86,7 @@
                         <td> {{$programa->ser_ter}} </td>
                         <td> {{$programa->tran}} </td>
                         <td> {{$programa->total}} </td> 
+                    
                         <td> <a href="{{ route('excluirPrograma',['id_prog' => $programa->id_prog])}}" onclick="return confirm('Isso deletará todos os pedidos e o coordenador referente a esse programa. Continuar ?')"> <i class="fa-solid fa-trash-can"></i> </a> </td>      
                     </tr>
                 @endforeach

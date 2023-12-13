@@ -36,7 +36,11 @@ Route::group(['middleware' => 'admin'],function(){
 
     Route::get('/controleProapinho',[PedidoController::class,'indexProapinho'])->name('controleProapinho');
 
-    Route::post('/controleProapinho',[PedidoController::class,'postProapinho'])->name('postProapinho');
+    Route::post('/controleProapinho',[PedidoController::class,'visualizarPedidosProapinho'])->name('postProapinho');
+
+    Route::get('/controleProap',[PedidoController::class,'indexProap'])->name('controleProap');
+    
+    Route::post('/controleProap',[PedidoController::class,'visualizarPedidosProap'])->name('postProap');
 
     Route::post('/controleProapinho/cadastrarPedido',[PedidoController::class,'cadastrarPedido'])->name('cadastrarPedido');
     

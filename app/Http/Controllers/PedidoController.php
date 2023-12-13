@@ -15,7 +15,7 @@ class PedidoController extends Controller
         return view('controleProapinho')->with(compact('programas'));
     }
 
-    public function postProapinho(Request $request){
+    public function visualizarPedidosProapinho(Request $request){
         $ano = date('Y');
         $id_prog = ProgramaController::getIdProg($request->programa,'proapinho',$ano);
         $pedidos = Pedido::where('id_progfk', $id_prog)->where('tipo_ped',$request->tipo_ped)->get();
@@ -24,10 +24,17 @@ class PedidoController extends Controller
     }
 
     public function indexProap(){
-        $pedidos = Pedido::all();
         $ano = date('Y');
-        $programas = Programa::where('tipo_prog', 'proap')->whereYear('created_at', $ano)->get();
-        return view('pedidosProapinho')->with(compact('pedidos'))->with(compact('programas'));
+        $programas = Programa::where('tipo_prog', 'proap')->whereYear('created_at', $ano)->pluck('nom_prog');
+        return view('controleProap')->with(compact('programas'));
+    }
+
+    public function visualizarPedidosProap(Request $request){
+        $ano = date('Y');
+        $id_prog = ProgramaController::getIdProg($request->programa,'proap',$ano);
+        $pedidos = Pedido::where('id_progfk', $id_prog)->where('tipo_ped',$request->tipo_ped)->get();
+        $programas = Programa::where('tipo_prog', 'proap')->whereYear('created_at', $ano)->pluck('nom_prog');
+        return view('controleProap')->with(compact('programas'))->with(compact('pedidos'));
     }
 
     public function cadastrarPedido(Request $request){
@@ -45,7 +52,7 @@ class PedidoController extends Controller
         ]);
         $ano = Date('Y');
         $id_prog =ProgramaController::getIdProg($request->programa,$request->tipo_prog,$ano);
-
+        $tipo_prog = $request->tipo_prog;
         $data = [
             'id_progfk' => $id_prog,
             'tipo_ped' => $request->tipo_ped,
@@ -59,8 +66,16 @@ class PedidoController extends Controller
         ];
 
         Pedido::create($data);
+
+        $pedidos = Pedido::where('id_progfk', $id_prog)->where('tipo_ped',$request->tipo_ped)->get();
+
        
-        return redirect('controleProapinho')->with('sucesso', 'Pedido cadastrado');
         
+       
+        if($tipo_prog =='proap'){
+            return redirect()->back()->with('sucesso', 'Pedido cadastrado')->with('pedidos', $pedidos);
+        }
+        return redirect('controleProapinho')->with('sucesso', 'Pedido cadastrado')->withInput(['programa' => $request->programa, 'tipo_ped' => $request->tipo_ped]);
+    
     }
 }

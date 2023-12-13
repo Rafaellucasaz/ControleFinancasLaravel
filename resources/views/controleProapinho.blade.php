@@ -6,6 +6,7 @@
     <title>Pedidos</title>
     <link href="/css/controles.css" rel="stylesheet"/>
     <link  href="/css/tabelas.css" rel="stylesheet"/>
+    <link  href="/css/componentes.css" rel="stylesheet"/>
     <script src="https://kit.fontawesome.com/3c06a12d01.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -20,8 +21,6 @@
     @endif
 
     <div class="popup" id = "popup">
-
-        <button id = "fecharPopup"><i class="fa-solid fa-xmark"></i></button>
         <form action="{{route('cadastrarPedido')}}" method = "post">
         <br><br>
         @csrf
@@ -64,11 +63,11 @@
         <br>
         <label for="n-pcdp"> Nº PCDP</label>
         <br>
-        <input type="text" name="n_pcdp" class = "n_pcdp" id = "n_pcdp" required>
+        <input type="text" name="n_pcdp" class = "n_pcdp" id = "n-pcdp" required>
         <br>
-        <label for="detalhamento"> Detalhamento</label>
+        <label for="det"> Detalhamento</label>
         <br>
-        <input type="text" name="det" class = "det" id = "n-pcdp" required>
+        <textarea name="det" id="det" cols="30" rows="5" required></textarea>
         <br>
         <label for="ben"> Beneficiado</label>
         <br>
@@ -80,6 +79,7 @@
         <br><br>
         <input type="hidden" name = "tipo_prog" value ="proapinho">
         <button class="submit" type="submit">Cadastrar</button>
+        <button  class = "submit"id = "fecharPopup">Cancelar</button>
         <br><br>
     </form>
 </div>
@@ -93,22 +93,22 @@
         <select name="programa" id=""  onchange="this.form.submit()">
         <option value="" disabled selected>Selecionar</option>
         @foreach ($programas as $programa)
-        <option value ="{{$programa}}" @php if(isset($_POST['programa']) && $_POST['programa'] ==  "$programa" ){ @endphp selected="selected" @php } @endphp >{{$programa}} </option>;
+        <option value ="{{$programa}}" @php if(isset($_POST['programa']) && $_POST['programa'] ==  "$programa" || old('programa')!== null && old('programa') == "$programa" ){ @endphp selected="selected" @php } @endphp >{{$programa}} </option>;
         @endforeach
         </select>
     <label for="tipo">tipo</label>
         <select name="tipo_ped" onchange="this.form.submit()">
         <option value="" disabled selected>Selecionar</option>
-        <option value="dia_civ" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'dia_civ'){  @endphp selected="selected" @php } @endphp>Diária pessoal civil</option>
-        <option value="dia_int" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'dia_int'){ @endphp selected="selected" @php } @endphp>Diária internacional</option>
-        <option value="pass" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'pass'){ @endphp selected="selected" @php } @endphp>passagem</option>
-        <option value="sepe" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'sepe'){ @endphp selected="selected" @php } @endphp>Sepe</option>
-        <option value="nao_serv" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'nao_serv'){ @endphp selected="selected" @php } @endphp>Não servidor</option>
-        <option value="aux_estu" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'aux_estu'){ @endphp selected="selected" @php } @endphp>Auxílio estudantil</option>
-        <option value="aux_pesq" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'aux_pesq'){ @endphp selected="selected" @php } @endphp>Auxílio pesquisador</option>
-        <option value="cons" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'cons'){ @endphp selected="selected" @php } @endphp>Material de consumo</option>
-        <option value="ser_ter" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'ser_ter'){ @endphp selected="selected" @php } @endphp>Serviço de terceiros</option>
-        <option value="tran" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'tran'){ @endphp selected="selected" @php } @endphp>Transportes</option>
+        <option value="dia_civ" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'dia_civ' || old('tipo_ped')!== null && old('tipo_ped') == 'dia_civ'){  @endphp selected="selected" @php } @endphp>Diária pessoal civil</option>
+        <option value="dia_int" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'dia_int' || old('tipo_ped')!== null && old('tipo_ped') == 'dia_int'){ @endphp selected="selected" @php } @endphp>Diária internacional</option>
+        <option value="pass" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'pass' || old('tipo_ped')!== null && old('tipo_ped') == 'pass'){ @endphp selected="selected" @php } @endphp>passagem</option>
+        <option value="sepe" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'sepe' || old('tipo_ped')!== null && old('tipo_ped') == 'sepe'){ @endphp selected="selected" @php } @endphp>Sepe</option>
+        <option value="nao_serv" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'nao_serv' || old('tipo_ped')!== null && old('tipo_ped') == 'nao_serv'){ @endphp selected="selected" @php } @endphp>Não servidor</option>
+        <option value="aux_estu" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'aux_estu' || old('tipo_ped')!== null && old('tipo_ped') == 'aux_estu'){ @endphp selected="selected" @php } @endphp>Auxílio estudantil</option>
+        <option value="aux_pesq" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'aux_pesq' || old('tipo_ped')!== null && old('tipo_ped') == 'aux_pesq'){ @endphp selected="selected" @php } @endphp>Auxílio pesquisador</option>
+        <option value="cons" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'cons' || old('tipo_ped')!== null && old('tipo_ped') == 'cons'){ @endphp selected="selected" @php } @endphp>Material de consumo</option>
+        <option value="ser_ter" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'ser_ter' || old('tipo_ped')!== null && old('tipo_ped') == 'ser_ter'){ @endphp selected="selected" @php } @endphp>Serviço de terceiros</option>
+        <option value="tran" @php if(isset($_POST['tipo_ped']) && $_POST['tipo_ped'] == 'tran' || old('tipo_ped')!== null && old('tipo_ped') == 'tran'){ @endphp selected="selected" @php } @endphp>Transportes</option>
         </select>
     </form>
 <br><br>
@@ -130,6 +130,23 @@
                 </tr>
                 @if(isset($pedidos))
                     @foreach ($pedidos as $pedido)
+                        <tr>
+                            <td>{{$pedido->num_ped}}</td>
+                            <td>{{$pedido->data}}</td>
+                            <td>R$ {{$pedido->val/100}}@if(!is_float($pedido->val/100)).00 @endif</td>
+                            <td>{{$pedido->det}}</td>
+                            <td>{{$pedido->ben}}</td>
+                            <td>{{$pedido->pcdp}}</td>
+                            <td>{{$pedido->prest}}</td>
+                            <td>  <a href ="">  <i class="fa-solid fa-pen-to-square"></i></a></td> 
+                            <td>  <a href = ""> <i class="fa-solid fa-trash-can"></i> </a> </td>
+                        </tr>
+                    @endforeach
+                @elseif(session('pedidos'))
+                @php
+                    echo session('pedidos');
+                @endphp
+                @foreach (session('pedidos') as $pedido)
                         <tr>
                             <td>{{$pedido->num_ped}}</td>
                             <td>{{$pedido->data}}</td>

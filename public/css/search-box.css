@@ -6,8 +6,7 @@
     margin-bottom: 2%;
     height: 30px;
     color: #005792;
-    width: fit-content;
-    
+    width: fit-content; 
     display: flex;
     flex-direction: row;
 }
@@ -32,6 +31,9 @@
     background-color: #C5DFF8;
     outline: none;
 }
+
+
+
 
 
 

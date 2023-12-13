@@ -8,7 +8,7 @@
 <a href="../Grafico/grafico.php">Gráfico</a>
 
 <a href = "{{route('controleProapinho')}}">Proapinho</a>
-<a href = "../ControleProap/controle_proap.php">Proap</a>
+<a href = "{{route('controleProap')}}">Proap</a>
 <a href = "{{route('coordenadores')}}">Coordenadores</a>
 <a href = "{{route('programas')}}">Programas</a>
 

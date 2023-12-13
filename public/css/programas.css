@@ -2,7 +2,6 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: lightcyan;
     text-align: center;
-  
 }
 
 
@@ -16,9 +15,7 @@ body {
 }
 
 
-.popup {
-    border-radius: 9px;
-}
+
 
 .cadastro button {
     text-align: center;
@@ -41,7 +38,7 @@ body {
     color: white;
     padding: 15px 32px;
     background-color: #00204a;
-    margin-bottom: 4px;
+    
 }
 
 
@@ -65,31 +62,7 @@ transition: 0.3s;}
     visibility: hidden;
     transition: transform 0.4s, top 0.4s;
 }
-.popupExcluir{
-    position: absolute;
-    width: 300px;
-    height: 200px;
-    border-radius: 50px;
-    background: white;
-    border: 5px solid #00204a;
-    padding: 10px;
-    margin: auto;
-    top: 0;
-    left : 50%;
-    transform: translate(-50%,-50%) scale(0.1);
-    visibility: hidden;
-    transition: transform 0.4s, top 0.4s;
-}
-.popup #fecharPopup{
-    border: none;
-    background-color: red;
-    border-radius: 5px;
-    color: white;
-}
-.popup #fecharPopup:hover{
-    opacity: 0.6;
-    cursor: pointer;
- }
+
 .open-popup
 {
     visibility: visible;

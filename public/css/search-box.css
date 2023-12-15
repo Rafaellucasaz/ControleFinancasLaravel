@@ -11,6 +11,10 @@
     flex-direction: row;
 }
 
+.search-box:focus-within{
+    background-color: #C5DFF8;
+}
+
 
 .search
 {
@@ -31,6 +35,8 @@
     background-color: #C5DFF8;
     outline: none;
 }
+
+
 
 
 

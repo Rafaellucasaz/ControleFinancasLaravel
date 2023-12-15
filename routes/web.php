@@ -43,15 +43,17 @@ Route::group(['middleware' => 'admin'],function(){
     Route::post('/controleProap',[PedidoController::class,'visualizarPedidosProap'])->name('postProap');
 
     Route::post('/controleProapinho/cadastrarPedido',[PedidoController::class,'cadastrarPedido'])->name('cadastrarPedido');
-    
-    
+
+    Route::get('/EditarPedido/{id_ped}',[PedidoController::class,'indexEditarPedido'])->name('indexEditarPedido');
+
+    Route::post('/EditarPedido',[PedidoController::class,'editarPedido'])->name('editarPedido');
+
+    Route::get('/excluirPedido/{id_ped}',[PedidoController::class,'excluirPedido'])->name('excluirPedido');
 });
+
+
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/home', function () {
     return view('home');
 })->name('home');
 

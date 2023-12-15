@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=], initial-scale=1.0">
-    <title>Document</title>
+    <title>Coordenadores</title>
     <link href="/css/coordenadores.css" rel="stylesheet"/>
     <link  href="/css/tabelas.css" rel="stylesheet"/>
     <link  href="/css/componentes.css" rel="stylesheet"/>

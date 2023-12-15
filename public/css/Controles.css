@@ -1,7 +1,7 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    background-color: lightcyan;
+    background-color: #e0fbfc;
 }
 
 .tabela{
@@ -14,21 +14,19 @@ body {
     
     padding: 5px;
     display: flex;
+    flex-direction: row;
+    gap: 25px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     width: fit-content;
     background-color: #00204a;
 }
-.submit{
-
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    background-color: #00204a;
-    margin-bottom: 4px;
+.buttons form{
+    display: flex;
+    align-items: center;
+   gap: 25px;
 }
-.submit:hover{background-color: #005792;cursor: pointer;
-    transition: 0.3s;}
+
 
 .date
 {
@@ -44,28 +42,16 @@ body {
     
     width: 30px;
 }
-
-
-button {
-
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    border-radius: 5px;
-}
-
-
 .popup
 {
-    
-    
+    color: white;
     display: flex;
     flex-direction: column;
     position: absolute;
     width: 300px;
     height: 600px;
-    background-color: lightcyan;
-    border: 5px solid #005792;
+    background-color: #00204a;
+    border: 5px solid #A0BFE0;
     padding: 10px;
     margin: auto;
     top: 0;
@@ -73,13 +59,7 @@ button {
     transform: translate(-50%,-50%) scale(0.1);
     visibility: hidden;
     transition: transform 0.4s, top 0.4s;
-}
-
-
-
-
-.closePopup div {
-    margin-right: 80%;
+    border-radius: 5px;
 }
 
 .open-popup
@@ -87,7 +67,7 @@ button {
     visibility: visible;
     top : 50%;
     transform: translate(-50%,-50%) scale(1);
-    border-radius: 5px;
+    
 
 }
 

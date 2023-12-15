@@ -1,20 +1,23 @@
 select{
     appearance: none;
-    -webkit-appearance: none;
+    -webkit-appearance: none;   
     -moz-appearance: none;
-    
-    border: solid 4px #005792;
-    border-radius: 10px;
-    background-color: #A0BFE0 ;
-    margin-bottom: 2%;
-    
+    border-radius: 5px;
+    border: none;;
+    background-color: #A0BFE0;
+    margin-bottom: 2%;    
     color: #005792;
     padding: 5px;
 }
+
+
+select:focus{
+    outline: none;
+}
 select:hover{
     background-color: #C5DFF8;
+    cursor: pointer;
 }
-
 select::-ms-expand{
     display: none;
 }
@@ -24,12 +27,15 @@ input{
     
     border: solid 2px #005792;
     background-color: #A0BFE0 ;   
-    color: #00204a;
+    color: #005792;
 }
 
 input:focus{
     background-color: #C5DFF8;
-    outline: none;
+   
+}
+input::placeholder{
+    color: red;
 }
 
 textarea{
@@ -42,3 +48,28 @@ textarea:focus{
     background-color: #C5DFF8;
     outline: none;
 }
+
+button{
+    border: none;
+    color: white;
+    padding: 5px;
+    background-color: #A0BFE0;
+    margin-bottom: 2%;
+    border-radius: 5px;
+    color: #005792;
+}
+
+button:hover{background-color: #C5DFF8;cursor: pointer;transition: 0.3s;}
+
+h1{
+    color: black;
+    text-align: center;
+}
+
+h2{
+    color: white;
+    text-align: center;
+}
+
+
+

@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Pedido extends Model
 {
-    use HasFactory;
+   
 
-    protected $primaryKey = 'id_progfk';
+    protected $primaryKey = 'id_ped';
 
-    public $incrementing = false;
 
     protected $fillable = [
         'id_progfk',

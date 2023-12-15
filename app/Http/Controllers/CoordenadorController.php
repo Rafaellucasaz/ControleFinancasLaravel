@@ -47,7 +47,7 @@ class CoordenadorController extends Controller
         }
         else{
             $ano = date('Y');
-            $id_prog = ProgramaController::getIdProg($request->programa,$request->tipoPrograma,$ano);
+            $id_prog = ProgramaController::getIdProg(strtoupper($request->programa),$request->tipoPrograma,$ano);
             if($id_prog === null){
                 return redirect()->route('coordenadores')->with('erro','Programa não existe');
             }

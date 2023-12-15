@@ -6,9 +6,8 @@
         <link href="/css/programas.css" rel="stylesheet"/>
         <link  href="/css/tabelas.css" rel="stylesheet"/>
         <link  href="/css/componentes.css" rel="stylesheet"/>
-        <title>Document</title>
+        <title>Programas</title>
         <script src="https://kit.fontawesome.com/3c06a12d01.js" crossorigin="anonymous"></script>
-        
     </head>
     <div class = "popup" id = "popup">
         <form action="{{route('cadastrarNovoPrograma')}}" method="post">
@@ -26,8 +25,9 @@
         </form>
     </div>
     <body>
-@include('components.navbarAdmin')
-
+        <div class = "navbar">
+            @include('components.navbarAdmin')
+        </div>
 
         @if (session('sucesso'))
         <x-msg class="sucesso" :msg="session('sucesso')"/>

@@ -14,7 +14,7 @@
 
 
 
-<a  href = "{{route('logout')}}" style = "float:right">Logout</a> </div>
+<a  href = "{{route('logout')}}" >Sair</a> </div>
   
 </div>
   
@@ -39,8 +39,8 @@
 }
 
 .topnav a:hover{ 
-    background-color: #005792;
-    color:white
+    color: #005792;
+  
 }
 
 .topnav a.active {

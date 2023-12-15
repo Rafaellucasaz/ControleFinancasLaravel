@@ -1,13 +1,14 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: lightcyan;
+    background-color: #e0fbfc;
     text-align: center;
+   
 }
-
-
-
-
-
+.navbar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .tabela{
     display: flex;
     flex-direction: column;
@@ -15,45 +16,29 @@ body {
 }
 
 
-
-
-.cadastro button {
-    text-align: center;
-    margin-left: 28%;
-    margin-top: 17px;
-}
-
 .buttons{
     
     padding: 5px;
     display: flex;
+    gap: 25px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     width: fit-content;
     background-color: #00204a;
 }
-.submit{
-
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    background-color: #00204a;
-    
+.buttons form{
+    display: flex;
+    gap: 25px;
 }
-
-
-.submit:hover{background-color: #005792;cursor: pointer;
-transition: 0.3s;}
-
-
 
 .popup
 {
+    color: white;
     position: absolute;
     width: 300px;
-    height: 200px;
-    background: white;
-    border: 1px solid black;
+    height: 150px;
+    background-color: #00204a;
+    border: 5px solid #A0BFE0;
     padding: 10px;
     margin: auto;
     top: 0;
@@ -61,6 +46,7 @@ transition: 0.3s;}
     transform: translate(-50%,-50%) scale(0.1);
     visibility: hidden;
     transition: transform 0.4s, top 0.4s;
+    border-radius: 5px;
 }
 
 .open-popup
@@ -71,35 +57,6 @@ transition: 0.3s;}
 
 }
 
-.msg{
-    border-radius: 50px;
-    background-color:  #C5DFF8;
-    width: 25%;
-    position: fixed;
-    left: 38%;
-    top :30px;
-    text-align: center;
-    color: black;
-    animation: fadeOut 1.5s 2s forwards;
-}
 
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to   { opacity: 0; }
-}
 
-table tr td button{
-    border: none;
-    color: blue;
-}
-table tr td button:hover{
-    cursor: pointer;
-    opacity: 0.2;
-}
-
-a{
-    text-decoration: none;
-    color: white;
-    font-size: 14px;
-}
 

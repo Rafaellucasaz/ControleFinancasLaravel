@@ -23,7 +23,7 @@ function mostrarErros($name,$errors){
 }
 
 function isSelected($name,$value){
-    if(isset($_POST["$name"]) && $_POST["$name"] ==  "$value" || old("$name")!== null && old($name) == "$value"){
+    if(old("$name")!== null && old($name) == "$value"){
         echo "selected ='selected'";
     } 
 }

@@ -11,6 +11,7 @@
 
 <body>
     @include('components.navbar')
+    
   <div>
   <h1> SISTEMA DE GERENCIAMENTO FINANCEIRO
   </h1>

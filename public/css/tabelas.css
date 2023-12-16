@@ -5,6 +5,7 @@ table{
     margin-right: 5%;
     margin-bottom: 2%;
 }
+
 table th{
     text-transform: uppercase;
     text-align: center; 
@@ -21,6 +22,7 @@ table th:last-child
 {
     border-radius: 0px 10px 0px 0px;
 }
+
 
 table tr td
 {

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminMiddleware
+class CoordenadorMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,10 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check() && Auth::user()->tipo_log=='admin' ){
+        if(Auth::check() && Auth::user()->tipo_log=='coord' ){
             return $next($request);
         }
         
-        return redirect()->route('login')->with('erro','É necessário autenticar-se');
+        return redirect()->route('login')->with('erro','É necessário autenticar-se ');
     }
 }

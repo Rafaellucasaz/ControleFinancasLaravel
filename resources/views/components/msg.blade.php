@@ -1,4 +1,4 @@
-<div class = "{{$class}}">
+<div class = "{{$class}}" readonly>
     {{$msg}}
 </div>
 

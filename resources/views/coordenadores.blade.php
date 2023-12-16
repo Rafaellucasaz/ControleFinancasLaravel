@@ -33,7 +33,7 @@
         <br><br>
         <label for="senha">Senha</label>
         <br>
-        <input type="text" name = "senha" required>
+        <input type="text" name = "password" required>
         <br><br>    
         <button class="button submit" type="submit">Cadastrar</button>
         <button class ="submit" type="reset" id ="fecharPopup" > Cancelar</button>

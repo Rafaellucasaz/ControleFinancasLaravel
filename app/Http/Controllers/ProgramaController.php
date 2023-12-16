@@ -18,6 +18,11 @@ class ProgramaController extends Controller
         return view('programas')->with(compact('programas'));
     }
 
+    public function indexCadastrarValores($id_prog){
+        $programa = Programa::where('id_prog',$id_prog)->first();
+        return view('cadastrarValores')->with(compact('programa'));
+    }
+
     public function cadastrarNovoPrograma(Request $request){
         $request->validate([
             'programa' =>'required|String|max:20',

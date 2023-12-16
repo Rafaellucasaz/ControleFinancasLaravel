@@ -28,7 +28,7 @@
         <div class = "navbar">
             @include('components.navbarAdmin')
         </div>
-
+        
         @if (session('sucesso'))
         <x-msg class="sucesso" :msg="session('sucesso')"/>
         @endif

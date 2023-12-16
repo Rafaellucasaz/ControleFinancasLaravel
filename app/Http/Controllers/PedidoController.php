@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\ProgramaController;
 use App\Models\Pedido;
 use App\Models\Programa;
-use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -21,10 +20,9 @@ class PedidoController extends Controller
 
     public function visualizarPedidosProapinho(Request $request){
         $ano = getAno();
-        $id_prog = ProgramaController::getIdProg($request->programa,'proapinho',$ano);
-        $pedidos = Pedido::where('id_progfk', $id_prog)->where('tipo_ped',$request->tipo_ped)->get();
-        $programas = Programa::where('tipo_prog', 'proapinho')->whereYear('created_at', $ano)->pluck('nom_prog');
-        return view('controleProapinho')->with(['programas'=>$programas, 'pedidos'=>$pedidos]);
+        $id_prog = ProgramaController::getIdProg($request->input('nom_prog'),'proapinho',$ano);
+        $pedidos = Pedido::where('id_progfk', $id_prog)->where('tipo_ped',$request->input('tipo_ped'))->get();
+        return $pedidos;
     }
 
     public function indexProap(){
@@ -35,10 +33,9 @@ class PedidoController extends Controller
 
     public function visualizarPedidosProap(Request $request){
         $ano = getAno();
-        $id_prog = ProgramaController::getIdProg($request->programa,'proap',$ano);
-        $pedidos = Pedido::where('id_progfk', $id_prog)->where('tipo_ped',$request->tipo_ped)->get();
-        $programas = Programa::where('tipo_prog', 'proap')->whereYear('created_at', $ano)->pluck('nom_prog');
-        return view('controleProap')->with(['programas'=>$programas, 'pedidos'=>$pedidos]);
+        $id_prog = ProgramaController::getIdProg($request->input('nom_prog'),'proap',$ano);
+        $pedidos = Pedido::where('id_progfk', $id_prog)->where('tipo_ped',$request->input('tipo_ped'))->get();
+        return $pedidos;
     }
 
    

@@ -37,8 +37,8 @@ class CoordenadorController extends Controller
             'nome' => 'required|String|max:50',
             'tipoPrograma' =>'required',
             'programa' =>'required|String|max:20',
-            'username' =>'required|String|max:25',
-            'senha' => 'required',
+            'username' =>'required|regex:/^[a-zA-Z0-9_-]{3,25}$/',
+            'password' => 'required',
         ]);
 
         $id_log = LoginController::getIdLog($request->username);

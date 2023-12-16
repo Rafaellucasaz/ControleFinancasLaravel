@@ -8,18 +8,8 @@
     <link  href="/css/tabelas.css" rel="stylesheet"/>
     <link  href="/css/componentes.css" rel="stylesheet"/>
     <script src="https://kit.fontawesome.com/3c06a12d01.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="crossorigin="anonymous"></script>
 </head>
-<body>
-    @include('components.navbarAdmin')
-
-    @if (session('sucesso'))
-    <x-msg class="sucesso" :msg="session('sucesso')"/>
-    @endif
-
-    @if (session('erro'))
-    <x-msg class="erro" :msg="session('erro')"/>
-    @endif
-
     <div class="popup" id = "popup">
         <form action="{{route('cadastrarPedido')}}" method = "post">
         <br><br>
@@ -29,13 +19,13 @@
         <select name="programa" id="programa">
         <option value="" disabled selected>Selecionar</option>
         @foreach ($programas as $programa)
-        <option value ="{{$programa}}" @php if(isset($_POST['programa']) && $_POST['programa'] ==  "$programa" ){ @endphp selected="selected" @php } @endphp >{{$programa}} </option>;
+        <option value ="{{$programa}}" {{isSelected("programa",$programa)}}> </option>;
         @endforeach
         </select>
         <br>
-        <label for="tipo_ped">tipo de pedido</label>
+        <label for="pedido">tipo de pedido</label>
         <br>
-        <select name="tipo_ped" class="tipo" id = "tipo">
+        <select name="tipo_ped" class="tipo" id = "pedido">
             <option value="" disabled selected>Selecionar</option>
             <option value="dia_civ" {{isSelected("tipo_ped","dia_civ")}}>Diária pessoal civil</option>
             <option value="dia_int" {{isSelected("tipo_ped","dia_int")}}>Diária internacional</option>
@@ -82,7 +72,20 @@
         <button  class = "submit"id = "fecharPopup">Cancelar</button>
         <br><br>
     </form>
-</div>
+    </div>
+<body>
+    
+    @include('components.navbarAdmin')
+
+    @if (session('sucesso'))
+    <x-msg class="sucesso" :msg="session('sucesso')"/>
+    @endif
+
+    @if (session('erro'))
+    <x-msg class="erro" :msg="session('erro')"/>
+    @endif
+
+    
 <main>
     <h1>Pedidos Proapinho </h1>   
     
@@ -94,15 +97,15 @@
         <div class = "tabela">
             <div class = "buttons" >  
                 <button class = "submit" id = "abrirPopup" > Cadastrar pedido </button>
-                <form action="{{route('postProapinho')}}" method = "post">
+                <form id="select-form">
                     @csrf
-                    <select name="programa" id=""  onchange="this.form.submit()">
+                    <select name="nom_prog"  id="nom_prog" >
                         <option value="" disabled selected>Selecionar programa</option>
                         @foreach ($programas as $programa)
-                        <option value ="{{$programa}}" @php if(isset($_POST['programa']) && $_POST['programa'] ==  "$programa" || old('programa')!== null && old('programa') == "$programa" ){ @endphp selected="selected" @php } @endphp >{{$programa}} </option>;
+                        <option value ="{{$programa}}" {{isSelected("programa",$programa)}} >{{$programa}} </option>;
                         @endforeach
                     </select>
-                    <select name="tipo_ped" onchange="this.form.submit()">
+                    <select name="tipo_ped" id = "tipo_ped" >
                         <option value="" disabled selected>Selecionar tipo de pedido</option>
                         <option value="dia_civ" {{isSelected("tipo_ped","dia_civ")}}>Diária pessoal civil</option>
                         <option value="dia_int" {{isSelected("tipo_ped","dia_int")}}>Diária internacional</option>
@@ -118,46 +121,22 @@
                 </form>
             </div>
             <table>
-                <tr>
-                    <th>nº ped</th>
-                    <th>data</th>
-                    <th>valor</th>
-                    <th>detalhamento</th>
-                    <th>beneficiado</th>
-                    <th>nº PCDP</th>
-                    <th>Prestação de contas</th>
-                    <th>EDITAR</th>
-                    <th>EXCLUIR</th>
-                </tr>
-                @if(isset($pedidos))
-                    @foreach ($pedidos as $pedido)
-                        <tr>
-                            <td>{{$pedido->num_ped}}</td>
-                            <td>{{$pedido->data}}</td>
-                            <td>R$ {{$pedido->val/100}}@if(!is_float($pedido->val/100)).00 @endif</td>
-                            <td>{{$pedido->det}}</td>
-                            <td>{{$pedido->ben}}</td>
-                            <td>{{$pedido->pcdp}}</td>
-                            <td>{{$pedido->prest}}</td>
-                            <td>  <a href ="{{route('indexEditarPedido',$pedido->id_ped)}}">  <i class="fa-solid fa-pen-to-square"></i></a></td> 
-                            <td>  <a href = "{{route('excluirPedido',$pedido->id_ped)}}"> <i class="fa-solid fa-trash-can"></i> </a> </td>
-                        </tr>
-                    @endforeach
-                @elseif(session('pedidos'))
-                @foreach (session('pedidos') as $pedido)
-                        <tr>
-                            <td>{{$pedido->num_ped}}</td>
-                            <td>{{$pedido->data}}</td>
-                            <td>R$ {{$pedido->val/100}}@if(!is_float($pedido->val/100)).00 @endif</td>
-                            <td>{{$pedido->det}}</td>
-                            <td>{{$pedido->ben}}</td>
-                            <td>{{$pedido->pcdp}}</td>
-                            <td>{{$pedido->prest}}</td>
-                            <td>  <a href ="{{route('indexEditarPedido',$pedido->id_ped)}}">  <i class="fa-solid fa-pen-to-square"></i></a></td> 
-                            <td>  <a href = "{{route('excluirPedido',$pedido->id_ped)}}"> <i class="fa-solid fa-trash-can"></i> </a> </td>
-                        </tr>
-                    @endforeach
-                @endif
+                <thead>
+                    <tr>
+                        <th>nº ped</th>
+                        <th>data</th>
+                        <th>valor</th>
+                        <th>detalhamento</th>
+                        <th>beneficiado</th>
+                        <th>nº PCDP</th>
+                        <th>Prestação de contas</th>
+                        <th>EDITAR</th>
+                        <th>EXCLUIR</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
             </table>
         </div>
     </main>
@@ -166,15 +145,128 @@
 
 
 
-<script type="text/javascript" >
-    const popup = document.getElementById("popup");
-    document.getElementById("abrirPopup").addEventListener("click", function(event)
-    {
-        event.preventDefault();
-        popup.classList.add("open-popup") 
+<script>
+
+    $(document).ready(function() {
+        $("#abrirPopup").on("click", function(event) {
+            event.preventDefault();
+            $("#popup").addClass("open-popup");
+        });
+    
+        $("#fecharPopup").on("click", function() {
+            $("#popup").removeClass("open-popup");
+        });
+       
+        $('#nom_prog').change(function(){
+            var formData = $('#select-form').serialize();
+            $.ajax({
+                url: '{{ route("viewPedidosProapinho") }}',
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: formData,
+                success: function(data){
+                    console.log(data);
+                    let tabela = '';
+    
+                    data.forEach(function(pedido){
+                        let urlEditar = '{{route("indexEditarPedido",":id" )}}';
+                        urlEditar = urlEditar.replace(':id',pedido.id_ped);
+                        console.log(urlEditar);
+                        let urlExcluir = '{{route("excluirPedido",":id")}}';
+                        urlExcluir = urlExcluir.replace(':id',pedido.id_ped);
+                        tabela += '<tr>';
+                        tabela += '<td>' + pedido.num_ped + '</td>';
+                        tabela += '<td>' + pedido.data + '</td>';
+                        if((pedido.val/100)% 1 === 0){tabela += '<td> R$ ' + pedido.val/100 + '.00</td>';}
+                        else{tabela += '<td> R$ ' + pedido.val/100 + '</td>';}
+                        tabela += '<td>' + pedido.det + '</td>';
+                        tabela += '<td>' + pedido.ben + '</td>';
+                        tabela += '<td>' + pedido.pcdp + '</td>';
+                        tabela += '<td>' + pedido.prest + '</td>';
+                        tabela += '<td>  <a href ="' + urlEditar +  '">  <i class="fa-solid fa-pen-to-square"></i></a></td> ';
+                        tabela += '<td>  <a href ="' + urlExcluir + '">  <i class="fa-solid fa-trash-can"></i> </a> </td>';
+                        tabela += '</tr>';
+                    });
+                    $('table tbody').html(tabela);
+                }
+            });
+        });
+    
+        $('#tipo_ped').change(function(){
+            var formData = $('#select-form').serialize();
+            $.ajax({
+                url: '{{ route("viewPedidosProapinho") }}',
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: formData,
+                success: function(data){
+                    
+                    console.log(data);
+                    let tabela = '';
+                    
+                    data.forEach(function(pedido){
+                        let urlEditar = '{{route("indexEditarPedido",":id" )}}';
+                        urlEditar = urlEditar.replace(':id',pedido.id_ped);
+                        console.log(urlEditar);
+                        let urlExcluir = '{{route("excluirPedido",":id")}}';
+                        urlExcluir = urlExcluir.replace(':id',pedido.id_ped);
+                        tabela += '<tr>';
+                        tabela += '<td>' + pedido.num_ped + '</td>';
+                        tabela += '<td>' + pedido.data + '</td>';
+                        if((pedido.val/100)% 1 === 0){tabela += '<td> R$ ' + pedido.val/100 + '.00</td>';}
+                        else{tabela += '<td> R$ ' + pedido.val/100 + '</td>';}
+                        tabela += '<td>' + pedido.det + '</td>';
+                        tabela += '<td>' + pedido.ben + '</td>';
+                        tabela += '<td>' + pedido.pcdp + '</td>';
+                        tabela += '<td>' + pedido.prest + '</td>';
+                        tabela += '<td>  <a href ="' + urlEditar +  '">  <i class="fa-solid fa-pen-to-square"></i></a></td> ';
+                        tabela += '<td>  <a href ="' + urlExcluir + '">  <i class="fa-solid fa-trash-can"></i> </a> </td>';
+                        tabela += '</tr>';
+                    });
+                    $('table tbody').html(tabela);
+                }
+            });
+        });
+        var formData = $('#select-form').serialize();
+        $.ajax({
+            url: '{{ route("viewPedidosProapinho") }}',
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: formData,
+                success: function(data){
+                    console.log(data);
+                    let tabela = '';
+    
+                    data.forEach(function(pedido){
+                        let urlEditar = '{{route("indexEditarPedido",":id" )}}';
+                        urlEditar = urlEditar.replace(':id',pedido.id_ped);
+                        console.log(urlEditar);
+                        let urlExcluir = '{{route("excluirPedido",":id")}}';
+                        urlExcluir = urlExcluir.replace(':id',pedido.id_ped);
+                        tabela += '<tr>';
+                        tabela += '<td>' + pedido.num_ped + '</td>';
+                        tabela += '<td>' + pedido.data + '</td>';
+                        if((pedido.val/100)% 1 === 0){tabela += '<td> R$ ' + pedido.val/100 + '.00</td>';}
+                        else{tabela += '<td> R$ ' + pedido.val/100 + '</td>';}
+                        tabela += '<td>' + pedido.det + '</td>';
+                        tabela += '<td>' + pedido.ben + '</td>';
+                        tabela += '<td>' + pedido.pcdp + '</td>';
+                        tabela += '<td>' + pedido.prest + '</td>';
+                        tabela += '<td>  <a href ="' + urlEditar +  '">  <i class="fa-solid fa-pen-to-square"></i></a></td> ';
+                        tabela += '<td>  <a href ="' + urlExcluir + '">  <i class="fa-solid fa-trash-can"></i> </a> </td>';
+                        tabela += '</tr>';
+                    });
+                    $('table tbody').html(tabela);
+                }
+        });
     });
-    document.getElementById('fecharPopup').addEventListener("click", function()
-    {
-        popup.classList.remove("open-popup") = "none";
-    });
-</script>
+    
+    
+      
+    </script>

@@ -10,7 +10,6 @@
 <body>
     @include('components.navbar')
    
-
     @if (session('erro'))
     <x-msg class="erro" :msg="session('erro')"/>
     @endif

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Coordenador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -16,10 +17,17 @@ class LoginController extends Controller
         return view('login');
     }
     public function autenticar(Request $request){
-        $credentials = $request->validate([
+        $validator = Validator::make($request->all(), $rules = [
             'username' => 'required|regex:/^[a-zA-Z0-9_-]{3,25}$/',
-            'password' => 'required',
+            'password' => 'required|min:3|max:64',
         ]);
+        if ($validator->fails()) {
+            return redirect()->back()->with('erro','usuário e/ou senha inválidos');
+        }
+        $credentials =[
+            'username' => $request->username,
+            'password' => $request->password
+        ];
         if(Auth::attempt($credentials,true)){
             $request->session()->regenerate();
             if(Auth::user()->tipo_log=='admin'){

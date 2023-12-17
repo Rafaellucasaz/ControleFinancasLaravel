@@ -24,7 +24,8 @@
     
     <h1>Edição pedido Nº {{$pedido->num_ped}} </h1>
     <h2>Programa: {{ $programa->nom_prog .'-'. $programa->tipo_prog}} Tipo de pedido: {{getTipoPed($pedido->tipo_ped)}}</h2>
-<form action="{{route('editarPedido')}}" method = "post">
+<form action="{{route('editarPedido')}}" method = "Post">
+    @method('PATCH')
     @csrf
     <div class = "form">
     <label for="data">Data</label>

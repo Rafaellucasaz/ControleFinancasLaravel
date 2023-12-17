@@ -12,66 +12,72 @@
 </head>
     <div class="popup" id = "popup">
         <form action="{{route('cadastrarPedido')}}" method = "post">
-        <br><br>
-        @csrf
-        <label for="programa">programa</label>
-        <br>
-        <select name="programa" id="programa">
-        <option value="" disabled selected>Selecionar</option>
-        @foreach ($programas as $programa)
-        <option value ="{{$programa}}" {{isSelected("programa",$programa)}}> </option>;
-        @endforeach
-        </select>
-        <br>
-        <label for="pedido">tipo de pedido</label>
-        <br>
-        <select name="tipo_ped" class="tipo" id = "pedido">
-            <option value="" disabled selected>Selecionar</option>
-            <option value="dia_civ" {{isSelected("tipo_ped","dia_civ")}}>Diária pessoal civil</option>
-            <option value="dia_int" {{isSelected("tipo_ped","dia_int")}}>Diária internacional</option>
-            <option value="pass" {{isSelected("tipo_ped","pass")}}>Passagem</option>
-            <option value="sepe" {{isSelected("tipo_ped","sepe")}}>Sepe</option>
-            <option value="nao_serv" {{isSelected("tipo_ped","nao_serv")}}>Não servidor</option>
-            <option value="aux_estu" {{isSelected("tipo_ped","aux_estu")}}>Auxílio estudantil</option>
-            <option value="aux_pesq" {{isSelected("tipo_ped","aux_pesq")}}>Auxílio pesquisador</option>
-            <option value="cons" {{isSelected("tipo_ped","cons")}}>Material de consumo</option>
-            <option value="ser_ter" {{isSelected("tipo_ped","ser_ter")}}>Serviços de terceiros</option>
-            <option value="tran" {{isSelected("tipo_ped","tran")}}>Transportes</option>
-        </select>
-        <br>
-        <label for="n_ped">Nº Pedido</label> 
-        <br>
-        <input type="number" name="num_ped" class = "num_ped" id = "num_ped" min = 1 required {{mostrarErros("num_ped",$errors)}}>
-        <br>
-        <label for="data"> Data</label>
-        <br>
-        <input type="date" name="data" class = "date" id = "data" required {{mostrarErros("data",$errors)}}>
-        <br>
-        <label for="val"> Valor</label>
-        <br>
-        <input type="number" name="val" class = "val" id = "val"min = 1 step = "0.01" required {{mostrarErros("val",$errors)}}> 
-        <br>
-        <label for="pcdp"> Nº PCDP</label>
-        <br>
-        <input type="text" name="pcdp" class = "pcdp" id = "pcdp" required {{mostrarErros("pcdp",$errors)}}>
-        <br>
-        <label for="det"> Detalhamento</label>
-        <br>
-        <textarea name="det" id="det" cols="30" rows="5" required {{mostrarErros("det",$errors)}}></textarea>
-        <br>
-        <label for="ben"> Beneficiado</label>
-        <br>
-        <input type="text" name="ben" class = "ben" id = "ben" required {{mostrarErros("ben",$errors)}};>
-        <br><br>
-        <label for="prest"> Prestação de contas</label>
-        <br>
-        <input type="text" name="prest" class = "prest-contas" id = "prest">
-        <br><br>
-        <input type="hidden" name = "tipo_prog" value ="proapinho">
-        <button class="submit" type="submit">Cadastrar</button>
-        <button  class = "submit"id = "fecharPopup">Cancelar</button>
-        <br><br>
-    </form>
+        
+            @csrf
+            <div class = "popup-selects">
+                <select name="programa" id="programa" required  >
+                    <option value="" disabled selected>Selecionar programa</option>
+                @foreach ($programas as $programa)
+                    <option value ="{{$programa}}" {{isSelected("programa",$programa)}}>{{$programa}} </option>;
+                @endforeach
+                </select>
+                            
+                <select name="tipo_ped" class="tipo" id = "pedido" required >
+                    <option value="" disabled selected>Selecionar tipo de pedido</option>
+                    <option value="dia_civ" {{isSelected("tipo_ped","dia_civ")}}>Diária pessoal civil</option>
+                    <option value="dia_int" {{isSelected("tipo_ped","dia_int")}}>Diária internacional</option>
+                    <option value="pass" {{isSelected("tipo_ped","pass")}}>Passagem</option>
+                    <option value="sepe" {{isSelected("tipo_ped","sepe")}}>Sepe</option>
+                    <option value="nao_serv" {{isSelected("tipo_ped","nao_serv")}}>Não servidor</option>
+                    <option value="aux_estu" {{isSelected("tipo_ped","aux_estu")}}>Auxílio estudantil</option>
+                    <option value="aux_pesq" {{isSelected("tipo_ped","aux_pesq")}}>Auxílio pesquisador</option>
+                    <option value="cons" {{isSelected("tipo_ped","cons")}}>Material de consumo</option>
+                    <option value="ser_ter" {{isSelected("tipo_ped","ser_ter")}}>Serviços de terceiros</option>
+                    <option value="tran" {{isSelected("tipo_ped","tran")}}>Transportes</option>
+                </select>
+                
+            </div>
+            <div class = "popup-input">
+                <label for="num_ped">Nº Pedido</label> 
+                <input type="number" name="num_ped" class = "num_ped" id = "num_ped" min = 1 required {{getValoresAntigos("num_ped",$errors)}}  >
+                {{mostrarErros("num_ped",$errors)}}
+            </div>
+            <div class = "popup-input">
+                <label for="data"> Data</label>
+                <input type="date" name="data" class = "date" id = "data" required {{getValoresAntigos("data",$errors)}} >
+                {{mostrarErros("data",$errors)}}
+            </div>
+            <div class = "popup-input">
+                <label for="val"> Valor</label>
+                <input type="number" name="val" class = "val" id = "val"min = 1 step = "0.01" required {{getValoresAntigos("val",$errors)}} >
+                {{mostrarErros("val",$errors)}}
+            </div>
+            <div class = "popup-input">
+                <label for="pcdp"> Nº PCDP</label>
+                <input type="text" name="pcdp" class = "pcdp" id = "pcdp" required {{getValoresAntigos("pcdp",$errors)}}   > 
+                {{mostrarErros("pcdp",$errors)}}
+            </div>
+            <div class = "popup-input">
+                <label for="det"> Detalhamento</label> 
+                <textarea name="det" id="det" cols="22" rows="5" required >{{getValoresAntigos("det",$errors)}}</textarea>
+                {{mostrarErros("det",$errors)}}
+            </div>
+            <div class = "popup-input">
+            <label for="ben"> Beneficiado</label>
+            <input type="text" name="ben" class = "ben" id = "ben" required {{getValoresAntigos("ben",$errors)}}>
+            {{mostrarErros("ben",$errors)}}
+            </div>
+            <div class = "popup-input">
+            <label for="prest"> Prestação de contas</label>
+            <input type="text" name="prest" class = "prest-contas" id = "prest" {{getValoresAntigos("prest",$errors)}}>
+            {{mostrarErros("prest",$errors)}}
+            </div>
+            <input type="hidden" name = "tipo_prog" value ="proapinho">
+            <div class = "popup-buttons">
+            <button  type="submit" >Cadastrar</button>
+            <button  type="reset"id = "fecharPopup">Cancelar</button>
+            </div>
+        </form>
     </div>
 <body>
     
@@ -91,14 +97,13 @@
     
 
     
-<br><br>
+
 
         
         <div class = "tabela">
             <div class = "buttons" >  
-                <button class = "submit" id = "abrirPopup" > Cadastrar pedido </button>
-                <form id="select-form">
-                    @csrf
+                <button id = "abrirPopup" > Cadastrar pedido </button>
+                <form id="select-form">    
                     <select name="nom_prog"  id="nom_prog" >
                         <option value="" disabled selected>Selecionar programa</option>
                         @foreach ($programas as $programa)
@@ -135,19 +140,25 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                 </tbody>
             </table>
+            <div class = "semPedidos"></div>
         </div>
+        <form id="delete-Form" action="" method="POST" style="display: none;">
+            @csrf
+            @method('DELETE')
+        </form>
     </main>
 </body>
 </html>
 
-
+@if($errors->any()) <script type="text/javascript" > popup.classList.add("open-popup") </script> @endif
 
 <script>
 
     $(document).ready(function() {
+        
         $("#abrirPopup").on("click", function(event) {
             event.preventDefault();
             $("#popup").addClass("open-popup");
@@ -157,116 +168,55 @@
             $("#popup").removeClass("open-popup");
         });
        
-        $('#nom_prog').change(function(){
+        function atualizarTabela() {
             var formData = $('#select-form').serialize();
             $.ajax({
                 url: '{{ route("viewPedidosProapinho") }}',
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
+                method: 'GET',
                 data: formData,
-                success: function(data){
-                    console.log(data);
-                    let tabela = '';
-    
-                    data.forEach(function(pedido){
-                        let urlEditar = '{{route("indexEditarPedido",":id" )}}';
-                        urlEditar = urlEditar.replace(':id',pedido.id_ped);
-                        console.log(urlEditar);
-                        let urlExcluir = '{{route("excluirPedido",":id")}}';
-                        urlExcluir = urlExcluir.replace(':id',pedido.id_ped);
-                        tabela += '<tr>';
-                        tabela += '<td>' + pedido.num_ped + '</td>';
-                        tabela += '<td>' + pedido.data + '</td>';
-                        if((pedido.val/100)% 1 === 0){tabela += '<td> R$ ' + pedido.val/100 + '.00</td>';}
-                        else{tabela += '<td> R$ ' + pedido.val/100 + '</td>';}
-                        tabela += '<td>' + pedido.det + '</td>';
-                        tabela += '<td>' + pedido.ben + '</td>';
-                        tabela += '<td>' + pedido.pcdp + '</td>';
-                        tabela += '<td>' + pedido.prest + '</td>';
-                        tabela += '<td>  <a href ="' + urlEditar +  '">  <i class="fa-solid fa-pen-to-square"></i></a></td> ';
-                        tabela += '<td>  <a href ="' + urlExcluir + '">  <i class="fa-solid fa-trash-can"></i> </a> </td>';
-                        tabela += '</tr>';
-                    });
-                    $('table tbody').html(tabela);
+                success: function(data) {
+                    if (data.length === 0 && $('#tipo_ped').val() != null && $('#nom_prog').val() != null) {
+                        $('.semPedidos').html('<h2> Sem pedidos </h2>');
+                        $('table tbody').html('');
+                    } else {
+                        $('.semPedidos').html('');
+                        var tabela = '';
+                        var urlEditar = '{{ route("indexEditarPedido", ":id") }}';
+                        var urlExcluir = '{{ route("excluirPedido", ":id") }}';
+
+                        data.forEach(function(pedido) {
+                            var editarUrl = urlEditar.replace(':id', pedido.id_ped);
+                            var excluirUrl = urlExcluir.replace(':id', pedido.id_ped);
+                            tabela += `<tr>
+                                <td>${pedido.num_ped}</td>
+                                <td>${pedido.data}</td>
+                                <td>${(pedido.val / 100) % 1 === 0 ? 'R$ ' + pedido.val / 100 + '.00' : 'R$ ' + pedido.val / 100}</td>
+                                <td>${pedido.det}</td>
+                                <td>${pedido.ben}</td>
+                                <td>${pedido.pcdp}</td>
+                                <td>${pedido.prest}</td>
+                                <td><a href="${editarUrl}"><i class="fa-solid fa-pen-to-square"></i></a></td>   
+                                <td><a href="${excluirUrl}"  class = "excluir"><i class="fa-solid fa-trash-can"></i></a></td>
+                            </tr>`;
+                        });
+                        $('table tbody').html(tabela);
+                    }
                 }
             });
+        }
+        $('#nom_prog, #tipo_ped').change(function() {
+            atualizarTabela();
         });
-    
-        $('#tipo_ped').change(function(){
-            var formData = $('#select-form').serialize();
-            $.ajax({
-                url: '{{ route("viewPedidosProapinho") }}',
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: formData,
-                success: function(data){
-                    
-                    console.log(data);
-                    let tabela = '';
-                    
-                    data.forEach(function(pedido){
-                        let urlEditar = '{{route("indexEditarPedido",":id" )}}';
-                        urlEditar = urlEditar.replace(':id',pedido.id_ped);
-                        console.log(urlEditar);
-                        let urlExcluir = '{{route("excluirPedido",":id")}}';
-                        urlExcluir = urlExcluir.replace(':id',pedido.id_ped);
-                        tabela += '<tr>';
-                        tabela += '<td>' + pedido.num_ped + '</td>';
-                        tabela += '<td>' + pedido.data + '</td>';
-                        if((pedido.val/100)% 1 === 0){tabela += '<td> R$ ' + pedido.val/100 + '.00</td>';}
-                        else{tabela += '<td> R$ ' + pedido.val/100 + '</td>';}
-                        tabela += '<td>' + pedido.det + '</td>';
-                        tabela += '<td>' + pedido.ben + '</td>';
-                        tabela += '<td>' + pedido.pcdp + '</td>';
-                        tabela += '<td>' + pedido.prest + '</td>';
-                        tabela += '<td>  <a href ="' + urlEditar +  '">  <i class="fa-solid fa-pen-to-square"></i></a></td> ';
-                        tabela += '<td>  <a href ="' + urlExcluir + '">  <i class="fa-solid fa-trash-can"></i> </a> </td>';
-                        tabela += '</tr>';
-                    });
-                    $('table tbody').html(tabela);
-                }
-            });
-        });
-        var formData = $('#select-form').serialize();
-        $.ajax({
-            url: '{{ route("viewPedidosProapinho") }}',
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: formData,
-                success: function(data){
-                    console.log(data);
-                    let tabela = '';
-    
-                    data.forEach(function(pedido){
-                        let urlEditar = '{{route("indexEditarPedido",":id" )}}';
-                        urlEditar = urlEditar.replace(':id',pedido.id_ped);
-                        console.log(urlEditar);
-                        let urlExcluir = '{{route("excluirPedido",":id")}}';
-                        urlExcluir = urlExcluir.replace(':id',pedido.id_ped);
-                        tabela += '<tr>';
-                        tabela += '<td>' + pedido.num_ped + '</td>';
-                        tabela += '<td>' + pedido.data + '</td>';
-                        if((pedido.val/100)% 1 === 0){tabela += '<td> R$ ' + pedido.val/100 + '.00</td>';}
-                        else{tabela += '<td> R$ ' + pedido.val/100 + '</td>';}
-                        tabela += '<td>' + pedido.det + '</td>';
-                        tabela += '<td>' + pedido.ben + '</td>';
-                        tabela += '<td>' + pedido.pcdp + '</td>';
-                        tabela += '<td>' + pedido.prest + '</td>';
-                        tabela += '<td>  <a href ="' + urlEditar +  '">  <i class="fa-solid fa-pen-to-square"></i></a></td> ';
-                        tabela += '<td>  <a href ="' + urlExcluir + '">  <i class="fa-solid fa-trash-can"></i> </a> </td>';
-                        tabela += '</tr>';
-                    });
-                    $('table tbody').html(tabela);
-                }
+
+        atualizarTabela();
+
+        function deletarPedido(link){
+            console.log('teste');
+            $('#delete-Form').attr('action', link).submit();
+        };    
+        $('table tbody').on('click', '.excluir', function(event) {
+        event.preventDefault();
+        deletarPedido($(this).attr('href'));
         });
     });
-    
-    
-      
-    </script>
+</script>

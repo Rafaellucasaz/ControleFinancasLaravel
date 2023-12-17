@@ -4,19 +4,30 @@ function mostrarErros($name,$errors){
     if($name === "det"){
         if($errors->has("$name"))
         {
-            echo $errors->first("$name");
-        }
-        else{
-            echo old("$name");
+            ?> <script type = "text/javascript">  $("#<?php echo $name?>").addClass("erroInput"); </script>
+            <?php
+            echo "<p>" . $errors->first("$name") . "</p>";
         }
     }
     else{
         if($errors->has("$name"))
         {
-            echo "placeholder ='" . $errors->first("$name") . "'";
+            ?> <script type = "text/javascript">  $("#<?php echo $name?>").addClass("erroInput"); </script>
+            <?php
+            echo "<p>" . $errors->first("$name") . "</p>";
         }
-        else{
-             echo "value = '" . old("$name") . "'";
+    }
+    
+}
+function getValoresAntigos($name,$errors){
+    if($name === "det"){
+        if(!$errors->has("$name")){
+            echo old("$name");
+        }
+    }
+    else{
+        if(!$errors->has("$name")){
+            echo "value = '" . old("$name") . "'";
         }
     }
     

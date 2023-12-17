@@ -7,8 +7,7 @@ use App\Models\Coordenador;
 use App\Models\Pedido;
 use App\Models\Programa;
 use Illuminate\Http\Request;
-
-
+use Illuminate\Support\Facades\Validator;
 
 class ProgramaController extends Controller
 {
@@ -24,12 +23,22 @@ class ProgramaController extends Controller
     }
 
     public function cadastrarNovoPrograma(Request $request){
-        $request->validate([
-            'programa' =>'required|String|max:20',
-            'tipoPrograma' =>'required',
-        ]);
+         $validator = Validator::make($request->all(),$rules =[
+            'sigla' =>'required|regex:/^[a-zA-Z]+$/|max:20',
+            'tipo_prog' =>'required',
+         ],$msgs = [
+            'required' => 'Este campo é obrigatório',
+            'regex' => 'Apenas caracteres de A-Z são permitidos',
+            'max' => 'limite de caracteres atingido max: :max'
+         ]);
+
+         if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+         }
+            
+        
         $ano = date('Y');
-    $programa = Programa::where('nom_prog',$request->programa)->where('tipo_prog',$request->tipoPrograma)->whereYear('created_at',$ano)->first();
+        $programa = Programa::where('nom_prog',$request->programa)->where('tipo_prog',$request->tipoPrograma)->whereYear('created_at',$ano)->first();
         if($programa === null){
             $data = [
                 'nom_prog' => strtoupper($request->programa),

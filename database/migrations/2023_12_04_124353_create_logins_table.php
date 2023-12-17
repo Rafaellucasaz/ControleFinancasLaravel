@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_log');
             $table->timestamps();
             $table->string('username',25)->unique();
-            $table->string('password',100);
+            $table->string('password',64);
             $table->string('tipo_log');
         });
     }

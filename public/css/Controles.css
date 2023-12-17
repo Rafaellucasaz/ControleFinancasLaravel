@@ -24,51 +24,61 @@ body {
 .buttons form{
     display: flex;
     align-items: center;
-   gap: 25px;
+    gap: 25px;
 }
 
 
-.date
-{
-    width: 160px;
-}
 
-.tipo
-{
-    width: 160px;
-}
-.n-ped
-{
-    
-    width: 30px;
-}
 .popup
 {
     color: white;
-    display: flex;
-    flex-direction: column;
     position: absolute;
     width: 300px;
-    height: 600px;
+    overflow-y: auto;
+    height: auto;
+    max-height: 80%;
     background-color: #00204a;
     border: 5px solid #A0BFE0;
     padding: 10px;
-    margin: auto;
     top: 0;
     left : 50%;
     transform: translate(-50%,-50%) scale(0.1);
     visibility: hidden;
     transition: transform 0.4s, top 0.4s;
     border-radius: 5px;
+    
 }
-
+.popup form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    
+}
+.popup-selects{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.popup-input{
+    display: flex;
+    flex-direction: column;
+}
+.popup-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
 .open-popup
 {
     visibility: visible;
     top : 50%;
     transform: translate(-50%,-50%) scale(1);
-    
+}
 
+#data{
+    width: 169px;
 }
 
 

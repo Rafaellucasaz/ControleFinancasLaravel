@@ -27,22 +27,38 @@ body {
 .popup
 {
     color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
     position: absolute;
     width: 250px;
-    height: 400px;
+    overflow-y: auto;
+    height: auto;
+    max-height: 60%;
     background-color: #00204a;
     border: 5px solid #A0BFE0;
-    margin: auto;
+    padding: 10px;
     top: 0;
     left : 50%;
     transform: translate(-50%,-50%) scale(0.1);
     visibility: hidden;
     transition: transform 0.4s, top 0.4s;
     border-radius: 5px;
+}
+.popup form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.popup-input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.popup-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
 }
 
 

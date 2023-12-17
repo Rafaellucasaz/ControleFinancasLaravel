@@ -1,6 +1,5 @@
 
 
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
   
   <div class="topnav">
@@ -12,11 +11,13 @@
 <a href = "{{route('coordenadores')}}">Coordenadores</a>
 <a href = "{{route('programas')}}">Programas</a>
 
-
-
-<a  href = "{{route('logout')}}" >Sair</a> </div>
-  
+<form action="{{route('logout')}}" id = "logout-form" method="post">
+  @csrf
+<a  href = "{{route('logout')}}" id="logout" onclick=" event.preventDefault();" >Sair</a> 
+</form>
 </div>
+  
+
   
 
 
@@ -40,11 +41,14 @@
 
 .topnav a:hover{ 
     color: #005792;
-  
+    transition: 0.3s;
+    cursor: pointer;
 }
 
 .topnav a.active {
     background-color: #005792;
     color: white
 }
+
+
 </style>

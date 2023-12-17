@@ -24,37 +24,39 @@ Route::group(['middleware' => 'admin'],function(){
 
     Route::post('/programas/cadastrarNovoPrograma',[ProgramaController::class,'cadastrarNovoPrograma'])->name('cadastrarNovoPrograma');
 
-    Route::get('/programas/excluirPrograma/{id_prog}', [ProgramaController::class,'excluirPrograma'])->name('excluirPrograma');
+    Route::delete('/programas/excluirPrograma/{id_prog}', [ProgramaController::class,'excluirPrograma'])->name('excluirPrograma');
 
-    Route::post('/programas/edicao',[ProgramaController::class,'edicao'])->name('edicao');
+    Route::patch('/programas/edicao',[ProgramaController::class,'edicao'])->name('edicao');
 
     Route::get('/coordenadores',[CoordenadorController::class,'index'])->name('coordenadores');
 
     Route::post('/coordenadores/cadastrarCoordenador',[CoordenadorController::class,'cadastrarCoordenador'])->name('cadastrarCoordenador');
 
-    Route::get('/coordenadores/excluirCoordenador/{username}', [CoordenadorController::class,'excluirCoordenador'])->name('excluirCoordenador');
+    Route::delete('/coordenadores/excluirCoordenador/{username}', [CoordenadorController::class,'excluirCoordenador'])->name('excluirCoordenador');
 
     Route::get('/controleProapinho',[PedidoController::class,'indexProapinho'])->name('controleProapinho');
 
-    Route::post('/controleProapinho',[PedidoController::class,'visualizarPedidosProapinho'])->name('viewPedidosProapinho');
+    Route::get('/controleProapinho/pedidos',[PedidoController::class,'visualizarPedidosProapinho'])->name('viewPedidosProapinho');
 
     Route::get('/controleProap',[PedidoController::class,'indexProap'])->name('controleProap');
     
-    Route::post('/controleProap/pedidos',[PedidoController::class,'visualizarPedidosProap'])->name('viewPedidosProap');
+    Route::get('/controleProap/pedidos',[PedidoController::class,'visualizarPedidosProap'])->name('viewPedidosProap');
 
     Route::post('/controleProapinho/cadastrarPedido',[PedidoController::class,'cadastrarPedido'])->name('cadastrarPedido');
 
     Route::get('/editarPedido/{id_ped}',[PedidoController::class,'indexEditarPedido'])->name('indexEditarPedido');
 
-    Route::post('/editarPedido',[PedidoController::class,'editarPedido'])->name('editarPedido');
+    Route::patch('/editarPedido',[PedidoController::class,'editarPedido'])->name('editarPedido');
 
-    Route::get('/excluirPedido/{id_ped}',[PedidoController::class,'excluirPedido'])->name('excluirPedido');
+    Route::delete('/excluirPedido/{id_ped}',[PedidoController::class,'excluirPedido'])->name('excluirPedido');
 });
 
 
 Route::group(['middleware' => 'coord'],function(){
 
     Route::get('/cadastrarValores/{id_prog}',[ProgramaController::class,'indexCadastrarValores'])->name('indexCadastrarValores');
+    
+    Route::post('/cadastrarValores',[ProgramaController::class,'cadastrarValores'])->name('cadastrarValores');
 });
 
 
@@ -67,7 +69,7 @@ Route::get('/login', [LoginController::class,'index'])->name('login');
 
 Route::post('/login/autenticar',[LoginController::class,'autenticar'])->name('autenticar');
 
-Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+Route::post('/logout',[LoginController::class,'logout'])->name('logout');
 
 
 

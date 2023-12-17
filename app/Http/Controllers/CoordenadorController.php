@@ -8,8 +8,12 @@ use App\Http\Controllers\ProgramaController;
 use App\Models\Coordenador;
 use App\Models\Login;
 use App\Models\Programa;
+use App\Rules\ProgramaExiste;
+use App\Rules\ProgramaTemCoord;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class CoordenadorController extends Controller
 {
@@ -33,46 +37,40 @@ class CoordenadorController extends Controller
     }
 
     public function cadastrarCoordenador(Request $request){
-        $request->validate([
-            'nome' => 'required|String|max:50',
-            'tipoPrograma' =>'required',
-            'programa' =>'required|String|max:20',
-            'username' =>'required|regex:/^[a-zA-Z0-9_-]{3,25}$/',
-            'password' => 'required',
+       
+        $validator = Validator::make($request->all(), $rules = [
+            'nome' => 'required|String|max:50|regex:/^[\pL\s]+$/u',
+            'tipo_prog' =>'required',
+            'nom_prog' =>['bail','required','String','max:20','regex:/^[a-zA-Z]+$/',new ProgramaExiste($request->tipo_prog), new ProgramaTemCoord($request->tipo_prog)],
+            'username' =>['required','regex:/^[a-zA-Z0-9_-]+$/','min:5','max:25',Rule::unique('logins')],
+            'password' => 'required|max:64|min:8|',
+        ],$msgs =[
+            'required' => 'Este campo é obrigatório',
+            'max' => 'Limite de caracteres atingido max: :max',
+            'password.min' => 'Senha precisa ter no mínimo 8 caracteres',
+            'username.min '=> 'Nome de usuário precisa ter no mínimo 5 caracteres',	
+            'programa.regex' => 'Apenas caracteres de A-Z são permitidos',
+            'username.regex' => 'só pode conter letras, números, - e _',
+            'password.regex' => 'Senha precisa ter pelo menos uma letra maiúscula, uma minúscula e um número',
+            'username.unique' => 'Nome de usuário não disponível',
         ]);
 
-        $id_log = LoginController::getIdLog($request->username);
-        if($id_log !== null){
-            return redirect()->route('coordenadores')->with('erro','Nome de usuário já utilizado');
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
         }
-        else{
-            $ano = date('Y');
-            $id_prog = ProgramaController::getIdProg(strtoupper($request->programa),$request->tipoPrograma,$ano);
-            if($id_prog === null){
-                return redirect()->route('coordenadores')->with('erro','Programa não existe');
-            }
-            else{
-               $coordenador =  Coordenador::where('id_progfk',$id_prog)->first();
-               if($coordenador === null){
-                $id_log = LoginController::registrar($request->username,$request->password,'coord');
-                    $data = [
-                        'id_logfk' => $id_log,
-                        'id_progfk' => $id_prog,
-                        'nome' => $request->nome,
-                    ];
-                    
-                    Coordenador::create($data);
-                    return redirect()->route('coordenadores')->with('sucesso', 'Coordenador cadastrado');
-               }
-               else{
-                    return redirect()->route('coordenadores')->with('erro', ' O Programa já tem um coordenador responsável');
-               }
-            }
-        }
-        
-        
 
-       
+        $ano = getAno();
+        $id_prog = ProgramaController::getIdProg(strtoupper($request->nom_prog),$request->tipo_prog,$ano);
+        $id_log = LoginController::registrar($request->username,$request->password,'coord');
+        $data = [
+            'id_logfk' => $id_log,
+            'id_progfk' => $id_prog,
+            'nome' => $request->nome,
+        ];
+                    
+        Coordenador::create($data);
+        return redirect()->route('coordenadores')->with('sucesso', 'Coordenador cadastrado');
+
     }
 
     public function excluirCoordenador($username){

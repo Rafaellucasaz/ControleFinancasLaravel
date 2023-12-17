@@ -67,8 +67,37 @@ h1{
 }
 
 h2{
-    color: white;
+    color: black;
     text-align: center;
+}
+p{
+    color:#ff7e82;
+    font-size: 10px;
+}
+
+::-webkit-scrollbar{
+    width: 5px;
+   
+}
+
+::-webkit-scrollbar-track{
+    background-color:#C5DFF8;
+    height: 5px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #005792;
+}
+::-webkit-scrollbar-thumb:hover{
+    width: 10px;
+}
+::-webkit-scrollbar-track:hover{
+    background-color: #A0BFE0;
+   
+}
+
+.erroInput{
+    background-color: #ff7e82;
+    max-width: 169px;
 }
 
 

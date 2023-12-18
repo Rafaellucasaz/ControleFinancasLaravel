@@ -41,7 +41,9 @@
     <input type="text" name = "pcdp" id = "pcdp" required value = "{{$pedido->pcdp}}" >
     <label for="prest">Prestação de contas</label>
     <input type="text"  name = "prest" id = "prest"  value = "{{$pedido->prest}}" >
-    <br><br><button type = "submit" name = "submitEdit">Confirmar</button>
+    <div class = "button-edit">
+        <button type = "submit" name = "submitEdit">Confirmar</button>
+    </div>
 </div>
 </form>
     

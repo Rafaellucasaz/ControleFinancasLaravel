@@ -42,16 +42,17 @@ class CoordenadorController extends Controller
             'nome' => 'required|String|max:50|regex:/^[\pL\s]+$/u',
             'tipo_prog' =>'required',
             'nom_prog' =>['bail','required','String','max:20','regex:/^[a-zA-Z]+$/',new ProgramaExiste($request->tipo_prog), new ProgramaTemCoord($request->tipo_prog)],
-            'username' =>['required','regex:/^[a-zA-Z0-9_-]+$/','min:5','max:25',Rule::unique('logins')],
+            'username' =>['required','regex:/^[a-zA-Z0-9_-]+$/','min:1','max:25',Rule::unique('logins')],
             'password' => 'required|max:64|min:8|',
         ],$msgs =[
             'required' => 'Este campo é obrigatório',
             'max' => 'Limite de caracteres atingido max: :max',
             'password.min' => 'Senha precisa ter no mínimo 8 caracteres',
             'username.min '=> 'Nome de usuário precisa ter no mínimo 5 caracteres',	
-            'programa.regex' => 'Apenas caracteres de A-Z são permitidos',
-            'username.regex' => 'só pode conter letras, números, - e _',
+            'nom_prog.regex' => 'Apenas caracteres de A-Z são permitidos',
+            'username.regex' => 'Só pode conter letras, números, - e _',
             'password.regex' => 'Senha precisa ter pelo menos uma letra maiúscula, uma minúscula e um número',
+            'nome.regex' => 'Nome só pode conter letras',
             'username.unique' => 'Nome de usuário não disponível',
         ]);
 

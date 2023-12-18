@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle Proapinho</title>
-    <link href="/css/controles.css" rel="stylesheet"/>
-    <link  href="/css/tabelas.css" rel="stylesheet"/>
-    <link  href="/css/componentes.css" rel="stylesheet"/>
-    <script src="https://kit.fontawesome.com/3c06a12d01.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="crossorigin="anonymous"></script>
-</head>
+@extends('layouts.layout')
+@section('titulo','Controle Proapinho')
+
+@section('head')
+<link href="/css/controles.css" rel="stylesheet"/>
+@endsection
+
+@section('popup')
     <div class="popup" id = "popup">
         <form action="{{route('cadastrarPedido')}}" method = "post">
         
@@ -79,95 +75,70 @@
             </div>
         </form>
     </div>
-<body>
-    
-    @include('components.navbarAdmin')
+@endsection
 
-    @if (session('sucesso'))
-    <x-msg class="sucesso" :msg="session('sucesso')"/>
-    @endif
+@section('navbar')
+    @include('components.navbarAdmin') 
+@endsection
 
-    @if (session('erro'))
-    <x-msg class="erro" :msg="session('erro')"/>
-    @endif
-
-    
-<main>
+@section('main')
     <h1>Pedidos Proapinho </h1>   
-    
-
-    
-
-
         
-        <div class = "tabela">
-            <div class = "buttons" >  
-                <button id = "abrirPopup" > Cadastrar pedido </button>
-                <form id="select-form">    
-                    <select name="nom_prog"  id="nom_prog" >
-                        <option value="" disabled selected>Selecionar programa</option>
-                        @foreach ($programas as $programa)
-                        <option value ="{{$programa}}" {{isSelected("programa",$programa)}} >{{$programa}} </option>;
-                        @endforeach
-                    </select>
-                    <select name="tipo_ped" id = "tipo_ped" >
-                        <option value="" disabled selected>Selecionar tipo de pedido</option>
-                        <option value="dia_civ" {{isSelected("tipo_ped","dia_civ")}}>Diária pessoal civil</option>
-                        <option value="dia_int" {{isSelected("tipo_ped","dia_int")}}>Diária internacional</option>
-                        <option value="pass" {{isSelected("tipo_ped","pass")}}>Passagem</option>
-                        <option value="sepe" {{isSelected("tipo_ped","sepe")}}>Sepe</option>
-                        <option value="nao_serv" {{isSelected("tipo_ped","nao_serv")}}>Não servidor</option>
-                        <option value="aux_estu" {{isSelected("tipo_ped","aux_estu")}}>Auxílio estudantil</option>
-                        <option value="aux_pesq" {{isSelected("tipo_ped","aux_pesq")}}>Auxílio pesquisador</option>
-                        <option value="cons" {{isSelected("tipo_ped","cons")}}>Material de consumo</option>
-                        <option value="ser_ter" {{isSelected("tipo_ped","ser_ter")}}>Serviços de terceiros</option>
-                        <option value="tran" {{isSelected("tipo_ped","tran")}}>Transportes</option>
-                    </select>
-                </form>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>nº ped</th>
-                        <th>data</th>
-                        <th>valor</th>
-                        <th>detalhamento</th>
-                        <th>beneficiado</th>
-                        <th>nº PCDP</th>
-                        <th>Prestação de contas</th>
-                        <th>EDITAR</th>
-                        <th>EXCLUIR</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                </tbody>
-            </table>
-            <div class = "semPedidos"></div>
+    <div class = "tabela">
+        <div class = "buttons" >  
+            <button id = "abrirPopup" > Cadastrar pedido </button>
+            <form id="select-form">    
+                <select name="nom_prog"  id="nom_prog" >
+                    <option value="" disabled selected>Selecionar programa</option>
+                    @foreach ($programas as $programa)
+                    <option value ="{{$programa}}" {{isSelected("programa",$programa)}} >{{$programa}} </option>;
+                    @endforeach
+                </select>
+                <select name="tipo_ped" id = "tipo_ped" >
+                    <option value="" disabled selected>Selecionar tipo de pedido</option>
+                    <option value="dia_civ" {{isSelected("tipo_ped","dia_civ")}}>Diária pessoal civil</option>
+                    <option value="dia_int" {{isSelected("tipo_ped","dia_int")}}>Diária internacional</option>
+                    <option value="pass" {{isSelected("tipo_ped","pass")}}>Passagem</option>
+                    <option value="sepe" {{isSelected("tipo_ped","sepe")}}>Sepe</option>
+                    <option value="nao_serv" {{isSelected("tipo_ped","nao_serv")}}>Não servidor</option>
+                    <option value="aux_estu" {{isSelected("tipo_ped","aux_estu")}}>Auxílio estudantil</option>
+                    <option value="aux_pesq" {{isSelected("tipo_ped","aux_pesq")}}>Auxílio pesquisador</option>
+                    <option value="cons" {{isSelected("tipo_ped","cons")}}>Material de consumo</option>
+                    <option value="ser_ter" {{isSelected("tipo_ped","ser_ter")}}>Serviços de terceiros</option>
+                    <option value="tran" {{isSelected("tipo_ped","tran")}}>Transportes</option>
+                </select>
+            </form>
         </div>
-        <form id="delete-Form" action="" method="POST" style="display: none;">
-            @csrf
-            @method('DELETE')
-        </form>
-    </main>
-</body>
-</html>
+        <table>
+            <thead>
+                <tr>
+                    <th>nº ped</th>
+                    <th>data</th>
+                    <th>valor</th>
+                    <th>detalhamento</th>
+                    <th>beneficiado</th>
+                    <th>nº PCDP</th>
+                    <th>Prestação de contas</th>
+                    <th>EDITAR</th>
+                    <th>EXCLUIR</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+        <div class = "semPedidos"></div>
+    </div>
 
-@if($errors->any()) <script type="text/javascript" > popup.classList.add("open-popup") </script> @endif
+    <form id="delete-Form" action="" method="POST" style="display: none;">
+        @csrf
+        @method('DELETE')
+    </form>
+@endsection
 
-<script>
-
+@section('scripts')
     $(document).ready(function() {
-        
-        $("#abrirPopup").on("click", function(event) {
-            event.preventDefault();
-            $("#popup").addClass("open-popup");
-        });
-    
-        $("#fecharPopup").on("click", function() {
-            $("#popup").removeClass("open-popup");
-        });
-       
+            
         function atualizarTabela() {
             var formData = $('#select-form').serialize();
             $.ajax({
@@ -219,4 +190,5 @@
         deletarPedido($(this).attr('href'));
         });
     });
-</script>
+@if($errors->any()) $('#popup').addClass("open-popup") @endif
+@endsection

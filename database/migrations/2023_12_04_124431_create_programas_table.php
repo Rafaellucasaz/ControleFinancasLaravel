@@ -16,17 +16,17 @@ return new class extends Migration
             $table->timestamps();
             $table->string('nom_prog',20);
             $table->string('tipo_prog',9);
-            $table->integer('dia_civ');
-            $table->integer('dia_int');
-            $table->integer('pass');
-            $table->integer('sepe');
-            $table->integer('nao_serv');
-            $table->integer('aux_est');
-            $table->integer('aux_pes');
-            $table->integer('cons');
-            $table->integer('ser_ter');
-            $table->integer('tran');
-            $table->integer('total');
+            $table->biginteger('dia_civ');
+            $table->biginteger('dia_int');
+            $table->biginteger('pass');
+            $table->biginteger('sepe');
+            $table->biginteger('nao_serv');
+            $table->biginteger('aux_estu');
+            $table->biginteger('aux_pesq');
+            $table->biginteger('cons');
+            $table->biginteger('ser_ter');
+            $table->biginteger('tran');
+            $table->biginteger('total');
             $table->boolean('edit');
         });
     }

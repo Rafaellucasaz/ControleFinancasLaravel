@@ -3,21 +3,7 @@ body {
     text-align: center;
 }
 
-.editPopup
-{
-    position: absolute;
-    width: 300px;
-    height: 200px;
-    background: white;
-    border: 1px solid black;
-    padding: 10px;
-    margin: auto;
-    top: 0;
-    left : 50%;
-    transform: translate(-50%,-50%) scale(0.1);
-    visibility: hidden;
-    transition: transform 0.4s, top 0.4s;
-}
+
 .open-popup
 {
     visibility: visible;
@@ -32,31 +18,44 @@ body {
 
 .popup
 {
+    color: white;
     display: flex;
     flex-direction: column;
     position: absolute;
     text-align: center;
     width: 200px;
-    height: 600px;
-    background: white;
-    border: 1px solid black;
+    overflow-y: auto;
+    height: auto;
+    max-height: 80%;
+    background: #00204a;
+    border: 5px solid #A0BFE0;
+    border-radius: 5px;
     padding: 10px;
-    margin: auto;
     top: 0;
     left : 50%;
     transform: translate(-50%,-50%) scale(0.1);
     visibility: hidden;
     transition: transform 0.4s, top 0.4s;
 }
-
-.popup #fecharPopup{
-    border: none;
-    border-radius: 5px;
-    color: white;
-    height: 4%;
-    width: 8%;
-    padding: 0%;
+.popup form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
+.popup-input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.popup-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
 
 .closePopup div {
     margin-right: 80%;

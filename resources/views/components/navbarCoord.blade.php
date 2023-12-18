@@ -5,14 +5,15 @@
   
 <div class="topnav">
 
-<a href="../Grafico/grafico.php">Gráfico</a>
+  <a href="../Grafico/grafico.php">Gráfico</a>
 
-<a href="">Pedidos</a>
-<a href = "{{route('programas',session('id_prog'))}}">Valores</a>
+  <a href="{{route('pedidos',session('id_prog'))}}">Pedidos</a>
+  <a href = "{{route('indexCadastrarValores',session('id_prog'))}}">Valores</a>
 
-
-
-<a  href = "{{route('logout')}}" >Sair</a> </div>
+  <form action="{{route('logout')}}" id = "logout-form" method="post">
+    @csrf
+    <a  href = "{{route('logout')}}" id="logout" onclick=" event.preventDefault();" >Sair</a> 
+  </form>
 
 </div>
 

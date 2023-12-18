@@ -56,7 +56,10 @@ Route::group(['middleware' => 'coord'],function(){
 
     Route::get('/cadastrarValores/{id_prog}',[ProgramaController::class,'indexCadastrarValores'])->name('indexCadastrarValores');
     
-    Route::post('/cadastrarValores',[ProgramaController::class,'cadastrarValores'])->name('cadastrarValores');
+    Route::patch('/cadastrarValores',[ProgramaController::class,'cadastrarValores'])->name('cadastrarValores');
+
+    Route::get('/Pedidos/{id_prog}',[PedidoController::class,'indexPedidos'])->name('pedidos');
+
 });
 
 

@@ -37,8 +37,6 @@
 
 @section('main')
     <h1>Programas</h1>
-            
-    
             <div class = "tabela">
                 <x-search-box/>
                 <div class = "buttons">
@@ -98,41 +96,41 @@
             </form>
 @endsection
 @section('scripts')
-$(document).ready(function() {
-        
-    // Função para filtrar as linhas da tabela com base na entrada
-    $("#search").on("input", function() {
-        const value = $(this).val().toLowerCase();
-        const table = @php echo json_encode($programas)@endphp ;
-        table.forEach(row => {
-            var id = row.id_prog;
-            var linha = $("#" + id);
-            if (row.nom_prog.toLowerCase().includes(value) || row.tipo_prog.toLowerCase().includes(value)) {
-                linha.removeClass("hide"); 
-            } else {
-                linha.addClass("hide"); 
+    $(document).ready(function() {
+            
+        // Função para filtrar as linhas da tabela com base na entrada
+        $("#search").on("input", function() {
+            const value = $(this).val().toLowerCase();
+            const table = @php echo json_encode($programas)@endphp ;
+            table.forEach(row => {
+                var id = row.id_prog;
+                var linha = $("#" + id);
+                if (row.nom_prog.toLowerCase().includes(value) || row.tipo_prog.toLowerCase().includes(value)) {
+                    linha.removeClass("hide"); 
+                } else {
+                    linha.addClass("hide"); 
+                }
+            });
+        });
+
+        // Função para deletar programa
+        function deletarPrograma(link){
+            console.log("teste");
+            if(confirm("Isso deletará todos os pedidos e o coordenador referente a esse programa. Continuar ?")){
+                $('#delete-Form').attr('action', link).submit(); 
             }
+        };
+
+        // Chama função de deletar 
+        $('table tbody').on('click', '.excluir', function(event) {
+            event.preventDefault();
+            deletarPrograma($(this).attr('href')); 
         });
     });
-
-    // Função para deletar programa
-    function deletarPrograma(link){
-        console.log("teste");
-        if(confirm("Isso deletará todos os pedidos e o coordenador referente a esse programa. Continuar ?")){
-            $('#delete-Form').attr('action', link).submit(); 
-        }
-    };
-
-    // Chama função de deletar 
-    $('table tbody').on('click', '.excluir', function(event) {
-        event.preventDefault();
-        deletarPrograma($(this).attr('href')); 
-    });
-});
-
+    @if($errors->any()) $('#popup').addClass("open-popup") @endif
 @endsection
 
-@if($errors->any()) <script type="text/javascript" > popup.classList.add("open-popup") </script> @endif
+
 
    
     

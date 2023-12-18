@@ -39,7 +39,9 @@ table tr td button
 }
 table tr td:hover
 {
+    transition: 1s;
     white-space: normal;
+    
 }
 table tr:nth-child(even) 
 {

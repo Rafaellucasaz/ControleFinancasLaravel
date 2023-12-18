@@ -18,17 +18,23 @@ class PedidoController extends Controller
         return view('controleProapinho')->with(compact('programas'));
     }
 
-    public function visualizarPedidosProapinho(Request $request){
-        $ano = getAno();
-        $id_prog = ProgramaController::getIdProg($request->input('nom_prog'),'proapinho',$ano);
-        $pedidos = Pedido::where('id_progfk', $id_prog)->where('tipo_ped',$request->input('tipo_ped'))->get();
-        return $pedidos;
+    public function indexPedidos($id_prog){
+        $programa = Programa::where('id_prog',$id_prog)->first();
+        return view('pedidos')->with(compact('programa'));
     }
+   
 
     public function indexProap(){
         $ano = getAno();
         $programas = Programa::where('tipo_prog', 'proap')->whereYear('created_at', $ano)->pluck('nom_prog');
         return view('controleProap')->with(compact('programas'));
+    }
+
+    public function visualizarPedidosProapinho(Request $request){
+        $ano = getAno();
+        $id_prog = ProgramaController::getIdProg($request->input('nom_prog'),'proapinho',$ano);
+        $pedidos = Pedido::where('id_progfk', $id_prog)->where('tipo_ped',$request->input('tipo_ped'))->get();
+        return $pedidos;
     }
 
     public function visualizarPedidosProap(Request $request){
@@ -148,7 +154,6 @@ class PedidoController extends Controller
             return redirect()->route('controleProap')->with(['sucesso' =>'Pedido deletado'])->withInput(['programa' => $programa->nom_prog, 'tipo_ped' => $pedido->tipo_ped]);
         }
         return redirect()->route('controleProapinho')->with(['sucesso' =>'Pedido deletado'])->withInput(['programa' => $programa->nom_prog, 'tipo_ped' => $pedido->tipo_ped]);
-
 
     }
 }

@@ -112,6 +112,7 @@ $(document).ready(function() {
         deletarCoordenador($(this).attr('href')); 
     });
 });
+@if($errors->any()) $('#popup').addClass("open-popup") @endif
 @endsection
 
-@if($errors->any()) <script type="text/javascript" > popup.classList.add("open-popup") </script> @endif
+

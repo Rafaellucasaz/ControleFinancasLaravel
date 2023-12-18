@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+use App\Models\Programa;
 
 function mostrarErros($name,$errors){
     if($name === "det"){
@@ -68,4 +70,9 @@ function getAno(){
     return date('Y');
 }
 
+
+function calcularTotalValores(Programa $programa){
+    return $programa->dia_civ + $programa->dia_int + $programa->pass + $programa->sepe + $programa->nao_serv + $programa->aux_estu + $programa->aux_pesq + $programa->cons + $programa->ser_ter + $programa->tran;
+    
+}
 ?>

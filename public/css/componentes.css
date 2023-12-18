@@ -41,7 +41,7 @@ input::placeholder{
 textarea{
     border: solid 2px #005792;
     background-color: #A0BFE0 ;   
-    color: #00204a;
+    color: #005792;
     font-family: Arial, Helvetica, sans-serif;
 }
 textarea:focus{

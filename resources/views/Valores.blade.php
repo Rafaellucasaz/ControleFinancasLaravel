@@ -114,6 +114,14 @@
 
         
         </table> 
-    </div>  <div class = "button"><button id = "abrirPopup" >Cadastrar valores</button> </div>
+    </div>  
+    @if($programa->edicao)
+        <div class = "button"><button id = "abrirPopup" >Cadastrar valores</button> </div>
+    
+    @else
+        <h2>Prazo para cadastro finalizado</h2>
+    
+    @endif
+   
 @endsection
 

@@ -5,7 +5,7 @@
   
 <div class="topnav">
 
-  <a href="../Grafico/grafico.php">Gráfico</a>
+  <a href="{{route('grafico')}}">Gráfico</a>
 
   <a href="{{route('pedidos',session('id_prog'))}}">Pedidos</a>
   <a href = "{{route('indexCadastrarValores',session('id_prog'))}}">Valores</a>

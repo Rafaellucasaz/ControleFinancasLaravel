@@ -2,7 +2,7 @@
 <div class="topnav">
   <a href="{{route('home')}}">Home</a>
   <a href="{{route('login')}}">Login</a>
-  <a href="../Grafico/grafico.php">Gráfico</a>
+  <a href="{{route('grafico')}}">Gráfico</a>
   </div>
 </div>
 

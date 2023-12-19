@@ -91,7 +91,7 @@
         <div class = "buttons" >  
             <button  id = "abrirPopup" > Cadastrar pedido </button>
             <form id= "select-form">
-
+                <input type="hidden" name="tipo_prog" value = "proap">
                 <select name="nom_prog" id="nom_prog">
                 <option value="" disabled selected>Selecionar programa</option>
                 @foreach ($programas as $programa)
@@ -147,7 +147,7 @@ $(document).ready(function() {
     function atualizarTabela() {
         var formData = $('#select-form').serialize();
         $.ajax({
-            url: '{{ route("viewPedidosProap") }}',
+            url: '{{ route("viewPedidos") }}',
             method: 'GET',
             data: formData,
             success: function(data) {

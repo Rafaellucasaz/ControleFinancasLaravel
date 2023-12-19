@@ -37,9 +37,9 @@ class PedidoController extends Controller
         return $pedidos;
     }
 
-    public function visualizarPedidosProap(Request $request){
+    public function visualizarPedidos(Request $request){
         $ano = getAno();
-        $id_prog = ProgramaController::getIdProg($request->input('nom_prog'),'proap',$ano);
+        $id_prog = ProgramaController::getIdProg($request->input('nom_prog'),$request->input('tipo_prog'),$ano);
         $pedidos = Pedido::where('id_progfk', $id_prog)->where('tipo_ped',$request->input('tipo_ped'))->get();
         return $pedidos;
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GraficoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProgramaController;
 use App\http\Controllers\CoordenadorController;
@@ -36,11 +37,9 @@ Route::group(['middleware' => 'admin'],function(){
 
     Route::get('/controleProapinho',[PedidoController::class,'indexProapinho'])->name('controleProapinho');
 
-    Route::get('/controleProapinho/pedidos',[PedidoController::class,'visualizarPedidosProapinho'])->name('viewPedidosProapinho');
-
     Route::get('/controleProap',[PedidoController::class,'indexProap'])->name('controleProap');
     
-    Route::get('/controleProap/pedidos',[PedidoController::class,'visualizarPedidosProap'])->name('viewPedidosProap');
+    Route::get('/controleProap/pedidos',[PedidoController::class,'visualizarPedidos'])->name('viewPedidos');
 
     Route::post('/controleProapinho/cadastrarPedido',[PedidoController::class,'cadastrarPedido'])->name('cadastrarPedido');
 
@@ -60,6 +59,8 @@ Route::group(['middleware' => 'coord'],function(){
 
     Route::get('/Pedidos/{id_prog}',[PedidoController::class,'indexPedidos'])->name('pedidos');
 
+    Route::get('/controleProap/pedidos',[PedidoController::class,'visualizarPedidos'])->name('viewPedidos');
+
 });
 
 
@@ -67,6 +68,9 @@ Route::group(['middleware' => 'coord'],function(){
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
+
+Route::get('/grafico',[GraficoController::class,'index'])->name('grafico');
 
 Route::get('/login', [LoginController::class,'index'])->name('login');
 

@@ -29,57 +29,9 @@ body {
 
 
 
-.popup
-{
-    color: white;
-    position: absolute;
-    width: 300px;
-    overflow-y: auto;
-    height: auto;
-    max-height: 80%;
-    background-color: #00204a;
-    border: 5px solid #A0BFE0;
-    padding: 10px;
-    top: 0;
-    left : 50%;
-    transform: translate(-50%,-50%) scale(0.1);
-    visibility: hidden;
-    transition: transform 0.4s, top 0.4s;
-    border-radius: 5px;
-    
-}
-.popup form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    
-}
-.popup-selects{
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-}
-.popup-input{
-    display: flex;
-    flex-direction: column;
-}
-.popup-buttons{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-}
-.open-popup
-{
-    visibility: visible;
-    top : 50%;
-    transform: translate(-50%,-50%) scale(1);
-}
 
-#data{
-    width: 169px;
-}
+
+
 
 
 

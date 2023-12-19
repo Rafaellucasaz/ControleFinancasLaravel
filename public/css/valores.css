@@ -1,18 +1,8 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+    background-color: #e0fbfc;
 }
-
-
-.open-popup
-{
-    visibility: visible;
-    top : 50%;
-    transform: translate(-50%,-50%) scale(1);
-
-}
-
-
 
 
 
@@ -57,15 +47,13 @@ body {
 }
 
 
-.closePopup div {
-    margin-right: 80%;
-}
+
 
 .open-popup
 {
     visibility: visible;
     top : 50%;
     transform: translate(-50%,-50%) scale(1);
-    border-radius: 5px;
+   
 
 }

@@ -30,7 +30,7 @@ class PedidoController extends Controller
     }
    
     public function getPedidos(Request $request){
-        $pedidos = Pedido::where('id_progfk', $request->id_prog)->where('tipo_ped',$request->tipo_ped)->get();
+        $pedidos = Pedido::where('id_progfk', $request->id_prog)->where('tipo_ped',$request->tipo_ped)->orderBy('num_ped','ASC')->get();
         return $pedidos;
     }
 

@@ -13,8 +13,7 @@ class RelatorioController extends Controller
 {
     public function gerarRelatorio(Request $request){
 
-        $programasProap = Programa::whereYear('created_at', $request->ano)->where('tipo_prog','proap')->get();
-        $programasProapinho = Programa::whereYear('created_at', $request->ano)->where('tipo_prog','proapinho')->get();
+        $programas = Programa::whereYear('created_at', $request->ano)->where('tipo_prog',$request->tipo_prog)->get();
         $pedidos = Pedido::whereYear('created_at', $request->ano)->get();
 
 
@@ -32,18 +31,22 @@ class RelatorioController extends Controller
         td, th {
           border: 1px solid black;
           text-align: left;
-          padding: 8px;
+          width: auto;
         }
         
+        td{
+          font-size: 12px;
+        }
         tr:nth-child(even) {
           background-color: #dddddd;
         }
         h2{text-align:center;}
+      
         </style>
         </head>
         <body>
         
-        <h1>Proap</h1>
+        <h1>Relatório " . $request->tipo_prog . " " . $request->ano . "</h1>
         
         <table>
         <caption> Valores recebidos </caption>
@@ -61,7 +64,7 @@ class RelatorioController extends Controller
             <th>Transporte</th>
             <th>total</th>
           </tr>";
-          foreach($programasProap as $programa){
+          foreach($programas as $programa){
               $html .=
                 "<tr>
                     <td>". $programa->nom_prog ."</td>
@@ -101,7 +104,7 @@ class RelatorioController extends Controller
               <th>total</th>
             </tr>";
 
-          foreach($programasProap as $programa){
+          foreach($programas as $programa){
            
             $html .= "<tr> 
             <td> "  .$programa->nom_prog ." </td>
@@ -122,7 +125,7 @@ class RelatorioController extends Controller
           $html.= 
             "</table>";
           
-          foreach($programasProap as $programa){
+          foreach($programas as $programa){
             $html.= " <h2> Pedidos " . $programa->nom_prog ."</h2>";
             $atributos = $programa->only(['dia_civ','dia_int','pass','sepe','nao_serv','aux_estu','aux_pesq','cons','ser_ter','tran']);
             foreach($atributos as $atributo => $columnValue){
@@ -131,7 +134,7 @@ class RelatorioController extends Controller
                 <caption>" .  getTipoPed($atributo) . "</caption>
                 <thead>
                   <tr>
-                    <th>Número do pedido</th>
+                    <th>Nº</th>
                     <th>Data</th>
                     <th>Valor</th>
                     <th>Detalhamento</th>
@@ -145,12 +148,12 @@ class RelatorioController extends Controller
                 if($pedido->id_progfk === $programa->id_prog && $pedido->tipo_ped === $atributo){
                   $html.=  
                   "<tr>
-                    <td>" . $pedido->num_ped .  "</td>
-                    <td>" . $pedido->data . "</td>
-                    <td>" . $pedido->val .  "</td>
-                    <td>" . $pedido->det . "</td>
-                    <td>" . $pedido->ben . "</td>
-                    <td>" . $pedido->pcdp . "</td>
+                    <td> " . $pedido->num_ped .  "</td>
+                    <td> " . $pedido->data . "</td>
+                    <td> " . number_format($pedido->val/100,2,',','.') .  "</td>
+                    <td> " . $pedido->det . "</td>
+                    <td> " . $pedido->ben . "</td>
+                    <td> " . $pedido->pcdp . "</td>
                     <td>" . $pedido->prest . "</td>
                   </tr>";
                 }

@@ -128,7 +128,7 @@
                 
             </tbody>
         </table>
-        <div class = "semPedidos"></div>
+        <div id = "semPedidos"></div>
     </div>
 
     <form id="delete-Form" action="" method="POST" style="display: none;">
@@ -148,10 +148,10 @@
                 data: formData,
                 success: function(data) {
                     if (data.length === 0 && $('#tipo_ped').val() != null && $('#id_prog').val() != null) {
-                        $('.semPedidos').html('<h2> Sem pedidos </h2>');
+                        $('#semPedidos').html('<h2> Sem pedidos </h2>');
                         $('table tbody').html('');
                     } else {
-                        $('.semPedidos').html('');
+                        $('#semPedidos').html('');
                         var tabela = '';
                         var urlEditar = '{{ route("indexEditarPedido", ":id") }}';
                         var urlExcluir = '{{ route("excluirPedido", ":id") }}';

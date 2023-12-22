@@ -90,6 +90,21 @@
                     </tbody>
                 </table> 
             </div>  
+            <div id = "relatorio">
+                <h3> Relatório</h3>
+                <form action="{{route('relatorio')}}" method ="GET">
+                <div class = "radio">
+                    <label for="proap">Proap</label>
+                    <input type="radio" value = "proap" name = "tipo_prog" id = "proap" required >
+                    <label for="proapinho">proapinho</label>
+                    <input type="radio" value = "proapinho" name = "tipo_prog" id = "proapinho" required>
+                </div>
+                <div>
+                <button type = "submit">Gerar relatório</button>
+                </div>
+                <input type="hidden" name="ano" id="ano" value ="{{getAno()}}">
+                </form>
+            </div>
             <form id="delete-Form" action="" method="POST" style="display: none;">
                 @csrf
                 @method('DELETE')

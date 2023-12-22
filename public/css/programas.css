@@ -15,7 +15,11 @@ body {
     align-items: center;
 }
 
-
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .buttons{
     
     padding: 5px;
@@ -70,6 +74,20 @@ body {
 
 }
 
+
+#relatorio{
+    
+    background-color: #00204a;
+    width: 15%;
+    color: white;
+    border: 5px solid #A0BFE0;
+    padding-bottom: 15px;
+}
+#relatorio form{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
 
 
 

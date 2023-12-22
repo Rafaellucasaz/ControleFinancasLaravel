@@ -12,7 +12,7 @@
     @include('components.navbar')
   <main>
     <h1> SISTEMA DE GERENCIAMENTO FINANCEIRO-PROPPG</h1>
-    <img src = "/Images/logo.png" style="width: 100px;"> 
+    <img src = "/Images/logo.png" style="width: 300px;"> 
 </main>
   
  

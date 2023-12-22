@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Programa;
 use App\Models\Pedido;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class GraficoController extends Controller
 {
     public function index(){
-    
-        return view('grafico');
+
+        $anos = Programa::selectRaw('extract("Year" from created_at)')->distinct()->pluck('extract');
+        return view('grafico')->with(compact('anos'));
     }
 
     public function getDados(Request $request){

@@ -24,8 +24,9 @@
                 <select name ="programa" id="programa" >
                 </select>
                 <select name = "ano" id = "ano">
-                    <option value="2023" selected>2023</option>
-                    <option value="2024">2024</option>
+                  @foreach($anos as $ano)
+                    <option value="{{$ano}}">{{$ano}}</option>
+                  @endforeach
                 </select>
 
                 <button type = "submit">teste</button>

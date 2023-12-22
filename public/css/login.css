@@ -4,60 +4,42 @@ body {
 }
 
 
-main {
-    text-align: center;
-}
-.topnav {
-    background-color: #00204a;
-    overflow: hidden;
-    border-radius: 5px;
-}
-
-
-
-.button1 {background-color: #005792;}
-button:hover {background-color: #00204a;}
-
-div {
-    text-align: center;
-}
-
-
-.submit {
-    border: none;
-    padding: 15px 32px;
-    text-align: center;
-    font-size: 16px;
-    margin-top: 2%;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-
-
-
 fieldset
 {
+    width: 80%;
+    margin-top: 5%;
     color: white;
     background-color: #00204a;
-    border: 5px solid #A0BFE0;
-    width: 30%;
-    margin-left: 35%;
-    margin-top: 10%;
-    border-radius: 5px;
-    
+    border: 2px solid black;
+    border-radius: 10px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+
+}
+fieldset form{
+    
+    width: 60%;
+}
+fieldset div{
+    width: 70%;
 }
 fieldset input{
-    width: 80%;
+    width: 40%;
     padding: 12px 20px;
     margin: 8px 0;
-    display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box;
+    
 }
-fieldset img{
-    width: 100%;
+#btn{
+   
+}
+#btn button{
+    margin-left: 9%;
+    width: 30%;
+    height: 50px;
+    
+}
+#img{
+    margin-top: 2%;
 }

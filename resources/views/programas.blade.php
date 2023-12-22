@@ -32,10 +32,10 @@
 @section('navbar')
 
     @include('components.navbarAdmin')
-
 @endsection
 
 @section('main')
+
     <h1>Programas</h1>
             <div class = "tabela">
                 <x-search-box/>
@@ -73,17 +73,17 @@
                         <tr class = "{{$programa->id_prog}}" id = "{{$programa->id_prog}}"> 
                             <td> {{$programa->nom_prog}} </td>
                             <td> {{$programa->tipo_prog}} </td>
-                            <td> {{$programa->dia_civ}} </td>
-                            <td> {{$programa->dia_int}} </td>
-                            <td> {{$programa->pass}} </td>
-                            <td> {{$programa->sepe}} </td>
-                            <td> {{$programa->nao_serv}} </td>
-                            <td> {{$programa->aux_est}} </td>
-                            <td> {{$programa->aux_pes}} </td>
-                            <td> {{$programa->cons}} </td>
-                            <td> {{$programa->ser_ter}} </td>
-                            <td> {{$programa->tran}} </td>
-                            <td> {{$programa->total}} </td> 
+                            <td>R$ {{$programa->dia_civ/100}} </td>
+                            <td>R$ {{$programa->dia_int/100}} </td>
+                            <td>R$ {{$programa->pass/100}} </td>
+                            <td>R$ {{$programa->sepe/100}} </td>
+                            <td>R$ {{$programa->nao_serv/100}} </td>
+                            <td>R$ {{$programa->aux_est/100}} </td>
+                            <td>R$ {{$programa->aux_pes/100}} </td>
+                            <td>R$ {{$programa->cons/100}} </td>
+                            <td>R$ {{$programa->ser_ter/100}} </td>
+                            <td>R$ {{$programa->tran/100}} </td>
+                            <td>R$ {{$programa->total/100}} </td> 
                             <td> <a href="{{ route('excluirPrograma',['id_prog' => $programa->id_prog])}}" class = "excluir" > <i class="fa-solid fa-trash-can"></i> </a> </td>      
                         </tr>
                         @endforeach 

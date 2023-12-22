@@ -13,7 +13,7 @@ class ProgramaController extends Controller
 {
     public function index(){
         $ano = date('Y');
-        $programas = Programa::whereYear('created_at',$ano)->get();
+        $programas = Programa::whereYear('created_at',$ano)->orderBy('nom_prog','asc')->get();
         return view('programas')->with(compact('programas'));
     }
 
@@ -21,6 +21,8 @@ class ProgramaController extends Controller
         $programa = Programa::where('id_prog',$id_prog)->first();
         return view('Valores')->with(compact('programa'));
     }
+
+    
 
     public function cadastrarNovoPrograma(Request $request){
          $validator = Validator::make($request->all(),$rules =[
@@ -96,12 +98,17 @@ class ProgramaController extends Controller
         $programa->cons = $request->cons*100;
         $programa->ser_ter = $request->ser_ter*100;
         $programa->tran = $request->tran*100;
-        $programa->total = calcularTotalValores($programa);
+        $programa->total = calcularTotalPrograma($programa);
         
         $programa->save();
      
         return redirect()->back()->with('sucesso','Valores cadastrados');
 
+    }
+
+    public function getProgramas(Request $request){
+        $programas = Programa::whereYear('created_at',$request->ano)->orderBy('nom_prog','asc')->get();
+        return $programas;
     }
 
     public function edicao(Request $request){

@@ -12,7 +12,7 @@
             <select name="programa" id="programa" required  >
                 <option value="" disabled selected>Selecionar programa</option>
             @foreach ($programas as $programa)
-                <option value ="{{$programa}}" {{isSelected("programa",$programa)}}>{{$programa}} </option>;
+                <option value ="{{$programa->id_prog}}" {{isSelected("programa",$programa->id_prog)}}>{{$programa->nom_prog}} </option>;
             @endforeach
             </select>
                         
@@ -84,18 +84,17 @@
     <h1>Pedidos Proap </h1>   
                 
 
-            
+        
 
                     
     <div class = "tabela">
         <div class = "buttons" >  
             <button  id = "abrirPopup" > Cadastrar pedido </button>
             <form id= "select-form">
-                <input type="hidden" name="tipo_prog" value = "proap">
-                <select name="nom_prog" id="nom_prog">
+                <select name="id_prog" id="id_prog">
                 <option value="" disabled selected>Selecionar programa</option>
                 @foreach ($programas as $programa)
-                <option value ="{{$programa}}" {{isSelected("programa",$programa)}} >{{$programa}} </option>;
+                <option value ="{{$programa->id_prog}}" {{isSelected("id_prog",$programa->id_prog)}} >{{$programa->nom_prog}} </option>;
                 @endforeach
                 </select>
                 <select name="tipo_ped" id = "tipo_ped" >
@@ -116,15 +115,15 @@
         <table>
             <thead>
                 <tr>
-                    <th>nº ped</th>
-                    <th>data</th>
-                    <th>valor</th>
-                    <th>detalhamento</th>
-                    <th>beneficiado</th>
-                    <th>nº PCDP</th>
-                    <th>Prestação de contas</th>
-                    <th>EDITAR</th>
-                    <th>EXCLUIR</th>
+                    <th id ="nPed-header">nº</th>
+                    <th id ="data-header">data</th>
+                    <th id ="val-header">valor</th>
+                    <th id = "det-header">detalhamento</th>
+                    <th id ="ben-header">beneficiado</th>
+                    <th id ="pcdp-header">nº PCDP</th>
+                    <th id ="prest-header">Prestação de contas</th>
+                    <th id = "editar-header">EDITAR</th>
+                    <th id = "excluir-header">EXCLUIR</th>
                 </tr>
             </thead>
             <tbody>
@@ -147,11 +146,11 @@ $(document).ready(function() {
     function atualizarTabela() {
         var formData = $('#select-form').serialize();
         $.ajax({
-            url: '{{ route("viewPedidos") }}',
+            url: '{{ route("getPedidos") }}',
             method: 'GET',
             data: formData,
             success: function(data) {
-                if (data.length === 0 && $('#tipo_ped').val() != null && $('#nom_prog').val() != null) {
+                if (data.length === 0 && $('#tipo_ped').val() != null && $('#id_prog').val() != null) {
                     $('.semPedidos').html('<h2> Sem pedidos </h2>');
                     $('table tbody').html('');
                 } else {
@@ -182,7 +181,7 @@ $(document).ready(function() {
     }
 
 
-    $('#nom_prog, #tipo_ped').change(function() {
+    $('#id_prog, #tipo_ped').change(function() {
         atualizarTabela();
     });
 

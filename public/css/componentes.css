@@ -11,6 +11,7 @@ select{
 }
 
 
+
 select:focus{
     outline: none;
 }
@@ -63,7 +64,6 @@ button:hover{background-color: #C5DFF8;cursor: pointer;transition: 0.3s;}
 
 h1{
     color: black;
-    text-align: center;
 }
 
 h2{

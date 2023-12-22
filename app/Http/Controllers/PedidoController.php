@@ -14,8 +14,14 @@ class PedidoController extends Controller
 {
     public function indexProapinho(){
         $ano = getAno();
-        $programas = Programa::where('tipo_prog', 'proapinho')->whereYear('created_at', $ano)->pluck('nom_prog');
+        $programas = Programa::where('tipo_prog', 'proapinho')->whereYear('created_at', $ano)->select('nom_prog','id_prog')->get();
         return view('controleProapinho')->with(compact('programas'));
+    }
+
+    public function indexProap(){
+        $ano = getAno();
+        $programas = Programa::where('tipo_prog', 'proap')->whereYear('created_at', $ano)->select('nom_prog','id_prog')->get();
+        return view('controleProap')->with(compact('programas'));
     }
 
     public function indexPedidos($id_prog){
@@ -23,35 +29,18 @@ class PedidoController extends Controller
         return view('pedidos')->with(compact('programa'));
     }
    
-
-    public function indexProap(){
-        $ano = getAno();
-        $programas = Programa::where('tipo_prog', 'proap')->whereYear('created_at', $ano)->pluck('nom_prog');
-        return view('controleProap')->with(compact('programas'));
-    }
-
-    public function visualizarPedidosProapinho(Request $request){
-        $ano = getAno();
-        $id_prog = ProgramaController::getIdProg($request->input('nom_prog'),'proapinho',$ano);
-        $pedidos = Pedido::where('id_progfk', $id_prog)->where('tipo_ped',$request->input('tipo_ped'))->get();
-        return $pedidos;
-    }
-
-    public function visualizarPedidos(Request $request){
-        $ano = getAno();
-        $id_prog = ProgramaController::getIdProg($request->input('nom_prog'),$request->input('tipo_prog'),$ano);
-        $pedidos = Pedido::where('id_progfk', $id_prog)->where('tipo_ped',$request->input('tipo_ped'))->get();
+    public function getPedidos(Request $request){
+        $pedidos = Pedido::where('id_progfk', $request->id_prog)->where('tipo_ped',$request->tipo_ped)->get();
         return $pedidos;
     }
 
    
 
     public function cadastrarPedido(Request $request){
-        $ano = getAno();
-        $id_prog =ProgramaController::getIdProg($request->programa,$request->tipo_prog,$ano);
+       
 
         $validator = Validator::make($request->all(),$rules = [ 
-            'num_ped' => ['bail',Rule::unique('pedidos')->where('id_progfk', $id_prog)->where('tipo_ped',$request->tipo_ped),'required','integer','min:1'],
+            'num_ped' => ['bail',Rule::unique('pedidos')->where('id_progfk', $request->programa)->where('tipo_ped',$request->tipo_ped),'required','integer','min:1'],
             'data' =>'required|Date|',
             'val' =>'required|decimal:0,2|min:1',
             'pcdp' =>'required|String|max:9',
@@ -75,7 +64,7 @@ class PedidoController extends Controller
         
         
         $data = [
-            'id_progfk' => $id_prog,
+            'id_progfk' => $request->programa,
             'tipo_ped' => $request->tipo_ped,
             'num_ped' => $request->num_ped,
             'data' => $request->data,
@@ -89,7 +78,7 @@ class PedidoController extends Controller
 
         Pedido::create($data);
        
-        return redirect()->back()->with(['sucesso' =>'Pedido cadastrado'])->withInput(['programa' => $request->programa, 'tipo_ped' => $request->tipo_ped]);
+        return redirect()->back()->with(['sucesso' =>'Pedido cadastrado'])->withInput(['id_prog' => $request->programa, 'tipo_ped' => $request->tipo_ped]);
         
     }
     

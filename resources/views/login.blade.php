@@ -13,30 +13,37 @@
     @if (session('erro'))
     <x-msg class="erro" :msg="session('erro')"/>
     @endif
-<main>
+
     
     
 <fieldset>
+   
     <form action="{{route('autenticar')}}" method="post">
-        
-            <h2>
+        <h3>
             Login
-            </h2>
-        <div>
-            <label for="username">Nome de usuário</label><br>
-            <input type="text" name="username" id = "username">
-        </div>
-        <div>
-            <label for="password">Senha</label><br>
-            <input type="password" name="password" id="password">
-        </div>
-        @csrf
-        <div>
+        </h3>
+          
+        <section>
+            <div>
+                <label for="username">Nome de usuário</label><br>
+                <input type="text" name="username" id = "username">
+            </div>
+            <div>
+                <label for="password">Senha</label><br>
+                <input type="password" name="password" id="password">
+            </div>
+            @csrf
+        </section>
+        <div id = "btn">
             <button type="submit">Entrar</button>
         </div>
-        
     </form>
+
+    
+    <div id = "img">
+        <img src = "/Images/logo.png" style="width: 400px; height: 200px"> 
+    </div>
 </fieldset>
-</main>
+
 </body>
 </html>

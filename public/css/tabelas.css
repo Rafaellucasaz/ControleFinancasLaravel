@@ -1,8 +1,7 @@
 table{
-    width: 90%;
+    width: 100%;
     border-collapse: collapse;
-    margin-left: 5%;
-    margin-right: 5%;
+
     margin-bottom: 2%;
 }
 
@@ -10,7 +9,7 @@ table th{
     text-transform: uppercase;
     text-align: center; 
     font-size: 16px;
-    width:5%;
+    width: 5%;
     background-color: #00204a;
     color: white;
 }
@@ -26,22 +25,23 @@ table th:last-child
 
 table tr td
 {
-    font-size: 14px;
-    white-space: nowrap;
+    width: auto;
+    font-size: 12px;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 300px;
-  
+    max-width: 400px;
+    max-height: 50px;
+    border-right: solid 2px #00204a ;
 }
+
 table tr td button
 {
     background-color: inherit;
 }
 table tr td:hover
 {
-    transition: 1s;
     white-space: normal;
-    
+
 }
 table tr:nth-child(even) 
 {
@@ -66,6 +66,9 @@ table tr:last-child td:last-child
 {
     border-radius: 0px 0px 10px 0px;
 }
+table td:last-child{
+    border: none;
+}
 
 table tr td a{
     color: #005792;
@@ -73,10 +76,48 @@ table tr td a{
 
 table tr td a:hover{
     opacity: 0.2;
+    font-size: 20px;
+    transition: 0.3s;
 }
+
 .hide
 {
     display: none;
 }
+
+
+#det-header{
+    width: 20%;
+}
+
+#nPed-header{
+    width: 1%;
+}
+#data-header{
+    width: 3%;
+}
+#val-header{
+    width: 3%;
+}
+
+#ben-header{
+    width: 13%;
+}
+
+#pcdp-header{
+    width: 4%;
+}
+
+#prest-header{
+    width: 10%;
+}
+
+#editar-header{
+    width: 3%;
+}
+#excluir-header{
+    width: 3%;
+}
+
 
 

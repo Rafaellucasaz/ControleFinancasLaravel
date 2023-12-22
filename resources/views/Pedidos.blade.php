@@ -38,13 +38,13 @@
         <table>
             <thead>
                 <tr>
-                    <th>nº ped</th>
-                    <th>data</th>
-                    <th>valor</th>
-                    <th>detalhamento</th>
-                    <th>beneficiado</th>
-                    <th>nº PCDP</th>
-                    <th>Prestação de contas</th>
+                    <th id ="nPed-header">nº</th>
+                    <th id ="data-header">data</th>
+                    <th id ="val-header">valor</th>
+                    <th id = "det-header">detalhamento</th>
+                    <th id ="ben-header">beneficiado</th>
+                    <th id ="pcdp-header">nº PCDP</th>
+                    <th id ="prest-header">Prestação de contas</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,7 +60,7 @@
         function atualizarTabela() {
             var formData = $('#select-form').serialize();
             $.ajax({
-                url: '{{ route("viewPedidos") }}',
+                url: '{{ route("getPedidos") }}',
                 method: 'GET',
                 data: formData,
                 success: function(data) {

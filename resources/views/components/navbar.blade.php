@@ -7,6 +7,9 @@
 </div>
 
 <style>
+  img{
+    float: left;
+  }
   .topnav {
     background-color: #00204a;
     overflow: hidden;
@@ -23,13 +26,15 @@
 }
 
 .topnav a:hover{ 
-    background-color: #005792;
-    color:white;
+  color: #005792;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .topnav a.active {
     background-color: #005792;
     color: white
 }
+
+
 </style>

@@ -115,7 +115,7 @@
         
         </table> 
     </div>  
-    @if($programa->edicao)
+    @if($programa->edit)
         <div class = "button"><button id = "abrirPopup" >Cadastrar valores</button> </div>
     
     @else

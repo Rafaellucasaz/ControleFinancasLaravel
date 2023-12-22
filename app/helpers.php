@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Pedido;
 use App\Models\Programa;
 
 function mostrarErros($name,$errors){
@@ -41,7 +42,7 @@ function isSelected($name,$value){
     } 
 }
 
-function getTipoPed($tipo_ped){
+function getTipoPed(String $tipo_ped){
     switch($tipo_ped){
         case 'dia_civ':
             return 'Diária pessoal civil';
@@ -71,8 +72,20 @@ function getAno(){
 }
 
 
-function calcularTotalValores(Programa $programa){
+function calcularTotalPrograma(Programa $programa){
     return $programa->dia_civ + $programa->dia_int + $programa->pass + $programa->sepe + $programa->nao_serv + $programa->aux_estu + $programa->aux_pesq + $programa->cons + $programa->ser_ter + $programa->tran;
     
+}
+
+function calcularTotalPedidos(String $tipo,$pedidos,$id_prog = null){
+    $total = 0;
+  
+        foreach($pedidos as $pedido){
+            if($pedido->tipo_ped === $tipo && $pedido->id_progfk === $id_prog){
+                $total += ($pedido->val/100);
+            }
+        }
+    
+    return $total;
 }
 ?>

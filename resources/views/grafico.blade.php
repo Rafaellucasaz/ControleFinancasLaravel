@@ -8,88 +8,166 @@
 @endsection
 
 @section('navbar')
-
+    @if(session('tipo_log') == 'admin')
+        @include('components.navbarAdmin')
+    @elseif(session('tipo_log') == 'coord')
+        @include('components.navbarCoord')
+    @else
+        @include('components.navbar')
+    @endif
 @endsection
 
 @section('main')
-    <div class="center-form">
-    <form action="" method="post">
-    
-        <label for="Programa">programa</label>
-        <select name ="programa" id="Programa"  onchange="this.form.submit()">
-            <option value="" disabled selected>Selecionar</option>
-        </select>
-    </form>
-    </div>
-<div class = "graficos">
-    <div id="pieChart"></div>  
-    <div id="barChart" class = "a"></div>
+    <div class="tabela">
+        <div class = "selects">
+            <form id="select-form" method="GET" action="{{route('relatorio')}}">
+                <select name ="programa" id="programa" >
+                </select>
+                <select name = "ano" id = "ano">
+                    <option value="2023" selected>2023</option>
+                    <option value="2024">2024</option>
+                </select>
 
-</div>
+                <button type = "submit">teste</button>
+            </form>
+        </div>
+    
+        <div class = "graficos">
+            <div id="pieChart"></div>  
+            <div id="barChart"></div>
+
+        </div>
+    </div>
 @endsection
 
 @section('scripts')
     google.charts.load('current', {'packages':['corechart', 'bar']});
-    google.charts.setOnLoadCallback(drawCharts);
+   
 
-    function drawCharts() {
-
+    function atualizarGraficos(programa, valores) {
+console.log("teste");
     var pieData = google.visualization.arrayToDataTable([
         ['programa', 'fundos'],
-        ['Diária civil', 20000],
-        ['Diária internacional', 40000],
-        ['Passagens', 12000],
-        ['SEPE', 3000],
-        ['Não servidor', 5000],
-        ['Auxílio estudante', 1200],
-        ['Auxílio pesquisador', 8000],
-        ['Cons', 3300],
-        ['Serviços de terceiros', 4000],
-        ['Transport', 5000]
+        ['Diária civil', programa.dia_civ/100],
+        ['Diária internacional', programa.dia_int/100],
+        ['Passagens', programa.pass/100],
+        ['SEPE', programa.sepe/100],
+        ['Não servidor', programa.nao_serv/100],
+        ['Auxílio estudante', programa.aux_estu/100],
+        ['Auxílio pesquisador', programa.aux_pesq/100],
+        ['Material de consumo', programa.cons/100],
+        ['Serviços de terceiros', programa.ser_ter/100],
+        ['Transporte', programa.tran/100 ]
     ]);
 
     var pieOptions = {
-        title: "Distribuição de fundos :",
+        title: "Distribuição de fundos " + programa.nom_prog + "-" + programa.tipo_prog + " " +  $('#ano').val() +  ":",
         is3D: true,
         backgroundColor: '#A0BFE0',
+        chartArea: {
+          left: '20',
+          width: '100%',
+          },
+          titleTextStyle: { color: '#00204a' },
+        legend: {
+            position: 'right',
+            textStyle: {
+              fontSize: 12,
+              color: '#00204a'
+            },
+           
+          }
     };
 
     var pieChart = new google.visualization.PieChart(document.getElementById('pieChart'));
     pieChart.draw(pieData, pieOptions);
 
+
     var barData = google.visualization.arrayToDataTable([
         ['Setores', 'Valor Recebido', 'Valor Gasto'],
-        ['Dia Civ', 20000,11874  ],
-        ['Dia Int', 40000,12000 ],
-        ['Pass', 12000,120  ],
-        ['SEPE' , 3000,1000  ],
-        ['Não Serv', 5000,1200  ],
-        ['Aux Estu',  1200,400  ],
-        ['Aux Pesq',  8000,4000  ],
-        ['Mat Cons',  3300,199  ],
-        ['Serv Ter',  4000,3000  ],
-        ['Trans', 5000,1200 ]
+        ['Dia Civ', programa.dia_civ/100,valores.dia_civ  ],
+        ['Dia Int', programa.dia_int/100,valores.dia_int ],
+        ['Pass', programa.pass/100,valores.pass  ],
+        ['SEPE' , programa.sepe/100,valores.sepe  ],
+        ['Não Serv', programa.nao_serv/100,valores.nao_serv  ],
+        ['Aux Estu',  programa.aux_estu/100,valores.aux_estu  ],
+        ['Aux Pesq',  programa.aux_pesq/100,valores.aux_pesq  ],
+        ['Mat Cons',  programa.cons/100,valores.cons  ],
+        ['Serv Ter',  programa.ser_ter/100,valores.ser_ter  ],
+        ['Trans', programa.tran/100,valores.tran ]
     ]);
 
     var barOptions = {
         chart: {
-        title: 'Comparação',
+        title: 'Valores Recebidos e valores gastos',
         subtitle: '',
         },
+        titleTextStyle: { color: '#00204a' },
+        hAxis: {
+            textStyle: { color: '#00204a' } // Change horizontal axis label color to red
+          },
         chartArea:{
             backgroundColor: '#e0fbfc',
+            width:'50%'
         },
-        
+        legend: {
+            position: 'right',
+            textStyle: {
+              fontSize: 12,
+              color : '#00204a',
+            },
+           
+          },
         colors: ['#005792','green'],
         backgroundColor: '#A0BFE0',
     };
-    function init() {
-        
-    }
+  
 
     var barChart = new google.charts.Bar(document.getElementById('barChart'));
 
     barChart.draw(barData, google.charts.Bar.convertOptions(barOptions));
-} 
-@endsection
 
+    window.addEventListener('resize', function() {
+        pieChart.draw(pieData, pieOptions);
+        barChart.draw(barData, google.charts.Bar.convertOptions(barOptions));
+      });
+}
+$(document).ready(function(){
+    function atualizarSelect(){
+        var formData = $('#ano').serialize();
+        $.ajax({
+        url: '{{route("getProgramas")}}',
+        method: 'GET',
+        data: formData,
+        success: function(data){
+            var options = '<option disabled selected>Selecione o programa </option>'
+            data.forEach(function(programa){
+                options += '<option value="' + programa.id_prog + '">' + programa.nom_prog + '-' + programa.tipo_prog + '</option>'
+            });
+            $('#programa').html(options);
+        }
+    });
+    }
+    $('#ano').change(function(){
+        atualizarSelect();
+    });
+
+    atualizarSelect();
+
+    function getDados(){
+        var formData = $('#programa').serialize();
+        $.ajax({
+            url : '{{route("dadosGraficos")}}',
+            method: 'GET',
+            data : formData,
+            success: function(data){
+               atualizarGraficos(data.programa,data.valores);
+
+            }
+        })
+    }
+    $('#programa').change(function(){
+        getDados();
+    });
+})
+@endsection

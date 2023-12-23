@@ -35,7 +35,7 @@ Route::group(['middleware' => 'admin'],function(){
 
     Route::post('/coordenadores/cadastrarCoordenador',[CoordenadorController::class,'cadastrarCoordenador'])->name('cadastrarCoordenador');
 
-    Route::delete('/coordenadores/excluirCoordenador/{username}', [CoordenadorController::class,'excluirCoordenador'])->name('excluirCoordenador');
+    Route::delete('/coordenadores/excluirCoordenador/{id_log}', [CoordenadorController::class,'excluirCoordenador'])->name('excluirCoordenador');
 
     Route::get('/controleProapinho',[PedidoController::class,'indexProapinho'])->name('controleProapinho');
 

@@ -11,8 +11,7 @@
         <form action="{{route('cadastrarValores')}}" method="post">
             @csrf
             @method('PATCH')
-            <input type="hidden" name="nom_prog" value = "{{$programa->nom_prog}}">
-            <input type="hidden" name = "tipo_prog" value = "{{$programa->tipo_prog}}">
+            <input type="hidden" name="id_prog" value = "{{$programa->id_prog}}">
             <div class = "popup-input">
                 <label for="dia_civ">Diária pessoa civil</label>
                 <input type="number" name="dia_civ" id = "dia_civ"  min = 0 step = 0.01 value = "{{$programa->dia_civ/100}}">

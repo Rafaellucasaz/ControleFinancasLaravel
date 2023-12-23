@@ -18,7 +18,7 @@ use Illuminate\Validation\Rule;
 class CoordenadorController extends Controller
 {
     public function index(){
-        $ano = date('Y');
+        $ano = getAno();
         $coordenadoresTemp = Coordenador::all();
         $coordenadores =[];
         $i = 0;
@@ -26,6 +26,7 @@ class CoordenadorController extends Controller
             $timestamp = Programa::where('id_prog',$coordenador->id_progfk)->value('created_at');
             $data = new Carbon($timestamp);
            array_push($coordenadores,[
+            'id_log' => $coordenador->id_logfk,
             'coordenador' => $coordenador->nome,
             'username' => Login::where('id_log',$coordenador->id_logfk)->value('username'),
             'programa' => Programa::where('id_prog',$coordenador->id_progfk)->value('nom_prog') . "-" . $data->year ,
@@ -74,10 +75,10 @@ class CoordenadorController extends Controller
 
     }
 
-    public function excluirCoordenador($username){
-        $id = LoginController::getIdLog($username);
-        Coordenador::where('id_logfk',$id)->delete();
-        LoginController::excluirLogin($username);
+    public function excluirCoordenador($id_log){
+        
+        Coordenador::where('id_logfk',$id_log)->delete();
+        LoginController::excluirLogin($id_log);
         return redirect()->route('coordenadores')->with('sucesso', 'Coordenador excluído');
     }
 

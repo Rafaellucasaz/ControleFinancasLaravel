@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 @section('titulo', 'Coordenadores')
 @section('head')
-<link href="/css/programas.css" rel="stylesheet"/>
 <link href="/css/coordenadores.css" rel="stylesheet"/>
 @endsection
 @section('popup')
@@ -71,7 +70,7 @@
                     <td> {{$coordenador['username']}} </td>
                     <td> {{$coordenador['programa']}} </td>
                     <td> {{$coordenador['tipo']}} </td>
-                    <td> <a href="{{ route('excluirCoordenador',['username' => $coordenador['username']])}}" class = "excluir"> <i class="fa-solid fa-trash-can"></i> </a> </td>  
+                    <td> <a href="{{ route('excluirCoordenador',['id_log' => $coordenador['id_log']])}}" class = "excluir"> <i class="fa-solid fa-trash-can"></i> </a> </td>  
                 </tr>
             @endforeach 
 

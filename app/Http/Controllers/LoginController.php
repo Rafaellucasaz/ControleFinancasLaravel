@@ -81,13 +81,9 @@ class LoginController extends Controller
        
     }
 
-    public static function excluirLogin($username){
-        Login::where('username',$username)->delete();
+    public static function excluirLogin($id_log){
+        Login::where('id_log',$id_log)->delete();
         
-    }
-
-    public static function getIdLog($username){
-        return Login::where('username',$username)->value('id_log');
     }
 
 }

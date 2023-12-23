@@ -83,10 +83,9 @@ class ProgramaController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $ano = getAno();
-        $id_prog = ProgramaController::getIdProg($request->nom_prog,$request->tipo_prog,$ano);
        
-        $programa = Programa::find($id_prog);
+       
+        $programa = Programa::find($request->id_prog);
 
         $programa->dia_civ = $request->dia_civ*100;
         $programa->dia_int = $request->dia_int*100;

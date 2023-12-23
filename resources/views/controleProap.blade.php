@@ -9,14 +9,14 @@
     
         @csrf
         <div class = "popup-selects">
-            <select name="programa" id="programa" required  >
+            <select name="id_prog" id="id_prog-popup" required  >
                 <option value="" disabled selected>Selecionar programa</option>
             @foreach ($programas as $programa)
-                <option value ="{{$programa->id_prog}}" {{isSelected("programa",$programa->id_prog)}}>{{$programa->nom_prog}} </option>;
+                <option value ="{{$programa->id_prog}}" {{isSelected("id_prog",$programa->id_prog)}}>{{$programa->nom_prog}} </option>;
             @endforeach
             </select>
                         
-            <select name="tipo_ped" class="tipo" id = "pedido" required >
+            <select name="tipo_ped" class="tipo" id = "tipo_ped-popup" required >
                 <option value="" disabled selected>Selecionar tipo de pedido</option>
                 <option value="dia_civ" {{isSelected("tipo_ped","dia_civ")}}>Diária pessoal civil</option>
                 <option value="dia_int" {{isSelected("tipo_ped","dia_int")}}>Diária internacional</option>
@@ -165,7 +165,7 @@ $(document).ready(function() {
                         tabela += `<tr>
                             <td>${pedido.num_ped}</td>
                             <td>${pedido.data}</td>
-                            <td>${(pedido.val / 100) % 1 === 0 ? 'R$ ' + pedido.val / 100 + '.00' : 'R$ ' + pedido.val / 100}</td>
+                            <td>R$ ${(pedido.val/100).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                             <td>${pedido.det}</td>
                             <td>${pedido.ben}</td>
                             <td>${pedido.pcdp}</td>

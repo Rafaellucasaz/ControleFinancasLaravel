@@ -11,10 +11,10 @@
         
             @csrf
             <div class = "popup-selects">
-                <select name="programa" id="programa" required  >
+                <select name="id_prog" id="id_prog-popup" required  >
                     <option value="" disabled selected>Selecionar programa</option>
                 @foreach ($programas as $programa)
-                <option value ="{{$programa->id_prog}}" {{isSelected("programa",$programa->id_prog)}}>{{$programa->nom_prog}} </option>;
+                <option value ="{{$programa->id_prog}}" {{isSelected("id_prog",$programa->id_prog)}}>{{$programa->nom_prog}} </option>;
                 @endforeach
                 </select>
                             
@@ -162,7 +162,7 @@
                             tabela += `<tr>
                                 <td>${pedido.num_ped}</td>
                                 <td>${pedido.data}</td>
-                                <td>${(pedido.val / 100) % 1 === 0 ? 'R$ ' + pedido.val / 100 + '.00' : 'R$ ' + pedido.val / 100}</td>
+                                <td>R$ ${(pedido.val/100).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                                 <td>${pedido.det}</td>
                                 <td>${pedido.ben}</td>
                                 <td>${pedido.pcdp}</td>

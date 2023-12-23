@@ -30,6 +30,7 @@
     <div class = "form">
     <label for="data">Data</label>
     <input type="hidden" name="id_ped" value = "{{$pedido->id_ped}}">
+    <input type="hidden" name = "tipo_prog" value = "{{$programa->tipo_prog}}">
     <input type="date" name = "data" id = "data" value ="{{$pedido->data}}" required >
     <label for="val">Valor</label>
     <input type="number" name = "val" id = "val" value = "{{$pedido->val/100}}" min = 1 step = "0.01" required  >

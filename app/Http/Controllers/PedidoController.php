@@ -40,7 +40,7 @@ class PedidoController extends Controller
        
 
         $validator = Validator::make($request->all(),$rules = [ 
-            'num_ped' => ['bail',Rule::unique('pedidos')->where('id_progfk', $request->programa)->where('tipo_ped',$request->tipo_ped),'required','integer','min:1'],
+            'num_ped' => ['bail',Rule::unique('pedidos')->where('id_progfk', $request->id_prog)->where('tipo_ped',$request->tipo_ped),'required','integer','min:1'],
             'data' =>'required|Date|',
             'val' =>'required|decimal:0,2|min:1',
             'pcdp' =>'required|String|max:9',
@@ -64,7 +64,7 @@ class PedidoController extends Controller
         
         
         $data = [
-            'id_progfk' => $request->programa,
+            'id_progfk' => $request->id_prog,
             'tipo_ped' => $request->tipo_ped,
             'num_ped' => $request->num_ped,
             'data' => $request->data,
@@ -78,7 +78,7 @@ class PedidoController extends Controller
 
         Pedido::create($data);
        
-        return redirect()->back()->with(['sucesso' =>'Pedido cadastrado'])->withInput(['id_prog' => $request->programa, 'tipo_ped' => $request->tipo_ped]);
+        return redirect()->back()->with(['sucesso' =>'Pedido cadastrado'])->withInput(['id_prog' => $request->id_prog, 'tipo_ped' => $request->tipo_ped]);
         
     }
     
@@ -120,14 +120,10 @@ class PedidoController extends Controller
         $pedido->ben = $request->ben;
         $pedido->save();
         
-        $id_prog = $pedido->id_progfk;
-        $programa = Programa::select('nom_prog','tipo_prog')->where('id_prog',$id_prog)->first();
-
-
-        if($programa->tipo_prog === 'proap'){
-            return redirect()->route('controleProap')->with(['sucesso' =>'Pedido editado'])->withInput(['programa' => $programa->nom_prog, 'tipo_ped' => $pedido->tipo_ped]);
+        if($request->tipo_prog === 'proap'){
+            return redirect()->route('controleProap')->with(['sucesso' =>'Pedido editado'])->withInput(['id_prog' => $pedido->id_progfk, 'tipo_ped' => $pedido->tipo_ped]);
         }
-        return redirect()->route('controleProapinho')->with(['sucesso' =>'Pedido editado'])->withInput(['programa' => $programa->nom_prog, 'tipo_ped' => $pedido->tipo_ped]);
+        return redirect()->route('controleProapinho')->with(['sucesso' =>'Pedido editado'])->withInput(['id_prog' => $pedido->id_progfk, 'tipo_ped' => $pedido->tipo_ped]);
     }
 
     public function excluirPedido($id_ped){

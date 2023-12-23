@@ -73,17 +73,17 @@
                         <tr class = "{{$programa->id_prog}}" id = "{{$programa->id_prog}}"> 
                             <td> {{$programa->nom_prog}} </td>
                             <td> {{$programa->tipo_prog}} </td>
-                            <td>R$ {{$programa->dia_civ/100}} </td>
-                            <td>R$ {{$programa->dia_int/100}} </td>
-                            <td>R$ {{$programa->pass/100}} </td>
-                            <td>R$ {{$programa->sepe/100}} </td>
-                            <td>R$ {{$programa->nao_serv/100}} </td>
-                            <td>R$ {{$programa->aux_est/100}} </td>
-                            <td>R$ {{$programa->aux_pes/100}} </td>
-                            <td>R$ {{$programa->cons/100}} </td>
-                            <td>R$ {{$programa->ser_ter/100}} </td>
-                            <td>R$ {{$programa->tran/100}} </td>
-                            <td>R$ {{$programa->total/100}} </td> 
+                            <td>R$ {{number_format($programa->dia_civ/100, 2, '.', ',')}} </td>
+                            <td>R$ {{number_format($programa->dia_int/100, 2, '.', ',')}} </td>
+                            <td>R$ {{number_format($programa->pass/100, 2, '.', ',')}} </td>
+                            <td>R$ {{number_format($programa->sepe/100, 2, '.', ',')}} </td>
+                            <td>R$ {{number_format($programa->nao_serv/100, 2, '.', ',')}} </td>
+                            <td>R$ {{number_format($programa->aux_est/100, 2, '.', ',')}} </td>
+                            <td>R$ {{number_format($programa->aux_pes/100, 2, '.', ',')}} </td>
+                            <td>R$ {{number_format($programa->cons/100, 2, '.', ',')}} </td>
+                            <td>R$ {{number_format($programa->ser_ter/100, 2, '.', ',')}} </td>
+                            <td>R$ {{number_format($programa->tran/100, 2, '.', ',')}} </td>
+                            <td>R$ {{number_format($programa->total/100, 2, '.', ',')}} </td> 
                             <td> <a href="{{ route('excluirPrograma',['id_prog' => $programa->id_prog])}}" class = "excluir" > <i class="fa-solid fa-trash-can"></i> </a> </td>      
                         </tr>
                         @endforeach 

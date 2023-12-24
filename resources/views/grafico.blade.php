@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('titulo','Gráfico')
+
 
 @section('head')
 <link rel="stylesheet" href="/css/grafico.css">
@@ -28,8 +28,6 @@
                     <option value="{{$ano}}">{{$ano}}</option>
                   @endforeach
                 </select>
-
-                <button type = "submit">teste</button>
             </form>
         </div>
     
@@ -46,7 +44,6 @@
    
 
     function atualizarGraficos(programa, valores) {
-console.log("teste");
     var pieData = google.visualization.arrayToDataTable([
         ['programa', 'fundos'],
         ['Diária civil', programa.dia_civ/100],
@@ -162,6 +159,7 @@ $(document).ready(function(){
             method: 'GET',
             data : formData,
             success: function(data){
+                console.log(data.programa);
                atualizarGraficos(data.programa,data.valores);
 
             }

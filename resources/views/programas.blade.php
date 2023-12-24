@@ -1,5 +1,4 @@
 @extends('layouts.layout')
-@section('titulo', 'Programas')
 @section('head')
 <link href="/css/programas.css" rel="stylesheet"/>
 @endsection
@@ -34,9 +33,9 @@
     @include('components.navbarAdmin')
 @endsection
 
-@section('main')
+@section('h1','Programas')
 
-    <h1>Programas</h1>
+@section('main')   
             <div class = "tabela">
                 <x-search-box/>
                 <div class = "buttons">

@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('titulo','Controle Proapinho')
+
 
 @section('head')
 <link href="/css/controles.css" rel="stylesheet"/>
@@ -81,8 +81,8 @@
     @include('components.navbarAdmin') 
 @endsection
 
+@section('h1','Pedidos Proapinho')
 @section('main')
-    <h1>Pedidos Proapinho </h1>   
         
     <div class = "tabela">
         <div class = "buttons" >  

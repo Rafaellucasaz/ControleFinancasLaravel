@@ -1,5 +1,4 @@
 @extends('layouts.layout')
-@section('titulo', 'Coordenadores')
 @section('head')
 <link href="/css/coordenadores.css" rel="stylesheet"/>
 @endsection
@@ -20,7 +19,7 @@
             {{mostrarErros("nome",$errors)}}
         </div>
         <div class = "popup-input">
-            <label for="nom_prog">Programa</label>
+            <label for="nom_prog">Sigla do programa</label>
             <input type="text" name = "nom_prog" id = "nom_prog" required {{getValoresAntigos("nom_prog",$errors)}}>
             {{mostrarErros("nom_prog",$errors)}}
         </div>
@@ -45,9 +44,9 @@
 @section('navbar')
 @include('components.navbarAdmin')
 @endsection
-
+@section('h1','Coordenadores')
 @section('main')
-    <h1>Coordenadores</h1> 
+    
    
     
     <div class = "tabela">

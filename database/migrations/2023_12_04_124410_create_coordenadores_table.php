@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigInteger('id_logfk')->references('id_log')->on('logins');
             $table->bigInteger('id_progfk')->references('id_prog')->on('programas');
             $table->timestamps();
-            $table->string('nome', 50);
+            $table->string('nome', 100);
             $table->primary(['id_logfk','id_progfk']);
         });
     }

@@ -6,7 +6,6 @@ body {
 .tabela{
     display: flex;
     flex-direction: column;
-    margin-top: 2%;
 }
 .selects{
     padding: 5px;
@@ -29,12 +28,11 @@ body {
     border-top: solid 20px #00204a;
     border-left: solid 20px #00204a;
     border-right: solid 20px #00204a;
-    border-bottom: solid 60px #00204a;
+    border-bottom: solid 50px #00204a;
     border-top-right-radius: 20px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     background-color: black;
-    
 }
 
 #pieChart{
@@ -50,8 +48,6 @@ body {
     width: 70%;
     height: 100%;
     border-radius: 4px;
-    
-  
 }
 
 

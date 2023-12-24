@@ -14,6 +14,7 @@ class ProgramaController extends Controller
     public function index(){
         $ano = date('Y');
         $programas = Programa::whereYear('created_at',$ano)->orderBy('nom_prog','asc')->get();
+        
         return view('programas')->with(compact('programas'));
     }
 
@@ -22,21 +23,19 @@ class ProgramaController extends Controller
         return view('Valores')->with(compact('programa'));
     }
 
-    
-
-    public function cadastrarNovoPrograma(Request $request){
-         $validator = Validator::make($request->all(),$rules =[
+     public function cadastrarNovoPrograma(Request $request){
+        $validator = Validator::make($request->all(),$rules =[
             'sigla' =>['required','regex:/^[a-zA-Z]+$/','max:20'],
             'tipo_prog' =>'required',
-         ],$msgs = [
+            ],$msgs = [
             'required' => 'Este campo é obrigatório',
             'regex' => 'Apenas caracteres de A-Z são permitidos',
             'max' => 'limite de caracteres atingido max: :max'
-         ]);
+        ]);
 
-         if($validator->fails()){
+        if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
-         }
+        }
             
         
         $ano = date('Y');
@@ -60,7 +59,6 @@ class ProgramaController extends Controller
         Coordenador::where('id_progfk',$id_prog)->delete();
         Programa::where('id_prog',$id_prog)->delete();
         return redirect()->route('programas')->with('sucesso', 'Programa excluído');
-
     }
 
     public function cadastrarValores(Request $request){
@@ -82,9 +80,7 @@ class ProgramaController extends Controller
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
-       
-       
+        
         $programa = Programa::find($request->id_prog);
 
         $programa->dia_civ = $request->dia_civ*100;
@@ -102,7 +98,6 @@ class ProgramaController extends Controller
         $programa->save();
      
         return redirect()->back()->with('sucesso','Valores cadastrados');
-
     }
 
     public function getProgramas(Request $request){

@@ -1,5 +1,4 @@
 @extends('layouts.layout')
-@section('titulo','Valores')
 
 @section('head')
 <link rel="stylesheet" href="/css/valores.css">

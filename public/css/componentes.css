@@ -10,19 +10,14 @@ select{
     padding: 5px;
 }
 
-
-
 select:focus{
     outline: none;
 }
 select:hover{
     background-color: #C5DFF8;
     cursor: pointer;
+    transition: 0.3s;
 }
-select::-ms-expand{
-    display: none;
-}
-
 
 input{
     
@@ -33,10 +28,8 @@ input{
 
 input:focus{
     background-color: #C5DFF8;
+    outline:none;
    
-}
-input::placeholder{
-    color: red;
 }
 
 textarea{
@@ -64,6 +57,7 @@ button:hover{background-color: #C5DFF8;cursor: pointer;transition: 0.3s;}
 
 h1{
     color: black;
+    border-bottom: 2px solid black;
 }
 
 h2{

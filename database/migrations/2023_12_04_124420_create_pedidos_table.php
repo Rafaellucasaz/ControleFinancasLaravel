@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('data');
             $table->integer('val');
             $table->text('det');
-            $table->string('ben',50);
+            $table->string('ben',100);
             $table->string('pcdp',9);
             $table->text('prest');
             $table->unique(['id_progfk','num_ped','tipo_ped']);

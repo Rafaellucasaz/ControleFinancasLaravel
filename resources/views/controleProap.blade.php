@@ -1,5 +1,4 @@
 @extends('layouts.layout')
-@section('titulo','Controle Proap')
 @section('head')
 <link href="/css/controles.css" rel="stylesheet"/>
 @endsection
@@ -79,9 +78,9 @@
     @include('components.navbarAdmin')
 
 @endsection
-
+@section('h1','Pedidos Proap')
 @section('main')
-    <h1>Pedidos Proap </h1>   
+     
                 
 
         

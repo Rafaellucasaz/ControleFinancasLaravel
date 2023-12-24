@@ -1,7 +1,5 @@
 @extends('layouts.layout')
 
-@section('titulo','Pedidos')
-
 @section('head')
 <link rel="stylesheet" href="/css/pedidos.css">
 @endsection

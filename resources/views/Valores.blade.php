@@ -73,8 +73,9 @@
 
 @endsection
 
+@section('h1', 'Cadastro ' . $programa->nom_prog . '-' . $programa->tipo_prog) 
+
 @section('main')
-    <h1>Cadastro {{$programa->nom_prog}}-{{$programa->tipo_prog}}  </h1>
             
 
     <div class = "tabela"> 
@@ -96,17 +97,17 @@
         </thead>
         <tbody>
             <tr> 
-                <td>R$ {{$programa->dia_civ/100}} </td>
-                <td>R$ {{$programa->dia_int/100}} </td>
-                <td>R$ {{$programa->pass/100}} </td>
-                <td>R$ {{$programa->sepe/100}} </td>
-                <td>R$ {{$programa->nao_serv/100}} </td>
-                <td>R$ {{$programa->aux_estu/100}} </td>
-                <td>R$ {{$programa->aux_pesq/100}} </td>
-                <td>R$ {{$programa->cons/100}} </td>
-                <td>R$ {{$programa->ser_ter/100}} </td>
-                <td>R$ {{$programa->tran/100}} </td>
-                <td>R$ {{$programa->total/100}} </td>
+                <td>R$ {{number_format($programa->dia_civ/100, 2, '.', ',')}} </td>
+                <td>R$ {{number_format($programa->dia_int/100, 2, '.', ',')}} </td>
+                <td>R$ {{number_format($programa->pass/100, 2, '.', ',')}} </td>
+                <td>R$ {{number_format($programa->sepe/100, 2, '.', ',')}} </td>
+                <td>R$ {{number_format($programa->nao_serv/100, 2, '.', ',')}} </td>
+                <td>R$ {{number_format($programa->aux_est/100, 2, '.', ',')}} </td>
+                <td>R$ {{number_format($programa->aux_pes/100, 2, '.', ',')}} </td>
+                <td>R$ {{number_format($programa->cons/100, 2, '.', ',')}} </td>
+                <td>R$ {{number_format($programa->ser_ter/100, 2, '.', ',')}} </td>
+                <td>R$ {{number_format($programa->tran/100, 2, '.', ',')}} </td>
+                <td>R$ {{number_format($programa->total/100, 2, '.', ',')}} </td> 
                 <tr>
         </tbody>
 

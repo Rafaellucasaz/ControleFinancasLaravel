@@ -1,10 +1,12 @@
 .erro{
-    border-radius: 50px;
-    background-color:  red;
+    border-radius: 30px;
+    background-color:  #ff7e82;
+    text-align: center;
     width: 25%;
+    height: 4%;
     position: fixed;
     left: 38%;
-    top :30px;
+    top:100px;
     color: black;
     animation: fadeOut 1.5s 2s forwards;
     -webkit-touch-callout: none; 
@@ -15,9 +17,10 @@
     user-select: none; 
 }
 .sucesso{
-    border-radius: 50px;
+    border-radius: 30px;
     background-color:  #C5DFF8;
     width: 25%;
+    height: 4%;
     position: fixed;
     left: 38%;
     top :30px;

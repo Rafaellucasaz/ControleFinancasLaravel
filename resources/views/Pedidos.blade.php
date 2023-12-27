@@ -8,16 +8,15 @@
 @include('components.navbarCoord')
 @endsection
 
-@section('main')
-    <h1>Pedidos {{$programa->nom_prog }}-{{$programa->tipo_prog}}</h1>   
-    
-   
 
+@section('h1', 'Pedidos ' . $programa->nom_prog . '-' . $programa->tipo_prog)
+@section('main')
+ 
+    
     <div class = "tabela">
         <div class = "buttons" >  
             <form id="select-form" >
-                <input type="hidden" name = "nom_prog" value = "{{$programa->nom_prog}}">
-                <input type="hidden" name = "tipo_prog" value = "{{$programa->tipo_prog}}">
+                <input type="hidden" name = "id_prog" value = "{{$programa->id_prog}}">
                 <select name="tipo_ped" id = "tipo_ped" >
                     <option value="" disabled selected>Selecionar tipo de pedido</option>
                     <option value="dia_civ" {{isSelected("tipo_ped","dia_civ")}}>Diária pessoal civil</option>
@@ -62,6 +61,7 @@
                 method: 'GET',
                 data: formData,
                 success: function(data) {
+                    console.log(data);
                     if (data.length === 0 && $('#tipo_ped').val() != null ) {
                         $('.semPedidos').html('<h2> Sem pedidos </h2>');
                         $('table tbody').html('');
@@ -73,7 +73,7 @@
                             tabela += `<tr>
                                 <td>${pedido.num_ped}</td>
                                 <td>${pedido.data}</td>
-                                <td>${(pedido.val / 100) % 1 === 0 ? 'R$ ' + pedido.val / 100 + '.00' : 'R$ ' + pedido.val / 100}</td>
+                                <td>R$ ${(pedido.val/100).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                                 <td>${pedido.det}</td>
                                 <td>${pedido.ben}</td>
                                 <td>${pedido.pcdp}</td>

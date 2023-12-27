@@ -121,8 +121,8 @@
                     <th id ="ben-header">beneficiado</th>
                     <th id ="pcdp-header">nº PCDP</th>
                     <th id ="prest-header">Prestação de contas</th>
-                    <th id = "editar-header">EDITAR</th>
-                    <th id = "excluir-header">EXCLUIR</th>
+                    <th id = "editar-header"></th>
+                    <th id = "excluir-header"></th>
                 </tr>
             </thead>
             <tbody>

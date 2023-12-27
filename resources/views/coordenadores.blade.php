@@ -60,7 +60,7 @@
                 <th>Nome de usuário</th>
                 <th>Programa</th>
                 <th>Tipo</th>
-                <th>Excluir</th>
+                <th></th>
             </tr>
 
              @foreach ($coordenadores as $coordenador)

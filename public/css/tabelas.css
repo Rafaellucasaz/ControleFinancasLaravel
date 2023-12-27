@@ -71,11 +71,12 @@ table td:last-child{
 
 table tr td a{
     color: #005792;
+    font-size: 16px;
 }
 
 table tr td a:hover{
-    opacity: 0.2;
-    font-size: 20px;
+    
+    color: #ff7e82;
     transition: 0.3s;
 }
 

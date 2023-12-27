@@ -102,7 +102,7 @@
         },
         titleTextStyle: { color: '#00204a' },
         hAxis: {
-            textStyle: { color: '#00204a' } // Change horizontal axis label color to red
+            textStyle: { color: '#00204a' }
           },
         chartArea:{
             backgroundColor: '#e0fbfc',
@@ -118,9 +118,12 @@
           },
         colors: ['#005792','green'],
         backgroundColor: '#A0BFE0',
+        orientation: 'horizontal',
     };
   
-
+    if(window.innerWidth < 1200){
+        barOptions.orientation = 'vertical';
+    }
     var barChart = new google.charts.Bar(document.getElementById('barChart'));
 
     barChart.draw(barData, google.charts.Bar.convertOptions(barOptions));
@@ -159,7 +162,6 @@ $(document).ready(function(){
             method: 'GET',
             data : formData,
             success: function(data){
-                console.log(data.programa);
                atualizarGraficos(data.programa,data.valores);
 
             }

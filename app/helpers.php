@@ -2,6 +2,7 @@
 
 use App\Models\Pedido;
 use App\Models\Programa;
+use Illuminate\Support\Carbon;
 
 function mostrarErros($name,$errors){
     if($name === "det"){
@@ -71,6 +72,10 @@ function getAno(){
     return date('Y');
 }
 
+function teste($timestamp){
+    $data = new Carbon($timestamp);
+    return $data->year;
+}
 
 function calcularTotalPrograma(Programa $programa){
     return $programa->dia_civ + $programa->dia_int + $programa->pass + $programa->sepe + $programa->nao_serv + $programa->aux_estu + $programa->aux_pesq + $programa->cons + $programa->ser_ter + $programa->tran;

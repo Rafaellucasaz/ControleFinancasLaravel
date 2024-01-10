@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\Validator;
 class ProgramaController extends Controller
 {
     public function index(){
-        $ano = date('Y');
-        $programas = Programa::whereYear('created_at',$ano)->orderBy('nom_prog','asc')->get();
+        $anos = Programa::selectRaw('extract("Year" from created_at)')->distinct()->pluck('extract');
+        $programas = Programa::orderBy('created_at','asc')->orderBy('nom_prog','asc')->get();
         
-        return view('programas')->with(compact('programas'));
+        return view('programas')->with(compact('programas'))->with(compact('anos'));
     }
 
     public function indexCadastrarValores($id_prog){

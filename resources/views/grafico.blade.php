@@ -83,16 +83,16 @@
 
     var barData = google.visualization.arrayToDataTable([
         ['Setores', 'Valor Recebido', 'Valor Gasto'],
-        ['Dia Civ', programa.dia_civ/100,valores.dia_civ  ],
-        ['Dia Int', programa.dia_int/100,valores.dia_int ],
-        ['Pass', programa.pass/100,valores.pass  ],
+        ['Diária Civil', programa.dia_civ/100,valores.dia_civ  ],
+        ['Diária Inter', programa.dia_int/100,valores.dia_int ],
+        ['Passagem', programa.pass/100,valores.pass  ],
         ['SEPE' , programa.sepe/100,valores.sepe  ],
-        ['Não Serv', programa.nao_serv/100,valores.nao_serv  ],
-        ['Aux Estu',  programa.aux_estu/100,valores.aux_estu  ],
-        ['Aux Pesq',  programa.aux_pesq/100,valores.aux_pesq  ],
-        ['Mat Cons',  programa.cons/100,valores.cons  ],
-        ['Serv Ter',  programa.ser_ter/100,valores.ser_ter  ],
-        ['Trans', programa.tran/100,valores.tran ]
+        ['Não Serv.', programa.nao_serv/100,valores.nao_serv  ],
+        ['Aux. Estud.',  programa.aux_estu/100,valores.aux_estu  ],
+        ['Aux. Pesqui.',  programa.aux_pesq/100,valores.aux_pesq  ],
+        ['Mat. Consumo',  programa.cons/100,valores.cons  ],
+        ['S. Terceiro',  programa.ser_ter/100,valores.ser_ter  ],
+        ['Transp.', programa.tran/100,valores.tran ]
     ]);
 
     var barOptions = {

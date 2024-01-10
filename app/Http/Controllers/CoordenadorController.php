@@ -42,11 +42,10 @@ class CoordenadorController extends Controller
             'tipo_prog' =>'required',
             'nom_prog' =>['bail','required','String','max:20','regex:/^[a-zA-Z]+$/',new ProgramaExiste($request->tipo_prog), new ProgramaTemCoord($request->tipo_prog)],
             'username' =>['required','regex:/^[a-zA-Z0-9_-]+$/','min:3','max:25',Rule::unique('logins')],
-            'password' => 'required|max:64|min:8|',
+            'password' => 'required|max:64',
         ],$msgs =[
             'required' => 'Este campo é obrigatório',
             'max' => 'Limite de caracteres atingido max: :max',
-            'password.min' => 'Senha precisa ter no mínimo 8 caracteres',
             'username.min '=> 'Nome de usuário precisa ter no mínimo 3 caracteres',	
             'nom_prog.regex' => 'Apenas caracteres de A-Z são permitidos',
             'username.regex' => 'Só pode conter letras, números, - e _',

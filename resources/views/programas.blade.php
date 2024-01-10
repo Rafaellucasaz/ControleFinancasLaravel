@@ -35,15 +35,39 @@
 
 @section('h1','Programas')
 
-@section('main')   
+@section('main')  
+<div id = "relatorio">
+    <h3> Relatório</h3>
+    <form action="{{route('relatorio')}}" method ="GET">
+    <div >
+        <label for="proap">Proap</label>
+        <input type="radio" value = "proap" name = "tipo_prog" id = "proap" required >
+        <label for="proapinho">proapinho</label>
+        <input type="radio" value = "proapinho" name = "tipo_prog" id = "proapinho" required>
+    </div>
+    <div>
+        <label for="ano">Ano</label>
+        <select name="ano" id="ano">
+            @foreach($anos as $ano)
+            <option value="{{$ano}}">{{$ano}}</option>
+            @endforeach
+        </select>
+    </div>
+    <div>
+    <button type = "submit">Gerar relatório</button>
+    <button type = "reset">Cancelar</button>
+    </div>
+    </form>
+</div> 
+<x-search-box/>
             <div class = "tabela">
-                <x-search-box/>
+               
                 <div class = "buttons">
                     <button id = "abrirPopup" > Cadastrar novo programa</button>
                     <form action="{{route('edicao')}}" method ="post">
                         @method('PATCH')
-                        <button name = "edicao"  type = "submit" value ="true">liberar para edição</button>
-                        <button name = "edicao"  type = "submit" value = "false"> trancar edição</button>
+                        <button name = "edicao"  type = "submit" value ="true">Liberar para edição</button>
+                        <button name = "edicao"  type = "submit" value = "false">Trancar edição</button>
                         @csrf
                     </form>
                 </div>
@@ -52,7 +76,7 @@
                     <thead>
                         <tr>
                             <th>Programa </th>
-                            <th> Tipo </th>
+                            <th>Tipo</th>
                             <th>Diária civil</th>
                             <th>Diária inter</th>
                             <th>Passagens</th>
@@ -69,8 +93,8 @@
                     </thead>
                     <tbody>
                         @foreach($programas as $programa )
-                        <tr class = "{{$programa->id_prog}}" id = "{{$programa->id_prog}}"> 
-                            <td> {{$programa->nom_prog}} </td>
+                        <tr id = "{{$programa->id_prog}}"> 
+                            <td> {{$programa->nom_prog}}-{{teste($programa->created_at)}} </td>
                             <td> {{$programa->tipo_prog}} </td>
                             <td>R$ {{number_format($programa->dia_civ/100, 2, '.', ',')}} </td>
                             <td>R$ {{number_format($programa->dia_int/100, 2, '.', ',')}} </td>
@@ -89,21 +113,7 @@
                     </tbody>
                 </table> 
             </div>  
-            <div id = "relatorio">
-                <h3> Relatório</h3>
-                <form action="{{route('relatorio')}}" method ="GET">
-                <div class = "radio">
-                    <label for="proap">Proap</label>
-                    <input type="radio" value = "proap" name = "tipo_prog" id = "proap" required >
-                    <label for="proapinho">proapinho</label>
-                    <input type="radio" value = "proapinho" name = "tipo_prog" id = "proapinho" required>
-                </div>
-                <div>
-                <button type = "submit">Gerar relatório</button>
-                </div>
-                <input type="hidden" name="ano" id="ano" value ="{{getAno()}}">
-                </form>
-            </div>
+            
             <form id="delete-Form" action="" method="POST" style="display: none;">
                 @csrf
                 @method('DELETE')
@@ -111,38 +121,39 @@
 @endsection
 @section('scripts')
     $(document).ready(function() {
-            
-        // Função para filtrar as linhas da tabela com base na entrada
+
+       
+        
         $("#search").on("input", function() {
             const value = $(this).val().toLowerCase();
-            const table = @php echo json_encode($programas)@endphp ;
-            table.forEach(row => {
-                var id = row.id_prog;
-                var linha = $("#" + id);
-                if (row.nom_prog.toLowerCase().includes(value) || row.tipo_prog.toLowerCase().includes(value)) {
-                    linha.removeClass("hide"); 
-                } else {
-                    linha.addClass("hide"); 
-                }
-            });
+            const tabela = $('tbody tr');
+            console.log(tabela);
+            tabela.each(function(element){
+                 if($(this).find('td:eq(0)').text().toLowerCase().includes(value) || $(this).find('td:eq(1)').text().toLowerCase().includes(value)){
+                    $(this).removeClass("hide");
+                 }
+                 else{
+                    $(this).addClass("hide");
+                 }
+            })
         });
 
-        // Função para deletar programa
         function deletarPrograma(link){
-            console.log("teste");
             if(confirm("Isso deletará todos os pedidos e o coordenador referente a esse programa. Continuar ?")){
                 $('#delete-Form').attr('action', link).submit(); 
             }
         };
 
-        // Chama função de deletar 
+        
         $('table tbody').on('click', '.excluir', function(event) {
             event.preventDefault();
             deletarPrograma($(this).attr('href')); 
-        });
+        });  
     });
     @if($errors->any()) $('#popup').addClass("open-popup") @endif
 @endsection
+
+
 
 
 

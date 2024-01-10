@@ -62,17 +62,18 @@ main{
     visibility: visible;
     top: 50%;
     transform: translate(-50%,-50%) scale(1);
-
 }
 
 
 #relatorio{
-    
+    margin-bottom: 10px;
     background-color: #00204a;
     width: 15%;
     color: white;
     border: 5px solid #A0BFE0;
     padding-bottom: 15px;
+    
+   
 }
 #relatorio form{
     display: flex;

@@ -102,8 +102,8 @@
                     <td>R$ {{number_format($programa->pass/100, 2, '.', ',')}} </td>
                     <td>R$ {{number_format($programa->sepe/100, 2, '.', ',')}} </td>
                     <td>R$ {{number_format($programa->nao_serv/100, 2, '.', ',')}} </td>
-                    <td>R$ {{number_format($programa->aux_est/100, 2, '.', ',')}} </td>
-                    <td>R$ {{number_format($programa->aux_pes/100, 2, '.', ',')}} </td>
+                    <td>R$ {{number_format($programa->aux_estu/100, 2, '.', ',')}} </td>
+                    <td>R$ {{number_format($programa->aux_pesq/100, 2, '.', ',')}} </td>
                     <td>R$ {{number_format($programa->cons/100, 2, '.', ',')}} </td>
                     <td>R$ {{number_format($programa->ser_ter/100, 2, '.', ',')}} </td>
                     <td>R$ {{number_format($programa->tran/100, 2, '.', ',')}} </td>

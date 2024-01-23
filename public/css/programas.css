@@ -63,6 +63,12 @@ main{
     top: 50%;
     transform: translate(-50%,-50%) scale(1);
 }
+.popup-input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
 
 
 
@@ -72,7 +78,12 @@ main{
         width: 100%;
     }
     .buttons{
-        width: 80%;
+        width: fit-content;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    .buttons button{
+        font-size: 10px;
     }
     .conteudo-tabela{
         width: 100%;

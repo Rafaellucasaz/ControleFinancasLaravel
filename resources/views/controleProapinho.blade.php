@@ -82,14 +82,11 @@
         
     <div class = "tabela">
         <div class = "buttons" >  
-            <button id = "abrirPopup" > Cadastrar pedido </button>
+            <div>
+                <button id = "abrirPopup" > Cadastrar pedido </button>
+            </div>
             <form id="select-form">
                 <select name="id_prog"  id="id_prog" >
-                </select>
-                <select name="ano" id="ano">
-                    @foreach($anos as $ano)
-                        <option value="{{$ano}}">{{$ano}}</option>
-                    @endforeach
                 </select>
                 <select name="tipo_ped" id = "tipo_ped" >
                     <option value="" disabled selected>Selecionar tipo de pedido</option>
@@ -104,6 +101,14 @@
                     <option value="ser_ter" {{isSelected("tipo_ped","ser_ter")}}>Serviços de terceiros</option>
                     <option value="tran" {{isSelected("tipo_ped","tran")}}>Transportes</option>
                 </select>
+            </form>
+            <form id = "ano-form">
+            <select name="ano" id="ano">
+                @foreach($anos as $ano)
+                    <option value="{{$ano}}">{{$ano}}</option>
+                @endforeach
+            </select>
+            <input type="hidden" name = "tipo_prog" value = "proapinho">
             </form>
         </div>
         <table>
@@ -137,7 +142,7 @@
     $(document).ready(function() {
             
         function atualizarSelect(){
-            var formData = $('#ano').serialize();
+            var formData = $('#ano-form').serialize();
             $.ajax({
             url: '{{route("getProgramas")}}',
             method: 'GET',
@@ -201,7 +206,6 @@
         atualizarTabela();
 
         function deletarPedido(link){
-            console.log('teste');
             $('#delete-Form').attr('action', link).submit();
         };    
         $('table tbody').on('click', '.excluir', function(event) {

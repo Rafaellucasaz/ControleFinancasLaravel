@@ -48,6 +48,7 @@
 
             </tbody>
         </table>
+        <div id = "semPedidos"></div>
     </div>
 @endsection
 
@@ -60,10 +61,9 @@
                 url: '{{ route("getPedidos") }}',
                 method: 'GET',
                 data: formData,
-                success: function(data) {
-                    console.log(data);
+                success: function(data) {   
                     if (data.length === 0 && $('#tipo_ped').val() != null ) {
-                        $('.semPedidos').html('<h2> Sem pedidos </h2>');
+                        $('#semPedidos').html('<h2> Sem pedidos </h2>');
                         $('table tbody').html('');
                     } else {
                         $('.semPedidos').html('');

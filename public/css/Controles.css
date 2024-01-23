@@ -77,6 +77,27 @@ body {
     width: 169px;
 }
 
+@media (max-width: 1200px) {
+    .tabela{
+        width: 100%;
+    }
+    .buttons{
+        width: fit-content;
+    }
+    .buttons button{
+        font-size: 9px;
+    }
+    .buttons select{
+        font-size: 9px;
+    }
+    .conteudo-tabela{
+        width: 100%;
+        overflow: auto;
+        margin-bottom: 5%;
+    }
+}
+
+
 
 
 

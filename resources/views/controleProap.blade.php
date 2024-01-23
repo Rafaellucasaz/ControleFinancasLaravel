@@ -89,11 +89,6 @@
             <form id= "select-form">
                 <select name="id_prog" id="id_prog">
                 </select>
-                <select name="ano" id="ano">
-                    @foreach($anos as $ano)
-                        <option value="{{$ano}}">{{$ano}}</option>
-                    @endforeach
-                </select>
                 <select name="tipo_ped" id = "tipo_ped" >
                     <option value="" disabled selected>Selecionar tipo de Pedido  </option>
                     <option value="dia_civ" {{isSelected("tipo_ped","dia_civ")}}>Diária pessoal civil</option>
@@ -108,6 +103,14 @@
                     <option value="tran" {{isSelected("tipo_ped","tran")}}>Transportes</option>
                 </select>
             </form>
+            <form id = "ano-form">
+                <select name="ano" id="ano">
+                    @foreach($anos as $ano)
+                        <option value="{{$ano}}">{{$ano}}</option>
+                    @endforeach
+                </select>
+                <input type="hidden" name = "tipo_prog" value = "proap">
+                </form>
         </div>
         <table>
             <thead>
@@ -140,7 +143,7 @@ $(document).ready(function() {
     
     
     function atualizarSelect(){
-        var formData = $('#ano').serialize();
+        var formData = $('#ano-form').serialize();
         $.ajax({
         url: '{{route("getProgramas")}}',
         method: 'GET',

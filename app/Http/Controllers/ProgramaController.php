@@ -101,6 +101,10 @@ class ProgramaController extends Controller
     }
 
     public function getProgramas(Request $request){
+        if(isset($request->tipo_prog)){
+            $programas = Programa::whereYear('created_at',$request->ano)->where('tipo_prog',$request->tipo_prog)->orderBy('nom_prog','asc')->get();
+            return $programas;
+        }
         $programas = Programa::whereYear('created_at',$request->ano)->orderBy('nom_prog','asc')->get();
         return $programas;
     }

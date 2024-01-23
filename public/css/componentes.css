@@ -67,6 +67,7 @@ h2{
 p{
     color:#ff7e82;
     font-size: 10px;
+    max-width: 169px;
 }
 
 ::-webkit-scrollbar{
@@ -92,6 +93,7 @@ p{
 .erroInput{
     background-color: #ff7e82;
     max-width: 169px;
+    text-align: center;
 }
 
 

@@ -20,7 +20,7 @@
 @section('main')
     <div class="tabela">
         <div class = "selects">
-            <form id="select-form" method="GET" action="{{route('relatorio')}}">
+            <form id="select-form" method="GET" >
                 <select name ="programa" id="programa" >
                 </select>
                 <select name = "ano" id = "ano">

@@ -12,10 +12,6 @@
             @csrf
             <div class = "popup-selects">
                 <select name="id_prog" id="id_prog-popup" required  >
-                    <option value="" disabled selected>Selecionar programa</option>
-                @foreach ($programas as $programa)
-                <option value ="{{$programa->id_prog}}" {{isSelected("id_prog",$programa->id_prog)}}>{{$programa->nom_prog}} </option>;
-                @endforeach
                 </select>
                             
                 <select name="tipo_ped" class="tipo" id = "pedido" required >
@@ -88,11 +84,11 @@
         <div class = "buttons" >  
             <button id = "abrirPopup" > Cadastrar pedido </button>
             <form id="select-form">
-                <input type="hidden" name="tipo_prog" value = "proapinho">
                 <select name="id_prog"  id="id_prog" >
-                    <option value="" disabled selected>Selecionar programa</option>
-                    @foreach ($programas as $programa)
-                    <option value ="{{$programa->id_prog}}" {{isSelected("id_prog",$programa->id_prog)}} >{{$programa->nom_prog}} </option>;
+                </select>
+                <select name="ano" id="ano">
+                    @foreach($anos as $ano)
+                        <option value="{{$ano}}">{{$ano}}</option>
                     @endforeach
                 </select>
                 <select name="tipo_ped" id = "tipo_ped" >
@@ -140,6 +136,28 @@
 @section('scripts')
     $(document).ready(function() {
             
+        function atualizarSelect(){
+            var formData = $('#ano').serialize();
+            $.ajax({
+            url: '{{route("getProgramas")}}',
+            method: 'GET',
+            data: formData,
+            success: function(data){
+                var options = '<option disabled selected>Selecione o programa </option>'
+                data.forEach(function(programa){
+                    options += '<option value="' + programa.id_prog + '">' + programa.nom_prog + '-' + programa.tipo_prog + '</option>'
+                });
+                $('#id_prog').html(options);
+                $('#id_prog-popup').html(options);
+            }
+        });
+        }
+        $('#ano').change(function(){
+            atualizarSelect();
+        });
+    
+        atualizarSelect();
+
         function atualizarTabela() {
             var formData = $('#select-form').serialize();
             $.ajax({

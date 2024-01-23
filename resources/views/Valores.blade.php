@@ -94,24 +94,22 @@
                     <th>Transporte</th>
                     <th>Total</th>
                 </tr>
-        </thead>
-        <tbody>
-            <tr> 
-                <td>R$ {{number_format($programa->dia_civ/100, 2, '.', ',')}} </td>
-                <td>R$ {{number_format($programa->dia_int/100, 2, '.', ',')}} </td>
-                <td>R$ {{number_format($programa->pass/100, 2, '.', ',')}} </td>
-                <td>R$ {{number_format($programa->sepe/100, 2, '.', ',')}} </td>
-                <td>R$ {{number_format($programa->nao_serv/100, 2, '.', ',')}} </td>
-                <td>R$ {{number_format($programa->aux_est/100, 2, '.', ',')}} </td>
-                <td>R$ {{number_format($programa->aux_pes/100, 2, '.', ',')}} </td>
-                <td>R$ {{number_format($programa->cons/100, 2, '.', ',')}} </td>
-                <td>R$ {{number_format($programa->ser_ter/100, 2, '.', ',')}} </td>
-                <td>R$ {{number_format($programa->tran/100, 2, '.', ',')}} </td>
-                <td>R$ {{number_format($programa->total/100, 2, '.', ',')}} </td> 
-                <tr>
-        </tbody>
-
-        
+            </thead>
+            <tbody>
+                <tr> 
+                    <td>R$ {{number_format($programa->dia_civ/100, 2, '.', ',')}} </td>
+                    <td>R$ {{number_format($programa->dia_int/100, 2, '.', ',')}} </td>
+                    <td>R$ {{number_format($programa->pass/100, 2, '.', ',')}} </td>
+                    <td>R$ {{number_format($programa->sepe/100, 2, '.', ',')}} </td>
+                    <td>R$ {{number_format($programa->nao_serv/100, 2, '.', ',')}} </td>
+                    <td>R$ {{number_format($programa->aux_est/100, 2, '.', ',')}} </td>
+                    <td>R$ {{number_format($programa->aux_pes/100, 2, '.', ',')}} </td>
+                    <td>R$ {{number_format($programa->cons/100, 2, '.', ',')}} </td>
+                    <td>R$ {{number_format($programa->ser_ter/100, 2, '.', ',')}} </td>
+                    <td>R$ {{number_format($programa->tran/100, 2, '.', ',')}} </td>
+                    <td>R$ {{number_format($programa->total/100, 2, '.', ',')}} </td> 
+                    <tr>
+            </tbody>
         </table> 
     </div>  
     @if($programa->edit)

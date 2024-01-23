@@ -119,5 +119,17 @@ table tr td a:hover{
     width: 3%;
 }
 
+@media (max-width: 1200px) {
+    table{
+        border-collapse: collapse;
+        margin-bottom: 2%;
+    }
+    table th{
+        font-size: 12px;
+    }
+    table tr td{
+        font-size: 10px;
+    }
+}
 
 

@@ -46,10 +46,9 @@ class CoordenadorController extends Controller
         ],$msgs =[
             'required' => 'Este campo é obrigatório',
             'max' => 'Limite de caracteres atingido max: :max',
-            'username.min '=> 'Nome de usuário precisa ter no mínimo 3 caracteres',	
+            'username.min'=> 'Nome de usuário precisa ter no mínimo 3 caracteres',	
             'nom_prog.regex' => 'Apenas caracteres de A-Z são permitidos',
             'username.regex' => 'Só pode conter letras, números, - e _',
-            'password.regex' => 'Senha precisa ter pelo menos uma letra maiúscula, uma minúscula e um número',
             'nome.regex' => 'Nome só pode conter letras',
             'username.unique' => 'Nome de usuário não disponível',
         ]);

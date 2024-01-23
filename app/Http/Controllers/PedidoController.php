@@ -13,15 +13,13 @@ use Illuminate\Validation\Rule;
 class PedidoController extends Controller
 {
     public function indexProapinho(){
-        $ano = getAno();
-        $programas = Programa::where('tipo_prog', 'proapinho')->whereYear('created_at', $ano)->select('nom_prog','id_prog')->get();
-        return view('controleProapinho')->with(compact('programas'));
+        $anos = Programa::selectRaw('extract("Year" from created_at)')->distinct()->pluck('extract');
+        return view('controleProapinho')->with(compact('anos'));
     }
 
     public function indexProap(){
-        $ano = getAno();
-        $programas = Programa::where('tipo_prog', 'proap')->whereYear('created_at', $ano)->select('nom_prog','id_prog')->get();
-        return view('controleProap')->with(compact('programas'));
+        $anos = Programa::selectRaw('extract("Year" from created_at)')->distinct()->pluck('extract');
+        return view('controleProap')->with(compact('anos'));
     }
 
     public function indexPedidos($id_prog){

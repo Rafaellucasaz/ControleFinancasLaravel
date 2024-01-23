@@ -19,7 +19,7 @@ class LoginController extends Controller
     public function autenticar(Request $request){
         $validator = Validator::make($request->all(), $rules = [
             'username' => 'required|regex:/^[a-zA-Z0-9_-]{3,25}$/',
-            'password' => 'required|min:3|max:64',
+            'password' => 'required|max:64',
         ]);
         if ($validator->fails()) {
             return redirect()->back()->with('erro','usuário e/ou senha inválidos');
@@ -49,15 +49,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('login');
-    }
-
-    public static function primeiroUser(){
-        $data =[
-            'username' => 'PROPPG_01',
-            'password' => hash::make('J8#pZ4!oD*'),
-            'tipo_log' => 'admin'
-        ];
-        
     }
 
     public static function registrar($username,$password,$tipoLog){

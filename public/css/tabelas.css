@@ -37,6 +37,11 @@ table tr td button
 {
     background-color: inherit;
 }
+table tr td button:hover
+{
+    color: white;
+    background-color: #00204a;
+}
 table tr td:hover
 {
     white-space: normal;

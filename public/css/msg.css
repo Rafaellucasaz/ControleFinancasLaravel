@@ -25,6 +25,7 @@
     left: 38%;
     top :30px;
     text-align: center;
+    padding-top: 10px;
     color: black;
     animation: fadeOut 1.5s 2s forwards;
     -webkit-touch-callout: none; 

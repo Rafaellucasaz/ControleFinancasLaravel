@@ -72,7 +72,7 @@ function getAno(){
     return date('Y');
 }
 
-function teste($timestamp){
+function yearFormat($timestamp){
     $data = new Carbon($timestamp);
     return $data->year;
 }

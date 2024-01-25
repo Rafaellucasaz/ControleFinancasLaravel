@@ -1,10 +1,11 @@
 @extends('layouts.layout')
 @section('head')
 <link href="/css/controles.css" rel="stylesheet"/>
+<link rel="stylesheet" href="/css/msg.css">
 @endsection
 @section('popup')
 <div class="popup" id = "popup">
-    <form action="{{route('cadastrarPedido')}}" method = "post">
+    <form id = "form-ped">
     
         @csrf
         <div class = "popup-selects">
@@ -64,7 +65,7 @@
         </div>
         <input type="hidden" name = "tipo_prog" value ="proap">
         <div class = "popup-buttons">
-        <button  type="submit" >Cadastrar</button>
+        <button  type="button" id ="cad-ped" >Cadastrar</button>
         <button  type="reset"id = "fecharPopup">Cancelar</button>
         </div>
     </form>
@@ -81,13 +82,14 @@
                 
 
         
-
-                    
     <div class = "tabela">
-        <div class = "buttons" >  
-            <button  id = "abrirPopup" > Cadastrar pedido </button>
+        <div class = "buttons" > 
+            <div> 
+                <button  id = "abrirPopup" > Cadastrar pedido </button>
+            </div>
             <form id= "select-form">
                 <select name="id_prog" id="id_prog">
+                    <option disabled selected>Selecione o programa </option>
                 </select>
                 <select name="tipo_ped" id = "tipo_ped" >
                     <option value="" disabled selected>Selecionar tipo de Pedido  </option>
@@ -163,6 +165,24 @@ $(document).ready(function() {
     });
 
     atualizarSelect();
+
+    function cadastrarPedido() {
+        var formData = $('#form-ped').serialize();
+        $.ajax({
+            url: '{{route("cadastrarPedido")}}',
+            method:'POST',
+            data: formData,
+            success:function(){
+                atualizarTabela();
+                var alerta = '<div class="sucesso"> Pedido Cadastrado </div>';
+                $('#alertas').html(alerta);
+            }
+        })
+    }
+    $('#cad-ped').click(function(){
+        cadastrarPedido();
+        $('#popup').removeClass('open-popup');
+    })
 
     function atualizarTabela() {
         var formData = $('#select-form').serialize();

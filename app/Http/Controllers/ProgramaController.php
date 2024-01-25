@@ -110,17 +110,30 @@ class ProgramaController extends Controller
     }
 
     public function edicao(Request $request){
-        if
-        ($request->edicao == "true"){
-            $ano = date('Y');
-            Programa::whereYear('created_at',$ano)->update(['edit'=> true]);
-            return redirect()->route('programas')->with('sucesso', 'Programas liberados para edição');
+        if(isset($request->id_prog)){
+            if
+            ($request->edicao == "true"){
+                Programa::where('id_prog',$request->id_prog)->update(['edit'=> true]);
+                return redirect()->route('programas')->with('sucesso', 'Programa liberado para edição');
+            }
+            else{
+                Programa::where('id_prog',$request->id_prog)->update(['edit'=> false]);
+                return redirect()->route('programas')->with('sucesso', 'Programa trancado para edição');
+            }
         }
         else{
-            $ano = date('Y');
-            Programa::whereYear('created_at',$ano)->update(['edit'=> false]);
-            return redirect()->route('programas')->with('sucesso', 'Programas trancados para edição');
-        }
+            if
+            ($request->edicao == "true"){
+                $ano = date('Y');
+                Programa::whereYear('created_at',$ano)->update(['edit'=> true]);
+                return redirect()->route('programas')->with('sucesso', 'Programas liberados para edição');
+            }
+            else{
+                $ano = date('Y');
+                Programa::whereYear('created_at',$ano)->update(['edit'=> false]);
+                return redirect()->route('programas')->with('sucesso', 'Programas trancados para edição');
+            }
+        } 
     }
 
     public static function getIdProg($programa,$tipo,$ano){

@@ -45,8 +45,9 @@
                     </div>
                     <form action="{{route('edicao')}}" method ="post">
                         @method('PATCH')
-                        <button name = "edicao"  type = "submit" value ="true">Liberar para edição</button>
-                        <button name = "edicao"  type = "submit" value = "false">Trancar edição</button>
+
+                        <button name = "edicao"  type = "submit" value ="true">Liberar todos</button>
+                        <button name = "edicao"  type = "submit" value = "false">Trancar todos</button>
                         @csrf
                     </form>
                     <form action="{{route('relatorio')}}" method="GET">
@@ -71,13 +72,14 @@
                                 <th>Serv. terceiros</th>
                                 <th>Transporte</th>
                                 <th>Total</th>
-                                <th> </th>                
+                                <th> </th>  
+                                <th></th>              
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($programas as $programa )
                             <tr id = "{{$programa->id_prog}}"> 
-                                <td> {{$programa->nom_prog}}-{{teste($programa->created_at)}} </td>
+                                <td> {{$programa->nom_prog}}-{{yearFormat($programa->created_at)}} </td>
                                 <td> {{$programa->tipo_prog}} </td>
                                 <td>R$ {{number_format($programa->dia_civ/100, 2, '.', ',')}} </td>
                                 <td>R$ {{number_format($programa->dia_int/100, 2, '.', ',')}} </td>
@@ -90,6 +92,18 @@
                                 <td>R$ {{number_format($programa->ser_ter/100, 2, '.', ',')}} </td>
                                 <td>R$ {{number_format($programa->tran/100, 2, '.', ',')}} </td>
                                 <td>R$ {{number_format($programa->total/100, 2, '.', ',')}} </td> 
+                                <td>
+                                    <form action="{{route('edicao')}}" method="post">
+                                        <input type="hidden" name="id_prog" value = "{{$programa->id_prog}}">
+                                        @method('PATCH')
+                                        @if($programa->edit == true)
+                                        <button name = "edicao"  type = "submit" value = "false">Trancar edição</button>
+                                        @else
+                                        <button name = "edicao"  type = "submit" value ="true">Liberar para edição</button>
+                                        @endif
+                                        @csrf
+                                    </form>
+                                </td>
                                 <td> <a href="{{ route('excluirPrograma',['id_prog' => $programa->id_prog])}}" class = "excluir" > <i class="fa-solid fa-trash-can"></i> </a> </td>      
                             </tr>
                             @endforeach 

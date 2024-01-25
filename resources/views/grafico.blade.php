@@ -22,6 +22,7 @@
         <div class = "selects">
             <form id="select-form" method="GET" >
                 <select name ="programa" id="programa" >
+                    <option disabled selected>Selecione o programa </option>
                 </select>
                 <select name = "ano" id = "ano">
                   @foreach($anos as $ano)

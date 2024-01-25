@@ -75,8 +75,8 @@ class PedidoController extends Controller
 
 
         Pedido::create($data);
-       
-        return redirect()->back()->with(['sucesso' =>'Pedido cadastrado'])->withInput(['id_prog' => $request->id_prog, 'tipo_ped' => $request->tipo_ped]);
+
+       return $data;
         
     }
     

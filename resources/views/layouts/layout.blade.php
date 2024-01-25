@@ -18,13 +18,15 @@
 @yield('popup')
 <body>
     @yield('navbar')
-    @if (session('sucesso'))
-        <x-msg class="sucesso" :msg="session('sucesso')"/>
-    @endif
+    <div id = "alertas">
+        @if (session('sucesso'))
+            <x-msg class="sucesso" :msg="session('sucesso')"/>
+        @endif
 
-    @if (session('erro'))
-        <x-msg class="erro" :msg="session('erro')"/>
-    @endif
+        @if (session('erro'))
+            <x-msg class="erro" :msg="session('erro')"/>
+        @endif
+    </div>
     <div style = 'display:flex; flex-direction:column;  align-items: center;'>
         <h1>@yield('h1')</h1>
     </div>

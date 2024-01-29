@@ -26,7 +26,7 @@ class GraficoController extends Controller
             'pass' => calcularTotalPedidos('pass',$pedidos),
             'sepe' => calcularTotalPedidos('sepe',$pedidos),
             'nao_serv' => calcularTotalPedidos('nao_serv',$pedidos),
-            'aux_extu' => calcularTotalPedidos('aux_estu',$pedidos),
+            'aux_estu' => calcularTotalPedidos('aux_estu',$pedidos),
             'aux_pesq' => calcularTotalPedidos('aux_pesq', $pedidos),
             'cons' => calcularTotalPedidos('cons',$pedidos),
             'ser_ter' => calcularTotalPedidos('ser_ter',$pedidos),

@@ -69,7 +69,9 @@ main{
     align-items: center;
     gap: 5px;
 }
-
+#ano{
+    width: 25%;
+}
 
 
 

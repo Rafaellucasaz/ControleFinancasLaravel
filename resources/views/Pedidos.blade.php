@@ -66,7 +66,7 @@
                         $('#semPedidos').html('<h2> Sem pedidos </h2>');
                         $('table tbody').html('');
                     } else {
-                        $('.semPedidos').html('');
+                        $('#semPedidos').html('');
                         var tabela = '';
                        
                         data.forEach(function(pedido) {

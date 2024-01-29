@@ -11,7 +11,6 @@
             <input type="radio" value = "proap" name = "tipo_prog" id = "proap" required >
             <label for="proapinho">proapinho</label>
             <input type="radio" value = "proapinho" name = "tipo_prog" id = "proapinho" required>
-            {{mostrarErros("tipo_prog",$errors)}}
         </div>
         <div class = "popup-input">
             
@@ -25,6 +24,29 @@
             <button  id = "fecharPopup" type = "reset">Cancelar</button>
         </div>
     </form>
+</div>
+<div class = "popup" id = "relatorio-popup">
+    <form action="{{Route("relatorio")}}" method = "GET">
+        <div class = "radio">
+            <label for="proap">Proap</label>
+            <input type="radio" value = "proap" name = "tipo_prog" id = "proap" required >
+            <label for="proapinho">proapinho</label>
+            <input type="radio" value = "proapinho" name = "tipo_prog" id = "proapinho" required>
+        </div>
+        <div>
+            <label for="ano">Ano</label>
+            <select name="ano" id="ano">
+                @foreach($anos as $ano)
+                    <option value="{{$ano}}">{{$ano}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div>
+            <button type = "submit">Gerar Relatório</button>
+            <button type = "reset" id = "fecharRelatorio">Cancelar</button>
+        </div>
+    </form>
+
 </div>
 @endsection
 
@@ -50,10 +72,9 @@
                         <button name = "edicao"  type = "submit" value = "false">Trancar todos</button>
                         @csrf
                     </form>
-                    <form action="{{route('relatorio')}}" method="GET">
-                        <button name = "tipo_relatorio" type = "submit" value = "proap">Relatório Proap</button>
-                        <button name = "tipo_relatorio" type = "submit" value = "proapinho">Relatório Proapinho</button>
-                    </form>
+                   <div>
+                    <button type = "button" id = "relatorio">Relatório</button>
+                    </div>
                 </div>
                 <div class = "conteudo-tabela">
                     <table>
@@ -86,8 +107,8 @@
                                 <td>R$ {{number_format($programa->pass/100, 2, '.', ',')}} </td>
                                 <td>R$ {{number_format($programa->sepe/100, 2, '.', ',')}} </td>
                                 <td>R$ {{number_format($programa->nao_serv/100, 2, '.', ',')}} </td>
-                                <td>R$ {{number_format($programa->aux_est/100, 2, '.', ',')}} </td>
-                                <td>R$ {{number_format($programa->aux_pes/100, 2, '.', ',')}} </td>
+                                <td>R$ {{number_format($programa->aux_estu/100, 2, '.', ',')}} </td>
+                                <td>R$ {{number_format($programa->aux_pesq/100, 2, '.', ',')}} </td>
                                 <td>R$ {{number_format($programa->cons/100, 2, '.', ',')}} </td>
                                 <td>R$ {{number_format($programa->ser_ter/100, 2, '.', ',')}} </td>
                                 <td>R$ {{number_format($programa->tran/100, 2, '.', ',')}} </td>
@@ -121,7 +142,13 @@
     $(document).ready(function() {
 
        
-        
+        $("#relatorio").on("click",function(){
+            $("#relatorio-popup").addClass("open-popup");
+        })
+        $("#fecharRelatorio").on("click",function(){
+            $("#relatorio-popup").removeClass("open-popup");
+        })
+
         $("#search").on("input", function() {
             const value = $(this).val().toLowerCase();
             const tabela = $('tbody tr');

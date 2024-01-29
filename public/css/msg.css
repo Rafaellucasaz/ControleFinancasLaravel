@@ -2,11 +2,12 @@
     border-radius: 30px;
     background-color:  #ff7e82;
     text-align: center;
+    padding-top: 10px;
     width: 25%;
     height: 4%;
     position: fixed;
     left: 38%;
-    top:100px;
+    top:30px;
     color: black;
     animation: fadeOut 1.5s 2s forwards;
     -webkit-touch-callout: none; 

@@ -39,7 +39,7 @@ class ProgramaController extends Controller
             
         
         $ano = date('Y');
-        $programa = Programa::where('nom_prog',$request->sigla)->where('tipo_prog',$request->tipo_prog)->whereYear('created_at',$ano)->first();
+        $programa = Programa::where('nom_prog',strtoupper($request->sigla))->where('tipo_prog',$request->tipo_prog)->whereYear('created_at',$ano)->first();
         if($programa === null){
             $data = [
                 'nom_prog' => strtoupper($request->sigla),

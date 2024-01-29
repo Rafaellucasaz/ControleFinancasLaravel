@@ -67,7 +67,7 @@
             </div>
             <input type="hidden" name = "tipo_prog" value ="proapinho">
             <div class = "popup-buttons">
-            <button  type="button" id ="cad-ped" >Cadastrar</button>
+            <button  type="reset" id ="cad-ped" >Cadastrar</button>
             <button  type="reset"id = "fecharPopup">Cancelar</button>
             </div>
         </form>

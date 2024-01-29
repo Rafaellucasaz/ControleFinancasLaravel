@@ -30,8 +30,15 @@ body {
 
 @media (max-width: 1200px) {
     .tabela{
-       
-        
+        width: 100%;
+    }
+    .buttons{
+        width: fit-content;
+    }
+    .conteudo-tabela{
+        width: 100%;
+        overflow: auto;
+        margin-bottom: 5%;
     }
 }
 

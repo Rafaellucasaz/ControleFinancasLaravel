@@ -46,5 +46,10 @@
 
     .sucesso{
         width:50%;
+        left: 28%;
+    }
+    .erro{
+        width: fit-content;
+        left: 28%;
     }
 }

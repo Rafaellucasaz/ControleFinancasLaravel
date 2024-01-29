@@ -28,12 +28,13 @@
             </h2>
         </div>
         <div class = "form">
-            <form action="{{route('autenticar')}}" method="POST">
-                @csrf
+            <form action="{{route('autenticar')}}" method="post">
+               
                 <div>
                     <label for="username">Nome de usuário</label><br>
                     <input type="text" name="username" id = "username">
                 </div>
+                @csrf
                 <div>
                     <label for="password">Senha</label><br>
                     <input type="password" name="password" id="password">

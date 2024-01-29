@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Coordenador;
+use App\Models\Login;
 use App\Models\Pedido;
 use App\Models\Programa;
 use Illuminate\Http\Request;
@@ -56,7 +57,9 @@ class ProgramaController extends Controller
     public function excluirPrograma($id_prog)
     {
         Pedido::where('id_progfk',$id_prog)->delete();
-        Coordenador::where('id_progfk',$id_prog)->delete();
+        $id_log= Coordenador::where('id_progfk',$id_prog)->value('id_logfk');
+        Coordenador::where('id_logfk',$id_log)->delete();
+        Login::where('id_log',$id_log)->delete();
         Programa::where('id_prog',$id_prog)->delete();
         return redirect()->route('programas')->with('sucesso', 'Programa excluído');
     }

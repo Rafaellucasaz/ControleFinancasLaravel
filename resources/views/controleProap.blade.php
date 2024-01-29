@@ -114,24 +114,26 @@
                 <input type="hidden" name = "tipo_prog" value = "proap">
                 </form>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th id ="nPed-header">nº</th>
-                    <th id ="data-header">data</th>
-                    <th id ="val-header">valor</th>
-                    <th id = "det-header">detalhamento</th>
-                    <th id ="ben-header">beneficiado</th>
-                    <th id ="pcdp-header">nº PCDP</th>
-                    <th id ="prest-header">Prestação de contas</th>
-                    <th id = "editar-header"></th>
-                    <th id = "excluir-header"></th>
-                </tr>
-            </thead>
-            <tbody>
+        <div class = "conteudo-tabela">
+            <table>
+                <thead>
+                    <tr>
+                        <th id ="nPed-header">nº</th>
+                        <th id ="data-header">data</th>
+                        <th id ="val-header">valor</th>
+                        <th id = "det-header">detalhamento</th>
+                        <th id ="ben-header">beneficiado</th>
+                        <th id ="pcdp-header">nº PCDP</th>
+                        <th id ="prest-header">Prestação de contas</th>
+                        <th id = "editar-header"></th>
+                        <th id = "excluir-header"></th>
+                    </tr>
+                </thead>
+                <tbody>
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
         <div id = "semPedidos"></div>
     </div>
     <form id="delete-Form" action="" method="POST" style="display: none;">

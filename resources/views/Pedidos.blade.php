@@ -32,22 +32,24 @@
                 </select>
             </form>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th id ="nPed-header">nº</th>
-                    <th id ="data-header">data</th>
-                    <th id ="val-header">valor</th>
-                    <th id = "det-header">detalhamento</th>
-                    <th id ="ben-header">beneficiado</th>
-                    <th id ="pcdp-header">nº PCDP</th>
-                    <th id ="prest-header">Prestação de contas</th>
-                </tr>
-            </thead>
-            <tbody>
+        <div class = "conteudo-tabela">
+            <table>
+                <thead>
+                    <tr>
+                        <th id ="nPed-header">nº</th>
+                        <th id ="data-header">data</th>
+                        <th id ="val-header">valor</th>
+                        <th id = "det-header">detalhamento</th>
+                        <th id ="ben-header">beneficiado</th>
+                        <th id ="pcdp-header">nº PCDP</th>
+                        <th id ="prest-header">Prestação de contas</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
         <div id = "semPedidos"></div>
     </div>
 @endsection

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\ProgramaController;
+
 use App\Models\Pedido;
 use App\Models\Programa;
 use Illuminate\Http\Request;
@@ -76,7 +76,7 @@ class PedidoController extends Controller
 
         Pedido::create($data);
 
-       return $data;
+        return redirect()->back()->with(['sucesso' =>'Pedido cadastrado'])->withInput(['id_prog' => $request->id_prog, 'tipo_ped' => $request->tipo_ped]);
         
     }
     

@@ -5,7 +5,7 @@
 @endsection
 @section('popup')
 <div class="popup" id = "popup">
-    <form id = "form-ped">
+    <form id = "form-ped" action ={{route("cadastrarPedido")}} method = "POST">
     
         @csrf
         <div class = "popup-selects">
@@ -65,7 +65,7 @@
         </div>
         <input type="hidden" name = "tipo_prog" value ="proap">
         <div class = "popup-buttons">
-        <button  type="button" id ="cad-ped" >Cadastrar</button>
+        <button  type="submit" id ="cad-ped" >Cadastrar</button>
         <button  type="reset"id = "fecharPopup">Cancelar</button>
         </div>
     </form>
@@ -146,6 +146,7 @@ $(document).ready(function() {
     
     function atualizarSelect(){
         var formData = $('#ano-form').serialize();
+        var id_prog = "{{old("id_prog")}}";
         $.ajax({
         url: '{{route("getProgramas")}}',
         method: 'GET',
@@ -153,37 +154,25 @@ $(document).ready(function() {
         success: function(data){
             var options = '<option disabled selected>Selecione o programa </option>'
             data.forEach(function(programa){
-                options += '<option value="' + programa.id_prog + '">' + programa.nom_prog + '-' + programa.tipo_prog + '</option>'
-            });
+                if(programa.id_prog == id_prog){
+                    options += '<option value="' + programa.id_prog + '" selected>' + programa.nom_prog + '</option>'
+                }
+                else{
+                    options += '<option value="' + programa.id_prog + '">' + programa.nom_prog + '</option>'
+                }            });
             $('#id_prog').html(options);
             $('#id_prog-popup').html(options);
+            atualizarTabela();
         }
     });
     }
+    atualizarSelect();
+
     $('#ano').change(function(){
         atualizarSelect();
     });
 
-    atualizarSelect();
-
-    function cadastrarPedido() {
-        var formData = $('#form-ped').serialize();
-        $.ajax({
-            url: '{{route("cadastrarPedido")}}',
-            method:'POST',
-            data: formData,
-            success:function(){
-                atualizarTabela();
-                var alerta = '<div class="sucesso"> Pedido Cadastrado </div>';
-                $('#alertas').html(alerta);
-            }
-        })
-    }
-    $('#cad-ped').click(function(){
-        cadastrarPedido();
-        $('#popup').removeClass('open-popup');
-    })
-
+    
     function atualizarTabela() {
         var formData = $('#select-form').serialize();
         $.ajax({
@@ -226,7 +215,7 @@ $(document).ready(function() {
         atualizarTabela();
     });
 
-    atualizarTabela();
+
     function deletarPedido(link){
             
     $('#delete-Form').attr('action', link).submit();

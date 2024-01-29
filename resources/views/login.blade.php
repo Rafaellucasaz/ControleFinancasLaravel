@@ -17,6 +17,10 @@
 
     
 <main>
+    <section>
+        <img src="Images/SGF.png" alt="logo">
+    </section>
+    
     <fieldset>
         <div class = "titulo">
             <h2>
@@ -24,26 +28,19 @@
             </h2>
         </div>
         <div class = "form">
-            <form action="{{route('autenticar')}}" method="post">
-                
-                
-                    <div>
-                        <label for="username">Nome de usuário</label><br>
-                        <input type="text" name="username" id = "username">
-                    </div>
-                    <div>
-                        <label for="password">Senha</label><br>
-                        <input type="password" name="password" id="password">
-                    </div>
-                        <button type="submit">Entrar</button>
-                    @csrf
-                
+            <form action="{{route('autenticar')}}" method="POST">
+                @csrf
+                <div>
+                    <label for="username">Nome de usuário</label><br>
+                    <input type="text" name="username" id = "username">
+                </div>
+                <div>
+                    <label for="password">Senha</label><br>
+                    <input type="password" name="password" id="password">
+                </div>
+                <button type="submit">Entrar</button>
+                    
             </form>
-
-            
-            <div id = "img">
-                <img src = "/Images/logo.png" > 
-            </div>
         </div>
     </fieldset>
 

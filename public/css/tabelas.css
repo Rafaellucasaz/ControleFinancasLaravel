@@ -127,7 +127,6 @@ table tr td a:hover{
 @media (max-width: 1200px) {
     table{
         border-collapse: collapse;
-        
     }
     table th{
         font-size: 12px;

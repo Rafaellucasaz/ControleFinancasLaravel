@@ -45,7 +45,7 @@
         </div>
         <div class = "popup-input">
             <label for="pcdp"> Nº PCDP</label>
-            <input type="text" name="pcdp" class = "pcdp" id = "pcdp" required {{getValoresAntigos("pcdp",$errors)}}   > 
+            <input type="text" name="pcdp" class = "pcdp" id = "pcdp"  {{getValoresAntigos("pcdp",$errors)}}   > 
             {{mostrarErros("pcdp",$errors)}}
         </div>
         <div class = "popup-input">

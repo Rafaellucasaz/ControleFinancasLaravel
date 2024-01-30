@@ -26,7 +26,7 @@ class Programa extends Model
         'ser_ter' => 0,
         'tran' => 0,
         'total' => 0,
-        'edit' => false,
+        'edit' => true,
     ];
 
 }

@@ -18,12 +18,33 @@ class Pedido extends Model
         'num_ped',
         'data',
         'val',
-        'pcdp',
         'det',
         'ben',
+        'pcdp',
+        'prest',
     ];
 
-    protected $attributes = [
-        'prest' => ' ' 
+    protected $attributes =[
+        'pcdp' => '',
+        'prest' => ''
     ];
+
+    protected static function booted()
+    {
+        static::creating(function ($pedido) {
+            $pedido->pcdp = $pedido->pcdp ?? $pedido->getDefaultPcdp();
+            $pedido->prest = $pedido->prest ?? $pedido->getDefaultPrest();
+        });
+    }
+
+    private function getDefaultPcdp()
+    {
+        return $this->attributes['pcdp'] ?? ''; 
+    }
+
+    private function getDefaultPrest()
+    {
+        return $this->attributes['prest'] ?? '';
+    }
+
 }

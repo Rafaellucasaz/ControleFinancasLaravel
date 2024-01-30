@@ -10,7 +10,9 @@ body {
     align-items: center;
     
 }
-
+.conteudo-tabela{
+    width: 100%;
+}
 .buttons{
     padding: 5px;
     display: flex;

@@ -41,7 +41,7 @@ class PedidoController extends Controller
             'num_ped' => ['bail',Rule::unique('pedidos')->where('id_progfk', $request->id_prog)->where('tipo_ped',$request->tipo_ped),'required','integer','min:1'],
             'data' =>'required|Date|',
             'val' =>'required|decimal:0,2|min:1',
-            'pcdp' =>'required|String|max:9',
+            'pcdp' =>'max:9',
             'det' =>'required|String',
             'ben' =>'required|regex:/^[\pL\s]+$/u|max:50', 
         ],$msgs = [
@@ -134,9 +134,9 @@ class PedidoController extends Controller
         $id_prog = $pedido->id_progfk;
         $programa = Programa::select('nom_prog','tipo_prog')->where('id_prog',$id_prog)->first();
         if($programa->tipo_prog === 'proap'){
-            return redirect()->route('controleProap')->with(['sucesso' =>'Pedido deletado'])->withInput(['programa' => $programa->nom_prog, 'tipo_ped' => $pedido->tipo_ped]);
+            return redirect()->route('controleProap')->with(['sucesso' =>'Pedido deletado'])->withInput(['id_prog' => $id_prog, 'tipo_ped' => $pedido->tipo_ped]);
         }
-        return redirect()->route('controleProapinho')->with(['sucesso' =>'Pedido deletado'])->withInput(['programa' => $programa->nom_prog, 'tipo_ped' => $pedido->tipo_ped]);
+        return redirect()->route('controleProapinho')->with(['sucesso' =>'Pedido deletado'])->withInput(['id_prog' => $id_prog, 'tipo_ped' => $pedido->tipo_ped]);
 
     }
 }

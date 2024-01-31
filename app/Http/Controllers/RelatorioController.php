@@ -13,7 +13,7 @@ class RelatorioController extends Controller
 {
     public function gerarRelatorio(Request $request){
 
-        $programas = Programa::whereYear('created_at', $request->ano)->where('tipo_prog',$request->tipo_prog)->get();
+        $programas = Programa::whereYear('created_at', $request->ano)->where('tipo_prog',$request->tipo_prog)->orderBy('nom_prog','asc')->get();
         $pedidos = Pedido::whereYear('created_at', $request->ano)->get();
 
 
@@ -117,7 +117,7 @@ class RelatorioController extends Controller
             <td> " .  number_format(calcularTotalPedidos("aux_pesq",$pedidos,$programa->id_prog),2, ',', '.') ."</td>
             <td> " .  number_format(calcularTotalPedidos("cons",$pedidos,$programa->id_prog),2, ',', '.') ."</td>
             <td> " .  number_format(calcularTotalPedidos("ser_ter",$pedidos,$programa->id_prog),2, ',', '.') ."</td>
-            <td> " .  number_format(calcularTotalPedidos("tra",$pedidos,$programa->id_prog),2, ',', '.') ."</td>
+            <td> " .  number_format(calcularTotalPedidos("tran",$pedidos,$programa->id_prog),2, ',', '.') ."</td>
             <td> " .  number_format(calcularTotalPedidos("todos",$pedidos,$programa->id_prog),2, ',', '.') ."</td>
           </tr>";
           }

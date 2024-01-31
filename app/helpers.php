@@ -84,12 +84,22 @@ function calcularTotalPrograma(Programa $programa){
 
 function calcularTotalPedidos(String $tipo,$pedidos,$id_prog = null){
     $total = 0;
-  
+
+    if($tipo === "todos"){
+        foreach($pedidos as $pedido){
+            if($pedido->id_progfk === $id_prog){
+                $total += ($pedido->val/100);
+            }
+        }
+    }
+    else{
         foreach($pedidos as $pedido){
             if($pedido->tipo_ped === $tipo && $pedido->id_progfk === $id_prog){
                 $total += ($pedido->val/100);
             }
         }
+    }
+        
     
     return $total;
 }

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 class ProgramaController extends Controller
 {
     public function index(){
-        $anos = Programa::selectRaw('extract("Year" from created_at)')->distinct()->pluck('extract');
+        $anos = Programa::selectRaw('YEAR(created_at) as extract')->distinct()->pluck('extract');
         $programas = Programa::orderBy('tipo_prog','asc')->orderBy('created_at','asc')->orderBy('nom_prog','asc')->get();
         
         return view('programas')->with(compact('programas'))->with(compact('anos'));

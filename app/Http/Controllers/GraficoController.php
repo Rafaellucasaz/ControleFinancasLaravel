@@ -11,7 +11,7 @@ class GraficoController extends Controller
 {
     public function index(){
 
-        $anos = Programa::selectRaw('extract("Year" from created_at)')->distinct()->pluck('extract');
+        $anos = Programa::selectRaw('YEAR(created_at) as extract')->distinct()->pluck('extract');
         return view('grafico')->with(compact('anos'));
     }
 

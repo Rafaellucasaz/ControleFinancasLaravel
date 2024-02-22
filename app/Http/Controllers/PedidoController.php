@@ -13,12 +13,12 @@ use Illuminate\Validation\Rule;
 class PedidoController extends Controller
 {
     public function indexProapinho(){
-        $anos = Programa::selectRaw('extract("Year" from created_at)')->distinct()->pluck('extract');
+        $anos = Programa::selectRaw('YEAR(created_at) as extract')->distinct()->pluck('extract');
         return view('controleProapinho')->with(compact('anos'));
     }
 
     public function indexProap(){
-        $anos = Programa::selectRaw('extract("Year" from created_at)')->distinct()->pluck('extract');
+        $anos = Programa::selectRaw('YEAR(created_at) as extract')->distinct()->pluck('extract');
         return view('controleProap')->with(compact('anos'));
     }
 

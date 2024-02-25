@@ -21,7 +21,7 @@ class ProgramaController extends Controller
 
     public function indexCadastrarValores($id_prog){
         $programa = Programa::where('id_prog',$id_prog)->first();
-        return view('Valores')->with(compact('programa'));
+        return view('valores')->with(compact('programa'));
     }
 
      public function cadastrarNovoPrograma(Request $request){

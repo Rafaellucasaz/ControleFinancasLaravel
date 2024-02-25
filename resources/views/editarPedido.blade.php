@@ -39,4 +39,3 @@
     </div>
     </form>
 @endsection
-<!DOCTYPE html>

@@ -35,6 +35,19 @@ class CoordenadorController extends Controller
         }
         return view('coordenadores')->with(compact('coordenadores'));
     }
+    public function indexConta($id_log,$id_prog){
+        $timestamp = Programa::where('id_prog',$id_prog)->value('created_at');
+        $data = new Carbon($timestamp);
+        $infos =[
+            'nome' => Coordenador::where('id_logfk',$id_log)->value('nome'),
+            'username' => Login::where('id_log',$id_log)->value('username'),
+            'programa' => Programa::where('id_prog',$id_prog)->value('nom_prog') . "-" . $data->year . "-" . Programa::where('id_prog',$id_prog)->value('tipo_prog')
+        ];
+
+        
+        return view('conta')->with(compact('infos'));
+    }
+   
 
     public function cadastrarCoordenador(Request $request){
         $validator = Validator::make($request->all(), $rules = [

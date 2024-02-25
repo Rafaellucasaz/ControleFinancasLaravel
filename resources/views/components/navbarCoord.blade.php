@@ -6,9 +6,9 @@
 <div class="topnav">
 
   <a href="{{route('grafico')}}">Gráfico</a>
-
   <a href="{{route('pedidos',session('id_prog'))}}">Pedidos</a>
   <a href = "{{route('indexCadastrarValores',session('id_prog'))}}">Valores</a>
+  <a href="{{route('indexConta',['id_log' => session('id_log'), 'id_prog' => session('id_prog')])}}">Conta</a>
 
   <form action="{{route('logout')}}" id = "logout-form" method="post">
     @csrf

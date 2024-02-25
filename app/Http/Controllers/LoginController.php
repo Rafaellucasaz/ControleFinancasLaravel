@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Coordenador;
 use Illuminate\Http\Request;
+use App\Rules\SenhasIguais;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -32,10 +33,12 @@ class LoginController extends Controller
             $request->session()->regenerate();
             if(Auth::user()->tipo_log=='admin'){
                 session(['tipo_log' => 'admin']);
+                session(['id_log' => Auth::user()->id_log]);
                 return redirect()->route('programas');
             }
             session(['tipo_log' => 'coord']);
             session(['id_prog' => Coordenador::where('id_logfk',Auth::user()->id_log)->value('id_progfk')]);
+            session(['id_log' => Auth::user()->id_log]);
             return redirect()->route('indexCadastrarValores',session('id_prog'));
             
         }
@@ -70,6 +73,26 @@ class LoginController extends Controller
         }
 
        
+    }
+
+    public function alterarSenha(Request $request){
+        $validator = Validator::make($request->all(), $rules = [
+            'password' => ['required','max:64', new SenhasIguais($request->passwordConfirm)],
+            'passwordConfirm' => 'required|max:64',
+        ],$msgs =[
+            'required' => 'Este campo é obrigatório',
+            'max' => 'Limite de caracteres atingido max: :max',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+        $login = Login::find($request->id_log);
+
+        $login->password =  hash::make($request->password);
+        $login->save();
+
+        return redirect()->route('indexConta', ['id_log' => $request->id_log, 'id_prog' => $request->id_prog])->with('sucesso','senha alterada');
     }
 
     public static function excluirLogin($id_log){

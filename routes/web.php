@@ -3,8 +3,8 @@
 use App\Http\Controllers\GraficoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProgramaController;
-use App\http\Controllers\CoordenadorController;
-use App\http\Controllers\PedidoController;
+use App\Http\Controllers\CoordenadorController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\RelatorioController;
 use Illuminate\Support\Facades\Route;
 
@@ -57,7 +57,11 @@ Route::group(['middleware' => 'coord'],function(){
     
     Route::patch('/cadastrarValores',[ProgramaController::class,'cadastrarValores'])->name('cadastrarValores');
 
-    Route::get('/Pedidos/{id_prog}',[PedidoController::class,'indexPedidos'])->name('pedidos');
+    Route::get('/pedidos/{id_prog}',[PedidoController::class,'indexPedidos'])->name('pedidos');
+
+    Route::get('/conta/{id_log}/{id_prog}',[CoordenadorController::class,'indexConta'])->name('indexConta');
+
+    Route::patch('/alterarSenha', [LoginController::class,'alterarSenha'])->name('alterarSenha');
 });
 
 Route::group(['middleware' => 'auth'], function() {

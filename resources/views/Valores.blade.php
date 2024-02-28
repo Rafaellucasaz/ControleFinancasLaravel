@@ -73,7 +73,11 @@
 
 @endsection
 
-@section('h1', 'Cadastro ' . $programa->nom_prog . '-' . $programa->tipo_prog) 
+@if($programa->tipo_prog == 'proapinho')
+@section('h1', 'Valores ' . $programa->nom_prog . '-PAPG')
+@else
+@section('h1', 'Valores ' . $programa->nom_prog . '-' . strToUpper($programa->tipo_prog))
+@endif
 
 @section('main')
             

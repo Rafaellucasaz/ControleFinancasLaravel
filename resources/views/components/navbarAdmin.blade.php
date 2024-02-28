@@ -6,8 +6,8 @@
  
 <a href="{{route('grafico')}}">Gráfico</a>
 
-<a href = "{{route('controleProapinho')}}">Proapinho</a>
-<a href = "{{route('controleProap')}}">Proap</a>
+<a href = "{{route('controleProapinho')}}">PAPG</a>
+<a href = "{{route('controleProap')}}">PROAP</a>
 <a href = "{{route('coordenadores')}}">Coordenadores</a>
 <a href = "{{route('programas')}}">Programas</a>
 

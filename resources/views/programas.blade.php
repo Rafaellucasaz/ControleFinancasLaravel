@@ -7,9 +7,9 @@
 <div class = "popup" id = "popup">
     <form action="{{route('cadastrarNovoPrograma')}}" method="post">
         <div class = "radio">
-            <label for="proap">Proap</label>
+            <label for="proap">PROAP</label>
             <input type="radio" value = "proap" name = "tipo_prog" id = "proap" required >
-            <label for="proapinho">proapinho</label>
+            <label for="proapinho">PAPG</label>
             <input type="radio" value = "proapinho" name = "tipo_prog" id = "proapinho" required>
         </div>
         <div class = "popup-input">
@@ -28,9 +28,9 @@
 <div class = "popup" id = "relatorio-popup">
     <form action="{{Route("relatorio")}}" method = "GET">
         <div class = "radio">
-            <label for="proap">Proap</label>
+            <label for="proap">PROAP</label>
             <input type="radio" value = "proap" name = "tipo_prog" id = "proap" required >
-            <label for="proapinho">proapinho</label>
+            <label for="proapinho">PAPG</label>
             <input type="radio" value = "proapinho" name = "tipo_prog" id = "proapinho" required>
         </div>
         <div>
@@ -101,7 +101,7 @@
                             @foreach($programas as $programa )
                             <tr id = "{{$programa->id_prog}}"> 
                                 <td> {{$programa->nom_prog}}-{{yearFormat($programa->created_at)}} </td>
-                                <td> {{$programa->tipo_prog}} </td>
+                                <td>@if($programa->tipo_prog == 'proapinho' ) PAPG @else {{strToUpper($programa->tipo_prog)}}@endif </td>
                                 <td>R$ {{number_format($programa->dia_civ/100, 2, '.', ',')}} </td>
                                 <td>R$ {{number_format($programa->dia_int/100, 2, '.', ',')}} </td>
                                 <td>R$ {{number_format($programa->pass/100, 2, '.', ',')}} </td>

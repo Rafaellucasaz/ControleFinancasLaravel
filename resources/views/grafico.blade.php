@@ -144,7 +144,13 @@ $(document).ready(function(){
         success: function(data){
             var options = '<option disabled selected>Selecione o programa </option>'
             data.forEach(function(programa){
-                options += '<option value="' + programa.id_prog + '">' + programa.nom_prog + '-' + programa.tipo_prog + '</option>'
+                if(programa.tipo_prog == 'proapinho'){
+                    options += '<option value="' + programa.id_prog + '">' + programa.nom_prog + '-' + 'PAPG' + '</option>'
+                }
+                else{
+                    options += '<option value="' + programa.id_prog + '">' + programa.nom_prog + '-' + 'PROAP' + '</option>'
+                }
+                
             });
             $('#programa').html(options);
         }

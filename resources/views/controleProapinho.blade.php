@@ -78,7 +78,7 @@
     @include('components.navbarAdmin') 
 @endsection
 
-@section('h1','Pedidos Proapinho')
+@section('h1','Pedidos PAPG')
 @section('main')
         
     <div class = "tabela">

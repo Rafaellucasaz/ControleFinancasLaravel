@@ -38,10 +38,14 @@ class CoordenadorController extends Controller
     public function indexConta($id_log,$id_prog){
         $timestamp = Programa::where('id_prog',$id_prog)->value('created_at');
         $data = new Carbon($timestamp);
+        $tipo_prog = Programa::where('id_prog',$id_prog)->value('tipo_prog');
+        if($tipo_prog == 'proapinho'){
+            $tipo_prog = 'PAPG';
+        }
         $infos =[
             'nome' => Coordenador::where('id_logfk',$id_log)->value('nome'),
             'username' => Login::where('id_log',$id_log)->value('username'),
-            'programa' => Programa::where('id_prog',$id_prog)->value('nom_prog') . "-" . $data->year . "-" . Programa::where('id_prog',$id_prog)->value('tipo_prog')
+            'programa' => Programa::where('id_prog',$id_prog)->value('nom_prog') . "-" . $data->year . "-" . strtoupper($tipo_prog)
         ];
 
         

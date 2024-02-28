@@ -9,7 +9,12 @@
 @endsection
 
 
-@section('h1', 'Pedidos ' . $programa->nom_prog . '-' . $programa->tipo_prog)
+@if($programa->tipo_prog == 'proapinho')
+@section('h1', 'Pedidos ' . $programa->nom_prog . '-PAPG')
+@else
+@section('h1', 'Pedidos ' . $programa->nom_prog . '-' . strToUpper($programa->tipo_prog))
+@endif
+
 @section('main')
  
     

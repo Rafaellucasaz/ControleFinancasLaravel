@@ -55,24 +55,26 @@
             <button  id = "abrirPopup" > Cadastrar Coordenador </button> 
         </div>
         <table>
-            <tr>
-                <th>Coordenador </th>
-                <th>Nome de usuário</th>
-                <th>Programa</th>
-                <th>Tipo</th>
-                <th></th>
-            </tr>
-
-             @foreach ($coordenadores as $coordenador)
-                <tr class = "{{$coordenador['username']}}"  id = "{{$coordenador['username']}}">
-                    <td> {{$coordenador['coordenador']}} </td>
-                    <td> {{$coordenador['username']}} </td>
-                    <td> {{$coordenador['programa']}} </td>
-                    <td> {{$coordenador['tipo']}} </td>
-                    <td> <a href="{{ route('excluirCoordenador',['id_log' => $coordenador['id_log']])}}" class = "excluir"> <i class="fa-solid fa-trash-can"></i> </a> </td>  
+            <thead>
+                <tr>
+                    <th>Coordenador </th>
+                    <th>Nome de usuário</th>
+                    <th>Programa</th>
+                    <th>Tipo</th>
+                    <th></th>
                 </tr>
-            @endforeach 
-
+            </thead>
+            <tbody>
+                @foreach ($coordenadores as $coordenador)
+                    <tr class = "{{$coordenador['username']}}"  id = "{{$coordenador['username']}}">
+                        <td> {{$coordenador['coordenador']}} </td>
+                        <td> {{$coordenador['username']}} </td>
+                        <td> {{$coordenador['programa']}} </td>
+                        <td> @if($coordenador['tipo'] == 'proapinho') PAPG  @else{{strToUpper($coordenador['tipo'])}}@endif </td>
+                        <td> <a href="{{ route('excluirCoordenador',['id_log' => $coordenador['id_log']])}}" class = "excluir"> <i class="fa-solid fa-trash-can"></i> </a> </td>  
+                    </tr>
+                @endforeach 
+            </tbody>
         </table> 
     </div>  
     <form id="delete-Form" action="" method="POST" style="display: none;">
@@ -84,27 +86,26 @@
 @section('scripts')
 $(document).ready(function() {
         
-    // Função para filtrar as linhas da tabela com base na entrada
+    
     $("#search").on("input", function() {
         const value = $(this).val().toLowerCase();
-        const table = @php echo json_encode($coordenadores)@endphp ;
-        table.forEach(row => {
-            var id = row.username;
-            var linha = $("#" + id);
-            if (row.coordenador.toLowerCase().includes(value) || row.username.toLowerCase().includes(value) || row.programa.toLowerCase().includes(value)){
-                linha.removeClass("hide"); 
-            } else {
-                linha.addClass("hide"); 
-            }
-        });
+        const tabela = $('tbody tr');
+        tabela.each(function(element){
+             if($(this).find('td:eq(0)').text().toLowerCase().includes(value) || $(this).find('td:eq(1)').text().toLowerCase().includes(value) || $(this).find('td:eq(2)').text().toLowerCase().includes(value) || $(this).find('td:eq(3)').text().toLowerCase().includes(value) ){
+                $(this).removeClass("hide");
+             }
+             else{
+                $(this).addClass("hide");
+             }
+        })
     });
 
-    // Função para deletar coordenadores
+    
     function deletarCoordenador(link){
         $('#delete-Form').attr('action', link).submit(); 
     };
 
-    // Chama função de deletar 
+    
     $('table tbody').on('click', '.excluir', function(event) {
         event.preventDefault();
         deletarCoordenador($(this).attr('href')); 

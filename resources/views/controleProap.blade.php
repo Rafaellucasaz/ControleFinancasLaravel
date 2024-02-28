@@ -76,7 +76,7 @@
     @include('components.navbarAdmin')
 
 @endsection
-@section('h1','Pedidos Proap')
+@section('h1','Pedidos PROAP')
 @section('main')
      
                 

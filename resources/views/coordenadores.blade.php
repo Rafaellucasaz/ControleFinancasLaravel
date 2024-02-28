@@ -8,9 +8,9 @@
     <form action="{{route('cadastrarCoordenador')}}" method= "post" >
         @csrf
         <div class = "radio">
-            <label for="proap">Proap</label>
+            <label for="proap">PROAP</label>
             <input type="radio" value = "proap" name = "tipo_prog" id = "proap" required>
-            <label for="proapinho">proapinho</label>
+            <label for="proapinho">PAPG</label>
             <input type="radio" value = "proapinho" name = "tipo_prog" id = "proapinho" required>
         </div>
         <div class = "popup-input">

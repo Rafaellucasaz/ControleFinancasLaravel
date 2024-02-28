@@ -58,7 +58,12 @@
         ['Serviços de terceiros', programa.ser_ter/100],
         ['Transporte', programa.tran/100 ]
     ]);
-
+        if(programa.tipo_prog == 'proapinho'){
+            programa.tipo_prog = 'PAPG'
+        }
+        else{
+            programa.tipo_prog = 'PROAP'
+        }
     var pieOptions = {
         title: "Distribuição de fundos " + programa.nom_prog + "-" + programa.tipo_prog + " " +  $('#ano').val() +  ":",
         is3D: true,

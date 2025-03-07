@@ -13,15 +13,15 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         $data=[
-            'username' => 'glauber',
-            'password' => hash::make('rafa3104'),
+            'username' => 'usuario1',
+            'password' => hash::make('senha123'),
             'tipo_log' => 'admin'
         ];
         Login::create($data);
 
         $data=[
-            'username' => 'antonio',
-            'password' => hash::make('vivi3104'),
+            'username' => 'usuario2',
+            'password' => hash::make('senha321'),
             'tipo_log' => 'admin'
         ];
         Login::create($data);
